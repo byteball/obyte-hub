@@ -1,0 +1,28 @@
+{
+  "name": "byteball-hub",
+  "description": "Byteball Hub",
+  "author": "Byteball",
+  "version": "0.1.0",
+  "main": "start.js",
+  "keywords": [
+    "hub",
+    "byteball",
+    "messaging",
+    "chat"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "git://github.com/byteball/byteball-hub.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/byteball/byteball-hub/issues"
+  },
+  "browser": {
+    "request": "browser-request",
+    "secp256k1": "secp256k1/js"
+  },
+  "dependencies": {
+    "byteball-relay": "^0.1.0"
+  }
+}
