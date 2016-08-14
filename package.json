@@ -23,6 +23,6 @@
     "secp256k1": "secp256k1/js"
   },
   "dependencies": {
-    "byteball-relay": "^0.1.0"
+    "byteball-relay": "byteball/byteball-relay"
   }
 }
