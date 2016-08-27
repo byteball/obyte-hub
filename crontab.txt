@@ -1,0 +1,1 @@
+*/5 * * * * cd byteball-hub; node check_daemon.js 1>>~/.config/byteball-hub/check_daemon.log 2>>~/.config/byteball-hub/check_daemon.err
