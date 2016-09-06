@@ -4,7 +4,8 @@ This is a node for Byteball network that serves as [relay](../../../byteball-rel
 
 The messages are used for the following purposes:
 * Convey private payment information from payer to payee.
-* Exchange partially signed transactions when sending from a multisig address.  One of the devices initiates a transaction and signs it with its private key, then it sends the partially signed transaction to other devices that participate on the multisig address, the user(s) confirm the transaction on the other devices, they sign and return the signatures to the initiator.
+* Exchange partially signed transactions when sending from a multisig address.  One of the devices initiates a transaction and signs it with its private key, then it sends the partially signed transaction to the other devices that participate on the multisig address, the user(s) confirm the transaction on the other devices, they sign and return the signatures to the initiator.
+* Multilateral signing, when several addresses sign the same unit, e.g. when exchanging one asset for another, or when signing a contract.  The exchange of messages is similar to the multisig scenario above.
 * Plain text chat between users, in particular, users can send each other the newly generated addresses to receive payments to.
 * Plain text chat with bots that offer a service and can receive or send payments.  [Faucet](../../../byteball-faucet) is an example of such bot.
 
