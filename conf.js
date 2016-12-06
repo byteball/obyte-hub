@@ -1,7 +1,7 @@
 /*jslint node: true */
 "use strict";
 
-//exports.port = 6611;
+exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;
 exports.bLight = false;
