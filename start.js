@@ -9,7 +9,7 @@ var fs = require('fs');
 eventBus.on('justsaying', function (ws, data) {
 	switch (data.subject) {
 		case 'version':
-			if (data.body.program == 'byteball-tn' && compareVersions(data.body.program_version, conf.minClientVersion) == '<') {
+			if (data.body.program == conf.clientName && compareVersions(data.body.program_version, conf.minClientVersion) == '<') {
 				network.sendJustsaying(ws, 'newVersion', {});
 			}
 			break;
