@@ -20,8 +20,8 @@ eventBus.on('justsaying', function (ws, data) {
 function compareVersions(currentVersion, minVersion) {
 	if (currentVersion === minVersion) return '==';
 
-	var cV = currentVersion.replace(/(\.0+)+$/, '').split('.');
-	var mV = minVersion.replace(/(\.0+)+$/, '').split('.');
+	var cV = currentVersion.match(/([0-9])+/g);
+	var mV = minVersion.match(/([0-9])+/g);
 	var l = Math.min(cV.length, mV.length);
 	var diff;
 
