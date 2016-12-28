@@ -4,6 +4,7 @@
 exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;
+exports.bSaveJointJson = true;
 exports.bLight = false;
 
 // this is used by wallet vendor only, to redirect bug reports to developers' email
