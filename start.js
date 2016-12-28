@@ -6,13 +6,9 @@ var network = require('byteballcore/network');
 var eventBus = require('byteballcore/event_bus.js');
 var fs = require('fs');
 
-eventBus.on('justsaying', function (ws, data) {
-	switch (data.subject) {
-		case 'version':
-			if (data.body.program == conf.clientName && compareVersions(data.body.program_version, conf.minClientVersion) == '<') {
-				network.sendJustsaying(ws, 'newVersion', {});
-			}
-			break;
+eventBus.on('peer_version', function (ws, data) {
+	if (data.body.program == conf.clientName && compareVersions(data.body.program_version, conf.minClientVersion) == '<') {
+		network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
 	}
 });
 
