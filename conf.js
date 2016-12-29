@@ -1,6 +1,9 @@
 /*jslint node: true */
 "use strict";
 
+exports.clientName = 'byteball';
+exports.minClientVersion = '1.0.0';
+
 exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;
