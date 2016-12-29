@@ -4,10 +4,9 @@ require('byteball-relay');
 var conf = require('./conf');
 var network = require('byteballcore/network');
 var eventBus = require('byteballcore/event_bus.js');
-var fs = require('fs');
 
-eventBus.on('peer_version', function (ws, data) {
-	if (data.body.program == conf.clientName && compareVersions(data.body.program_version, conf.minClientVersion) == '<') {
+eventBus.on('peer_version', function (ws, body) {
+	if (body.program == conf.clientName && conf.minClientVersion && compareVersions(body.program_version, conf.minClientVersion) == '<') {
 		network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
 	}
 });
