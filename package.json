@@ -10,6 +10,9 @@
     "messaging",
     "chat"
   ],
+  "scripts": {
+    "start": "node start.js"
+  },
   "license": "MIT",
   "repository": {
     "url": "git://github.com/byteball/byteball-hub.git",
