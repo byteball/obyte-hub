@@ -2,7 +2,7 @@
   "name": "byteball-hub",
   "description": "Byteball Hub",
   "author": "Byteball",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "start.js",
   "keywords": [
     "hub",
