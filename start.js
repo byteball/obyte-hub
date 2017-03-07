@@ -6,8 +6,11 @@ var network = require('byteballcore/network');
 var eventBus = require('byteballcore/event_bus.js');
 
 eventBus.on('peer_version', function (ws, body) {
-	if (body.program == conf.clientName && conf.minClientVersion && compareVersions(body.program_version, conf.minClientVersion) == '<') {
-		network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
+	if (body.program == conf.clientName) {
+		if (conf.minClientVersion && compareVersions(body.program_version, conf.minClientVersion) == '<')
+			network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
+		if (compareVersions(body.program_version, '1.5.1') == '<')
+			ws.close(1000, "mandatory upgrade");
 	}
 });
 
