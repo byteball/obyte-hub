@@ -2,7 +2,7 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '1.5.1';
+exports.minClientVersion = '1.6.0';
 
 exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
