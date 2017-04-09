@@ -4,6 +4,10 @@
 exports.clientName = 'byteball';
 exports.minClientVersion = '1.6.0';
 
+// https://console.developers.google.com
+exports.pushApiProjectNumber = 0;
+exports.pushApiKey = '';
+
 exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;

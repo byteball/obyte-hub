@@ -4,6 +4,7 @@ require('byteball-relay');
 var conf = require('./conf');
 var network = require('byteballcore/network');
 var eventBus = require('byteballcore/event_bus.js');
+var push = require('./push');
 
 eventBus.on('peer_version', function (ws, body) {
 	if (body.program == conf.clientName) {
@@ -14,6 +15,11 @@ eventBus.on('peer_version', function (ws, body) {
 	}
 });
 
+if (conf.pushApiKey !== '') {
+	setTimeout(function() {
+		push.init();
+	}, 1000);
+}
 
 function compareVersions(currentVersion, minVersion) {
 	if (currentVersion === minVersion) return '==';
