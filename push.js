@@ -2,7 +2,6 @@ var db = require('byteballcore/db');
 var conf = require('byteballcore/conf');
 var eventBus = require('byteballcore/event_bus.js');
 var https = require('https');
-var bReady = false;
 
 
 eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
@@ -27,7 +26,7 @@ eventBus.on("enableNotification", function(ws, params) {
 
 eventBus.on("disableNotification", function(ws, params) {
 	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [params.registrationId, params.deviceAddress], function() {
-		
+
 	});
 });
 
@@ -68,29 +67,13 @@ function sendRest(registrationIds) {
 }
 
 function sendPushAboutMessage(device_address) {
-	if (bReady) {
-		db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
-			if (rows.length > 0) {
-				sendRest(rows.map(function(row) {
-					return row.registrationId;
-				}));
-			}
-		});
-	}
+	db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
+		if (rows.length > 0) {
+			sendRest(rows.map(function(row) {
+				return row.registrationId;
+			}));
+		}
+	});
 }
 
 exports.sendPushAboutMessage = sendPushAboutMessage;
-
-exports.init = function() {
-	db.query("SELECT name FROM sqlite_master WHERE name='push_registrations' and type='table'", function(rows) {
-		if (rows.length > 0) {
-			bReady = true;
-		} else {
-			db.query("CREATE TABLE IF NOT EXISTS push_registrations (registrationId TEXT, device_address TEXT)", function() {
-				db.query("CREATE INDEX byPushAddress ON push_registrations(device_address)", function() {
-					bReady = true;
-				});
-			});
-		}
-	});
-};
