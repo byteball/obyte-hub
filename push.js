@@ -69,9 +69,7 @@ function sendRest(registrationIds) {
 function sendPushAboutMessage(device_address) {
 	db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
 		if (rows.length > 0) {
-			sendRest(rows.map(function(row) {
-				return row.registrationId;
-			}));
+			sendRest(rows[0].registrationId);
 		}
 	});
 }
