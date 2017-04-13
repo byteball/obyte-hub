@@ -8,15 +8,15 @@ eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 	sendPushAboutMessage(objDeviceMessage.to);
 });
 
-eventBus.on("enableNotification", function(ws, params) {
-	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [params.deviceAddress], function(rows) {
+eventBus.on("enableNotification", function(deviceAddress, registrationId) {
+	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
-			db.query("INSERT INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [params.registrationId, params.deviceAddress], function() {
+			db.query("INSERT INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [registrationId, deviceAddress], function() {
 
 			});
 		} else if (rows.length) {
 			if (rows[0].registration_id !== params.registrationId) {
-				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [params.registrationId, params.deviceAddress], function() {
+				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [registrationId, deviceAddress], function() {
 
 				})
 			}
@@ -24,8 +24,8 @@ eventBus.on("enableNotification", function(ws, params) {
 	});
 });
 
-eventBus.on("disableNotification", function(ws, params) {
-	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [params.registrationId, params.deviceAddress], function() {
+eventBus.on("disableNotification", function(deviceAddress, registrationId) {
+	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [registrationId, deviceAddress], function() {
 
 	});
 });
