@@ -15,7 +15,7 @@ eventBus.on("enableNotification", function(deviceAddress, registrationId) {
 
 			});
 		} else if (rows.length) {
-			if (rows[0].registration_id !== params.registrationId) {
+			if (rows[0].registration_id !== registrationId) {
 				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [registrationId, deviceAddress], function() {
 
 				})
@@ -69,7 +69,7 @@ function sendRest(registrationIds) {
 function sendPushAboutMessage(device_address) {
 	db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
 		if (rows.length > 0) {
-			sendRest(rows[0].registrationId);
+			sendRest([rows[0].registrationId]);
 		}
 	});
 }
