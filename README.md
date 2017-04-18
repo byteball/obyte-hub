@@ -30,3 +30,9 @@ node start.js > log &
 ## Customize
 
 If you want to change any defaults, refer to the documentation of [byteballcore](../../../byteballcore), the core Byteball library `require()`'d from here.
+
+## Push notifications for Android
+
+To enable push notifications for the users of your hub you need to create a new project in Google Console https://console.developers.google.com and add Google Cloud Messaging API.  In your hub's conf (conf.js or conf.json) add these two settings copied from the Google Console:
+* `pushApiProjectNumber`: get it from settings (under dots menu in the upper right)
+* `pushApiKey`: your API key
