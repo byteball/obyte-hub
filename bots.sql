@@ -28,3 +28,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Just for fun, send some of your bytes to the bot, and they will be bounced back to you. Developer: vakar.', 
 	'A6WUhxQX7bT1xY5UxoeL2/zNEgXGQXRO5ze4msXu3QrF@byteball.com.ar/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Rosie bot', 
+	'This is an open-source conversational AI, serving Rosie (chatbot base) through Pandorabots'' API. Without modifying the code, developers can serve any other AIML-compliant chatbot.
+
+Developer: Laurentiu-Andronache, https://github.com/Laurentiu-Andronache/byteball-chatbot-Rosie', 
+	'ApOpqXbI7GpqOl3Z96QW/GSNgv04g4RcFr/xpaDmN9cg@byteball.org/bb#0000'
+);
