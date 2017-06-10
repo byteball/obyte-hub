@@ -11,7 +11,7 @@ eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 eventBus.on("enableNotification", function(deviceAddress, registrationId) {
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
-			db.query("INSERT INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [registrationId, deviceAddress], function() {
+			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [registrationId, deviceAddress], function() {
 
 			});
 		} else if (rows.length) {
