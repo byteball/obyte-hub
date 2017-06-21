@@ -35,3 +35,8 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Laurentiu-Andronache, https://github.com/Laurentiu-Andronache/byteball-chatbot-Rosie', 
 	'ApOpqXbI7GpqOl3Z96QW/GSNgv04g4RcFr/xpaDmN9cg@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Zork I game', 
+	'Play one of the earliest interactive fiction computer games developed between 1977 and 1979. The game unfolds in a maze-like dungeon, where the user must battle trolls and solve puzzles in order to find twenty trophies to bring back to the house outside which the game begins.', 
+	'A/SCXz5tNuJDLuCO8PXpsfUoL7dCMBGnvSST7z0YPXjd@byteball.org/bb#0000'
+);
