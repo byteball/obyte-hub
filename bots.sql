@@ -35,3 +35,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Laurentiu-Andronache, https://github.com/Laurentiu-Andronache/byteball-chatbot-Rosie', 
 	'ApOpqXbI7GpqOl3Z96QW/GSNgv04g4RcFr/xpaDmN9cg@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Byteball Asset Manager', 
+	'Asset directory and asset creation platform for Byteball. The chatbot provides a simple yet powerful interface to define and issue custom Byteball assets. Assets behave similarly to the native currency "bytes": they are transferable and exchangeable. They can represent anything that has value such as debt, shares, loyalty points, airtime minutes, commodities, other fiat or crypto currencies.
+
+Developer: Peter Miklos, https://byteball.market', 
+	'Ao2SRelXb23nTnom+KHhLIzK4nyk0WAlE3vRWk5K25Gg@byteball.org/bb#0000'
+);
