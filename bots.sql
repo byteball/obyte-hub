@@ -49,3 +49,11 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Hyena', 
 	'A/SCXz5tNuJDLuCO8PXpsfUoL7dCMBGnvSST7z0YPXjd@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	1,
+	'Flight delay insurance', 
+	'Buy insurance against flight delay. You get paid if your flight is delayed more than what you specify.  The quotes are based on real stats of delays of your flight, the bot charges only 5% above the probability of delay.  Insurance is based on smart contracts, you don''t need to trust the bot.
+
+Source code: https://github.com/byteball/flight-delays-insurance, fork and write your bot.', 
+	'Ai8b8CdBxZkm6h1RVhYT7y6Scas/eNn1ccavU7dgHYqN@byteball.org/bb#0000'
+);
