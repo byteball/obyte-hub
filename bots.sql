@@ -57,3 +57,10 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 Source code: https://github.com/byteball/flight-delays-insurance, fork and write your bot.', 
 	'Ai8b8CdBxZkm6h1RVhYT7y6Scas/eNn1ccavU7dgHYqN@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Poll bot', 
+	'Vote in polls.  The weight of your vote is proportional to your balance.
+
+Source code: https://github.com/byteball/poll-bot', 
+	'AhMVGrYMCoeOHUaR9v/CZzTC34kScUeA4OBkRCxnWQM+@byteball.org/bb#0000'
+);
