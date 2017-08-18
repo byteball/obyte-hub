@@ -64,3 +64,8 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Source code: https://github.com/byteball/poll-bot', 
 	'AhMVGrYMCoeOHUaR9v/CZzTC34kScUeA4OBkRCxnWQM+@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Blackbytes Exchange BEEP (Trustful)',
+	'Instant buy and sell batches of Blackbytes 24/7. No need to find a peer anymore: the bot is the peer. Note that you are trusting the coins, as well as private histories of blackbytes, to the exchange operator.', 
+	'AxV6ohKFORqIGfGqCZgjK1HlL8vBiNltcWWaI0Rc9yN+@byteball.fr/bb#0000'
+);
