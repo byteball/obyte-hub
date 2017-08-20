@@ -69,3 +69,8 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Instant buy and sell batches of Blackbytes 24/7. No need to find a peer anymore: the bot is the peer. Note that you are trusting the coins, as well as private histories of blackbytes, to the exchange operator.', 
 	'AxV6ohKFORqIGfGqCZgjK1HlL8vBiNltcWWaI0Rc9yN+@byteball.fr/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Blackbyte Exchange (Semi-trustless)',
+	'Instantly exchange Blackbytes and Bytes or create your own orders in the book. It''s trustless when selling Blackbytes, meaning all users are always in control of their own Blackbytes, and trustful when buying. Need help or want to socialize? You can directly chat with many other users.', 
+	'ApSicldzuDl675iiUyWdmO7pLl8MPgeuNg4qOr13EkNJ@byteball.org/bb#globalchat'
+);
