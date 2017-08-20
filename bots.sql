@@ -20,7 +20,7 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'BTC oracle', 
-	'This oracle posts Merkle Roots of all Bitcoin transactions in a block every time a new Bitcoin block is mined. You can use its data to P2P trade Bytes vs BTC. If you are receiving Bytes (sending bitcoins), chat with the oracle after sending your bitcoins to get the Merkle Proof of your Bitcoin transacton and unlock your bytes from the smart contract.', 
+	'This oracle posts Merkle Roots of all Bitcoin transactions in a block every time a new Bitcoin block is mined. You can use its data to P2P trade Bytes vs BTC. If you are receiving Bytes (sending bitcoins), chat with the oracle after sending your bitcoins to get the Merkle Proof of your Bitcoin transaction and unlock your bytes from the smart contract.', 
 	'A7C96Bhg4Gpb2Upw/Ky/YfGG8BKe5DjTiBuJFGAX50N1@byteball.org/bb#0000'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
