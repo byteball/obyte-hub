@@ -74,3 +74,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Instantly exchange Blackbytes and Bytes or create your own orders in the book. It''s trustless when selling Blackbytes, meaning all users are always in control of their own Blackbytes, and trustful when buying. Need help or want to socialize? You can directly chat with many other users.', 
 	'ApSicldzuDl675iiUyWdmO7pLl8MPgeuNg4qOr13EkNJ@byteball.org/bb#globalchat'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+	'Buy blackbytes (trustless)',
+	'Instantly buy blackbytes for bytes. The sale is done via a conditional payment smart contract, so the seller can''t scam you.
+
+Source code: https://github.com/byteball/conditional-token-sale, you can use it to sell your tokens.', 
+	'AmXiHW7Ms4qcdmXeLW4U/ou5lv4HFnijYBGWGKfgT6bM@byteball.org/bb#0000'
+);
