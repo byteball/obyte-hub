@@ -88,3 +88,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Source code: https://github.com/byteball/conditional-token-sale, you can use it to sell your tokens.', 
 	'AmXiHW7Ms4qcdmXeLW4U/ou5lv4HFnijYBGWGKfgT6bM@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+    'Betting bot (Semi-trustless)',
+    'Bet on sport fixtures by taking the trustless offers immediately available. Or be the bookmaker and develop a business by proposing competitive odds for popular events.
+    
+Developer: papabyte.com',
+    'AnpzF9nVTV5JZXzlG2fSnA+8UmjFuBdbqU+rJchz3qcN@byteball.org/bb#0000'
+);
