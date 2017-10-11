@@ -95,3 +95,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: papabyte.com',
     'AnpzF9nVTV5JZXzlG2fSnA+8UmjFuBdbqU+rJchz3qcN@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+    'Luckybytes Lottery (provably fair)',
+    'An in app lottery in which you can play using your Byteball Bytes. There are three different game modes to participate in. Win large amounts of Bytes depending on the number of players on the principle of "the winner takes all". All games are provably fair. Each lottey comes with a game and proof hash which lets a player validate and prove the results against manipulation.
+    
+Developer: pxrunes, https://lucky.byte-ball.com',
+    'A5X5LT9HtUewgC6Zob3oRfoICNj34d44ZCRYmXnDmqdZ@byteball.org/bb#LuckyBytes'
+);
