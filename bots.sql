@@ -102,3 +102,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: pxrunes, https://lucky.byte-ball.com',
     'A5X5LT9HtUewgC6Zob3oRfoICNj34d44ZCRYmXnDmqdZ@byteball.org/bb#LuckyBytes'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+    'TitanCoin ICO',
+    'Invest in Titan Coin -- a new token pegged to the price of 1 kg of ilmenite concentrate. Ilmenite concentrate is the main raw material used for production of Titanium dioxide.
+    
+Project page and investor information: http://titan-coin.com',
+    'AqXgqz9CIqi+pq9RKCVgs9wDBj+XMQdi4414XUjTFL3W@byteball.org/bb#0000'
+);
