@@ -43,13 +43,11 @@ function compareVersions(currentVersion, minVersion) {
 	}
 }
 
-var has_rates = false;
 eventBus.on('connected', function(ws){
-	if (has_rates)
+	if (Object.keys(price_feed.rates).length > 0)
 		network.sendJustsaying(ws, 'exchange_rates', price_feed.rates);
 });
 
 eventBus.on('rates_updated', function(){
-	has_rates = true;
 	network.sendAllJustsaying(ws, 'exchange_rates', price_feed.rates);
 });

@@ -12,18 +12,19 @@ function updateBittrexRates() {
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			let arrCoinInfos = JSON.parse(body).result;
-			var count = 0;
+			let prices = {};
 			arrCoinInfos.forEach(coinInfo => {
 				if (!coinInfo.Last)
 					return;
 				if (symbols.includes(coinInfo.MarketName)) {
-					rates[coinInfo.MarketName] = coinInfo.Last;
-					count++;
+					prices[coinInfo.MarketName] = coinInfo.Last;
 					console.log("new exchange rate: " + coinInfo.MarketName + "=" + coinInfo.Last);
 				}
 			});
-			if (count == symbols.length)
+			if (Object.keys(prices).length == symbols.length) {
+				rates['GBYTE/USD'] = prices['BTC-GBYTE'] * prices['USDT-BTC'];
 				eventBus.emit('rates_updated');
+			}
 		}
 		else {
 			console.log("Can't get currency rates from bittrex");
