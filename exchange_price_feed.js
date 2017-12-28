@@ -35,4 +35,4 @@ function updateBittrexRates() {
 updateBittrexRates();
 setInterval(updateBittrexRates, 1000 * 60 * 10);
 
-export.rates = rates;
+exports.rates = rates;
