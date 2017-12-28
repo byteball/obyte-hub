@@ -2,28 +2,27 @@
 'use strict';
 const async = require('async');
 const request = require('request');
-const conf = require('byteballcore/conf');
 const eventBus = require('byteballcore/event_bus.js');
 
 const symbols = ['USDT-BTC', 'BTC-GBYTE'];
-var rates = {};
+const rates = {};
 
 function updateBittrexRates() {
 	const apiUri = 'https://bittrex.com/api/v1.1/public/getmarketsummaries';
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			let arrCoinInfos = JSON.parse(body).result;
-			var upd = 0;
+			var count = 0;
 			arrCoinInfos.forEach(coinInfo => {
 				if (!coinInfo.Last)
 					return;
 				if (symbols.includes(coinInfo.MarketName)) {
 					rates[coinInfo.MarketName] = coinInfo.Last;
-					upd++;
+					count++;
 					console.log("new exchange rate: " + coinInfo.MarketName + "=" + coinInfo.Last);
 				}
 			});
-			if (upd == symbols.length)
+			if (count == symbols.length)
 				eventBus.emit('rates_updated');
 		}
 		else {
