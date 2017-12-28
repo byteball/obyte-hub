@@ -49,5 +49,5 @@ eventBus.on('connected', function(ws){
 });
 
 eventBus.on('rates_updated', function(){
-	network.sendAllJustsaying(ws, 'exchange_rates', price_feed.rates);
+	network.sendAllInboundJustsaying(ws, 'exchange_rates', price_feed.rates);
 });

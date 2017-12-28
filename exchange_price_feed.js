@@ -22,7 +22,7 @@ function updateBittrexRates() {
 				}
 			});
 			if (Object.keys(prices).length == symbols.length) {
-				rates['GBYTE/USD'] = prices['BTC-GBYTE'] * prices['USDT-BTC'];
+				rates['GBYTE_USD'] = prices['BTC-GBYTE'] * prices['USDT-BTC'];
 				eventBus.emit('rates_updated');
 			}
 		}
