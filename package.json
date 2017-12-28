@@ -26,6 +26,7 @@
     "secp256k1": "secp256k1/js"
   },
   "dependencies": {
-    "byteball-relay": "git+https://github.com/byteball/byteball-relay.git"
+    "byteball-relay": "git+https://github.com/byteball/byteball-relay.git",
+    "request": "^2.81.0"
   }
 }
