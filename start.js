@@ -5,6 +5,7 @@ var conf = require('./conf');
 var network = require('byteballcore/network');
 var eventBus = require('byteballcore/event_bus.js');
 var push = require('./push');
+const price_feed = require('./exchange_price_feed');
 
 eventBus.on('peer_version', function (ws, body) {
 	if (body.program == conf.clientName) {
@@ -41,3 +42,14 @@ function compareVersions(currentVersion, minVersion) {
 		return '<';
 	}
 }
+
+var has_rates = false;
+eventBus.on('connected', function(ws){
+	if (has_rates)
+		network.sendJustsaying(ws, 'exchange_rates', price_feed.rates);
+});
+
+eventBus.on('rates_updated', function(){
+	has_rates = true;
+	network.sendAllJustsaying(ws, 'exchange_rates', price_feed.rates);
+});
