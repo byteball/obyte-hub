@@ -80,7 +80,7 @@ function broadcastNewRates(){
 	network.sendAllInboundJustsaying('exchange_rates', rates);
 }
 
-eventBus.on('connected', function(ws){
+eventBus.on('client_logged_in', function(ws){
 	if (Object.keys(rates).length > 0)
 		network.sendJustsaying(ws, 'exchange_rates', rates);
 });
