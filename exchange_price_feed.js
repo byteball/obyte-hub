@@ -3,6 +3,7 @@
 const async = require('async');
 const request = require('request');
 const eventBus = require('byteballcore/event_bus.js');
+const network = require('byteballcore/network.js');
 
 const symbols = ['USDT-BTC', 'BTC-GBYTE'];
 const rates = {};
@@ -71,9 +72,18 @@ function updateRates(){
 	], function(){
 		console.log(rates);
 		if (state.updated)
-			eventBus.emit('rates_updated');
+			broadcastNewRates();
 	});
 }
+
+function broadcastNewRates(){
+	network.sendAllInboundJustsaying('exchange_rates', rates);
+}
+
+eventBus.on('connected', function(ws){
+	if (Object.keys(rates).length > 0)
+		network.sendJustsaying(ws, 'exchange_rates', rates);
+});
 
 updateRates();
 setInterval(updateRates, 1000 * 60 * 5);
