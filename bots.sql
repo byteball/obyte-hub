@@ -24,11 +24,6 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'A7C96Bhg4Gpb2Upw/Ky/YfGG8BKe5DjTiBuJFGAX50N1@byteball.org/bb#0000'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Bounce bot', 
-	'Just for fun, send some of your bytes to the bot, and they will be bounced back to you. Developer: vakar.', 
-	'A6WUhxQX7bT1xY5UxoeL2/zNEgXGQXRO5ze4msXu3QrF@byteball.com.ar/bb#0000'
-);
-INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Rosie bot', 
 	'This is an open-source conversational AI, serving Rosie (chatbot base) through Pandorabots'' API. Without modifying the code, developers can serve any other AIML-compliant chatbot.
 
@@ -115,4 +110,11 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
     
 Developer: Robert Huber, http://byteball-exchange-bot.com',
     'AiAuuTYQgLL9JBdkpfXU3pjm2RZklmObGAKYB5gJioBG@byteball.org/bb#bytExchange'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'CFD Trading (Trustful)',
+   'Buy or sell contract for difference and try to take advantage when the price of a crypto-currency is moving up or moving down without owning it directly.
+   
+Developer: papabyte.com',
+   'ArUEvvn+7tq0p6CbCqJtaVTSoDzX9Iot+Zd1bA40kcVB@byteball.org/bb#0000'
 );
