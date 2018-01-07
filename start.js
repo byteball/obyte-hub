@@ -7,6 +7,9 @@ var eventBus = require('byteballcore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
 
+if (conf.trustedRegistries && Object.keys(conf.trustedRegistries).length > 0)
+	require('./asset_metadata.js');
+
 eventBus.on('peer_version', function (ws, body) {
 	if (body.program == conf.clientName) {
 		if (conf.minClientVersion && compareVersions(body.program_version, conf.minClientVersion) == '<')
