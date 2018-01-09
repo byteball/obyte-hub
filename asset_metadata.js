@@ -79,7 +79,7 @@ function scanPastMetadataUnits(){
 }
 
 eventBus.on('my_transactions_became_stable', function(arrUnits){
-	console.log("units that affect watched addresses: "+objUnits.join(', '));
+	console.log("units that affect watched addresses: "+arrUnits.join(', '));
 	arrUnits.forEach(handlePotentialAssetMetadataUnit);
 });
 
