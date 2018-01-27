@@ -4,8 +4,8 @@ const async = require('async');
 const request = require('request');
 const eventBus = require('byteballcore/event_bus.js');
 const network = require('byteballcore/network.js');
-
 const symbols = ['USDT-BTC', 'BTC-GBYTE'];
+
 const rates = {};
 
 function updateBittrexRates(state, onDone) {
@@ -17,10 +17,12 @@ function updateBittrexRates(state, onDone) {
 			arrCoinInfos.forEach(coinInfo => {
 				if (!coinInfo.Last)
 					return;
-				if (symbols.includes(coinInfo.MarketName)) {
-					prices[coinInfo.MarketName] = coinInfo.Last;
-					console.log("new exchange rate: " + coinInfo.MarketName + "=" + coinInfo.Last);
-				}
+				symbols.forEach( function (value){
+					if (value == coinInfo.MarketName) {
+						prices[coinInfo.MarketName] = coinInfo.Last;
+						console.log("new exchange rate: " + coinInfo.MarketName + "=" + coinInfo.Last);
+					}
+				});
 			});
 			if (Object.keys(prices).length == symbols.length) {
 				rates['GBYTE_USD'] = prices['BTC-GBYTE'] * prices['USDT-BTC'];
