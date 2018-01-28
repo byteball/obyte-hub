@@ -4,8 +4,8 @@ const async = require('async');
 const request = require('request');
 const eventBus = require('byteballcore/event_bus.js');
 const network = require('byteballcore/network.js');
-const symbols = ['USDT-BTC', 'BTC-GBYTE'];
 
+const symbols = ['USDT-BTC', 'BTC-GBYTE'];
 const rates = {};
 
 function updateBittrexRates(state, onDone) {
