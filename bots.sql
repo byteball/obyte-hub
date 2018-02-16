@@ -124,3 +124,17 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Verify your real name to get access to services that require KYC.  Attestation that proves your verification is saved on the public database, but no personal data is published without your request.  Your data is saved in your wallet and you can easily disclose it to the service that needs the data.  After first successful verification, you are rewarded with $20.00 worth of Bytes from the distribution fund.',
    'AsYnI7C8WuXqb2aLMSr0nfpLC+u3FRSLWwkp1e9ib15Z@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Fun-coins faucet',
+   'This bot gives out free Tangos, Tingos, Zangos and Zingos. These tokens have zero monetary value so you can practise textcoins and smart contracts with zero risk.
+   
+Developer: papabyte.com',
+   'A0dDO/XuMzELLq4r7F3/QMB3JOJQpbq40lAeCFdAX7yU@byteball.org/bb#0000'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'SilentNotary ICO',
+   'SilentNotary is a digital notary that saves and certifies documents, emails, chats, and audio/video recordings.  The authenticity of these records will be ensured by posting them both to Ethereum blockchain and Byteball DAG.  The ICO is active until 15 March 2018, and you can buy SNTR tokens with Bytes, BTC, or Ether.
+
+Website: https://silentnotary.com',
+   'Aop8UNeUm4Qtu0q2frAaVwkQtQiNGKYVL8NvdQYgrR+v@byteball.org/bb#0000'
+);
