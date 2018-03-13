@@ -46,7 +46,7 @@ Developer: Hyena',
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Slice&Dice MUD', 
-	'Combining the elements of provably fair online gambling and role-playing games, Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a dungeon inhabitant who has come across a violent underground casino. The main goal in this game is to become a powerful and respected member of the community. Doing so requires one to gamble on the Byteball tokens and to get into fights with other players as part of the endless struggle for power.
+	'Combining the elements of provably fair online gambling and text-based multi-user dungeons (MUDs), Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a wandering dungeon inhabitant who delves into the cruel underground caverns with the primary goal of finding food and shelter. Doing so requires them to gamble on the Byteball tokens and to get into fights with other cave explorers as part of the endless struggle for survival.
 
 Developer: CoinGaming.io', 
 	'Aka6qIh7Cc0FsdyWM/BRzye1ftDbcme5TzE88bI43P+/@byteball.org/bb#0000'
