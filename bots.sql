@@ -138,3 +138,9 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Website: https://silentnotary.com',
    'Aop8UNeUm4Qtu0q2frAaVwkQtQiNGKYVL8NvdQYgrR+v@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Email attestation bot',
+   'Verify your email adddress, and your payers don''t need to know your Byteball address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
+   'Al+nIuRMIr8PGvi3BkIVU+S/VZ1Xm2SM3yR3z4IoyMbJ@byteball.org/bb#0000'
+);
