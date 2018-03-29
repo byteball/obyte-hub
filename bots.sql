@@ -150,3 +150,10 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Exchange Byteball-issued tokens against Bytes or token vs token.  The exchange is based on smart contracts, so you don''t have to trust the exchange operator.',
    'A8GXYB3lSvSsvej+ZQgfF2prwx8gopMx8j5JwwUS9ZVD@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Worldopoly ICO',
+   'Worldopoly is the world’s first mobile game combining AR, AI, Geolocationing, Blockchain, and DAG. The ICO is active until 17 May 2018, and you can buy WPT tokens with Bytes, BTC, or Ether.  WPT token is issued both on Byteball and Ethereum platforms but investors on Byteball platform receive increased bonus (even if they pay in ETH or BTC) for investments up to 30 ETH.
+
+Website: https://worldopoly.io',
+   'AwyoKVsyxajATgLXa9Jhh8NBRTnUaZNHdi85c43g+GoJ@byteball.org/bb#0000'
+);
