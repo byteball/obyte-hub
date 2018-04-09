@@ -157,3 +157,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Website: https://worldopoly.io',
    'AwyoKVsyxajATgLXa9Jhh8NBRTnUaZNHdi85c43g+GoJ@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'WhiteLittle Airdrop 小白币糖果机器人',
+   '小白链机器人送出小白币糖果。小白链是专门为想进入区块链行业的小白们量身打造的帮助平台，其目的是建立一个基于字节雪球技术为小白们提供有效帮助的信息发现生态平台。小白链的设计初衷是构建一套合理的激励机制，能够及时得到帮助，又让提供帮助的区块链从业者得到合理的回报。
+
+开发者：123cb.net',
+   'Ahe4jkq5GvgLQ2h5ftqRMjWBBumUEN96tWoSfEQ9TGHF@byteball.org/bb#0000'
+);
