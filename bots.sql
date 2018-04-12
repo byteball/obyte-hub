@@ -164,3 +164,9 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 开发者：123cb.net',
    'Ahe4jkq5GvgLQ2h5ftqRMjWBBumUEN96tWoSfEQ9TGHF@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	3,
+   'Buy Bytes with Visa or Mastercard',
+   'This bot helps to buy Bytes with Visa or Mastercard.  The payments are processed by Indacoin.  Part of the fees paid is offset by the reward you receive from the undistributed funds.',
+   'A1i/ij0Na4ibEoSyEnTLBUidixtpCUtXKjgn0lFDRQwK@byteball.org/bb#0000'
+);
