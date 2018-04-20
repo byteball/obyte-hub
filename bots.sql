@@ -170,3 +170,9 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'This bot helps to buy Bytes with Visa or Mastercard.  The payments are processed by Indacoin.  Part of the fees paid is offset by the reward you receive from the undistributed funds.',
    'A1i/ij0Na4ibEoSyEnTLBUidixtpCUtXKjgn0lFDRQwK@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Accredited investor attestation bot',
+   'If you are an accredited investor, have your accredited status verified by a licensed attorney and get access to ICOs that sell security tokens to accredited investors only.',
+   'A/qkC0pkuz6ofhAX78PK2omu42VdkFRa5d+vtjLvIvz+@byteball.org/bb#0000'
+);
