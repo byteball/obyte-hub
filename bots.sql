@@ -176,3 +176,11 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'If you are an accredited investor, have your accredited status verified by a licensed attorney and get access to ICOs that sell security tokens to accredited investors only.',
    'A/qkC0pkuz6ofhAX78PK2omu42VdkFRa5d+vtjLvIvz+@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	3,
+   'World Community Grid linking bot',
+   'Donate your device’s spare computing power to help scientists solve the world’s biggest problems in health and sustainability, and earn some Bytes in the meantime.  This bot allows you to link your Byteball address and WCG account in order to receive daily rewards for your contribution to WCG computations.
+
+WCG is an IBM sponsored project, more info at https://www.worldcommunitygrid.org',
+   'A/JWTKvgJQ/gq9Ra+TCGbvff23zqJ9Ec3Bp0XHxyZOaJ@byteball.org/bb#0000'
+);
