@@ -191,3 +191,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: HDRProtocol, https://github.com/HDRProtocol/exchanger',
    'A+dAU2j/Tm9lnlmc2SryltsfVzOq9GLPxccAq+dClCxr@byteball.org/bb#f7b42a61a3ba6a34cbeeb18d37979927ad1103fc'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Private chat room bot',
+   'This chatbot allows several persons to chat together using the Byteball messaging system. The bot decrypts messages and relays them to other users after reencryption. For best privacy, run your own instance of this bot using the source code below, any cheap VPS is enough to host it.
+
+Developer: Papabyte, https://github.com/Papabyte/Private-chat-room',
+   'AuB9N1V8OOdc9M5JrpNOCqI3LAcLWetitkT3MqK/Ij5U@byteball.org/bb#0000'
+);
