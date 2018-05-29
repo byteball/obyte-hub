@@ -184,3 +184,10 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 WCG is an IBM sponsored project, more info at https://www.worldcommunitygrid.org',
    'A/JWTKvgJQ/gq9Ra+TCGbvff23zqJ9Ec3Bp0XHxyZOaJ@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Exchange bot for dual-chain tokens',
+   'For tokens issued both on Byteball and Ethereum platforms, the bot enables seamless exchange between Byteball and Ethereum tokens.
+
+Developer: HDRProtocol, https://github.com/HDRProtocol/exchanger',
+   'A+dAU2j/Tm9lnlmc2SryltsfVzOq9GLPxccAq+dClCxr@byteball.org/bb#f7b42a61a3ba6a34cbeeb18d37979927ad1103fc'
+);
