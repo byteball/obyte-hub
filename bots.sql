@@ -198,3 +198,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Papabyte, https://github.com/Papabyte/Private-chat-room',
    'AuB9N1V8OOdc9M5JrpNOCqI3LAcLWetitkT3MqK/Ij5U@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Aworker ICO',
+   'Aworker is a decentralized next-generation recruitment platform. Aworker reinvents Human Resources processes via referrals and smart contracts. The search for employees powered by smart contracts reduces “cost per hire” up to 4 times.
+
+Website: https://www.aworker.io',
+   'AvGhQmEMSdS4FSBnUOR/L9EhMjQQb83q/WGLjC9ChWYe@byteball.org/bb#0000'
+);
