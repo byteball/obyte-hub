@@ -205,3 +205,9 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Website: https://www.aworker.io',
    'AvGhQmEMSdS4FSBnUOR/L9EhMjQQb83q/WGLjC9ChWYe@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Steem attestation bot',
+   'Verify your Steem username, and your payers don''t need to know your Byteball address any longer, they just write steem/username as recipient.  After first successful verification, you get a reward in Bytes, the amount depends on your Steem reputation.  Other apps offer discounts or bonuses to users with high reputation.  These apps include: ICOs, Real name attestation bot, Buy Bytes with Visa or Mastercard bot.',
+   'A7SqDnEgwYOEhPDtJDZUVS4YtBfDwe42DVKGWaOX7pUA@byteball.org/bb#0000'
+);
