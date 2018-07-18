@@ -24,11 +24,6 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'A7C96Bhg4Gpb2Upw/Ky/YfGG8BKe5DjTiBuJFGAX50N1@byteball.org/bb#0000'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Bounce bot', 
-	'Just for fun, send some of your bytes to the bot, and they will be bounced back to you. Developer: vakar.', 
-	'A6WUhxQX7bT1xY5UxoeL2/zNEgXGQXRO5ze4msXu3QrF@byteball.com.ar/bb#0000'
-);
-INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Rosie bot', 
 	'This is an open-source conversational AI, serving Rosie (chatbot base) through Pandorabots'' API. Without modifying the code, developers can serve any other AIML-compliant chatbot.
 
@@ -51,7 +46,7 @@ Developer: Hyena',
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Slice&Dice MUD', 
-	'Combining the elements of provably fair online gambling and role-playing games, Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a dungeon inhabitant who has come across a violent underground casino. The main goal in this game is to become a powerful and respected member of the community. Doing so requires one to gamble on the Byteball tokens and to get into fights with other players as part of the endless struggle for power.
+	'Combining the elements of provably fair online gambling and text-based multi-user dungeons (MUDs), Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a wandering dungeon inhabitant who delves into the cruel underground caverns with the primary goal of finding food and shelter. Doing so requires them to gamble on the Byteball tokens and to get into fights with other cave explorers as part of the endless struggle for survival.
 
 Developer: CoinGaming.io', 
 	'Aka6qIh7Cc0FsdyWM/BRzye1ftDbcme5TzE88bI43P+/@byteball.org/bb#0000'
@@ -115,4 +110,37 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
     
 Developer: Robert Huber, http://byteball-exchange-bot.com',
     'AiAuuTYQgLL9JBdkpfXU3pjm2RZklmObGAKYB5gJioBG@byteball.org/bb#bytExchange'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'CFD Trading (Trustful)',
+   'Buy or sell contract for difference and try to take advantage when the price of a crypto-currency is moving up or moving down without owning it directly.
+   
+Developer: papabyte.com',
+   'ArUEvvn+7tq0p6CbCqJtaVTSoDzX9Iot+Zd1bA40kcVB@byteball.org/bb#0000'
+);
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Real name attestation bot',
+   'Verify your real name to get access to services that require KYC.  Attestation that proves your verification is saved on the public database, but no personal data is published without your request.  Your data is saved in your wallet and you can easily disclose it to the service that needs the data.  After first successful verification, you are rewarded with $20.00 worth of Bytes from the distribution fund.',
+   'AsYnI7C8WuXqb2aLMSr0nfpLC+u3FRSLWwkp1e9ib15Z@byteball.org/bb#0000'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Fun-coins faucet',
+   'This bot gives out free Tangos, Tingos, Zangos and Zingos. These tokens have zero monetary value so you can practise textcoins and smart contracts with zero risk.
+   
+Developer: papabyte.com',
+   'A0dDO/XuMzELLq4r7F3/QMB3JOJQpbq40lAeCFdAX7yU@byteball.org/bb#0000'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'SilentNotary ICO',
+   'SilentNotary is a digital notary that saves and certifies documents, emails, chats, and audio/video recordings.  The authenticity of these records will be ensured by posting them both to Ethereum blockchain and Byteball DAG.  The ICO is active until 15 March 2018, and you can buy SNTR tokens with Bytes, BTC, or Ether.
+
+Website: https://silentnotary.com',
+   'Aop8UNeUm4Qtu0q2frAaVwkQtQiNGKYVL8NvdQYgrR+v@byteball.org/bb#0000'
+);
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Email attestation bot',
+   'Verify your email adddress, and your payers don''t need to know your Byteball address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
+   'Al+nIuRMIr8PGvi3BkIVU+S/VZ1Xm2SM3yR3z4IoyMbJ@byteball.org/bb#0000'
 );

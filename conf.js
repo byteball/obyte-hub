@@ -2,7 +2,7 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '2.0.0';
+exports.minClientVersion = '2.2.0';
 
 // https://console.developers.google.com
 exports.pushApiProjectNumber = 0;
@@ -60,24 +60,12 @@ exports.initial_witnesses = [
 ];
 */
 
-/* old testnet
-exports.initial_witnesses = [
-	'5K7CSLTRPC5LFLOS3D34GBHG7RFD4TPO',
-	'BTCI3SJOBSRA6TFF6GHI3SO4WDC3G2LY',
-	'CCNMWLURGSS5NS4YFLOPGAVXKMQXTXZR',
-	'EQYZCJQAJ4KHFTJ4BKUJFBWATCU5UO5A',
-	'FZ2S2HU42RECG46BEJYV44DIQYGFFNI2',
-	'IXFO5VS57ZMTBUTBZVG66ZF3K4WFLPJJ',
-	'NZOBDXWJIL2JVXZGY3OBP5MMMZMR2YUD',
-	'VEZA54TWIXIHZLHFHCEEBU3XFC7NKVKX',
-	'WJWKAJ2H5REGDSCCQMFGCENCODK6MN3X',
-	'ZAMTST6CVMQERNXQY3ZWIC5L2OMWWWTP',
-	'ZUWW66QUJR57BZSVA3NLM5FRHAFSX6B7',
-	'ZVT76QDYAXIIVYMWJWFMJPGYBZRY7JW7'
-];
-*/
 exports.initial_peers = [
 	'wss://byteball.org/bb'
 ];
+
+exports.trustedRegistries = {
+	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': 'market'
+};
 
 console.log('finished hub conf');
