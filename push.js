@@ -2,21 +2,31 @@ var db = require('byteballcore/db');
 var conf = require('byteballcore/conf');
 var eventBus = require('byteballcore/event_bus.js');
 var https = require('https');
+var apn = require('apn');
 
+var apnsOptions = {
+  token: {
+    key: conf.APNsAuthKey,
+    keyId: conf.keyId,
+    teamId: conf.teamId
+  },
+  production: false
+};
+var apnProvider = new apn.Provider(apnsOptions);
 
 eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 	sendPushAboutMessage(objDeviceMessage.to);
 });
 
-eventBus.on("enableNotification", function(deviceAddress, registrationId) {
+eventBus.on("enableNotification", function(deviceAddress, params) {
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
-			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [registrationId, deviceAddress], function() {
+			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address, platform) VALUES (?, ?, ?)", [params.registrationId, deviceAddress, params.platform], function() {
 
 			});
 		} else if (rows.length) {
 			if (rows[0].registration_id !== registrationId) {
-				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [registrationId, deviceAddress], function() {
+				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [params.registrationId, deviceAddress], function() {
 
 				})
 			}
@@ -66,10 +76,34 @@ function sendRest(registrationIds) {
 	});
 }
 
+function sendAPNS(registrationId) {
+	var note = new apn.Notification();
+
+	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+	note.badge = 1;
+	note.sound = "ping.aiff";
+	note.alert = "New message";
+	note.payload = {'messageFrom': 'Byteball'};
+	note.topic = "org.byteball.wallet";
+
+	apnProvider.send(note, registrationId).then((result) => {
+	}, function(err) {
+		console.error(err);
+    });
+}
+
 function sendPushAboutMessage(device_address) {
-	db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
+	db.query("SELECT registrationId, platform FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
 		if (rows.length > 0) {
-			sendRest([rows[0].registrationId]);
+			switch (rows[0].platform) {
+				case "android":
+					sendRest([rows[0].registrationId]);
+					break;
+				case "ios":
+					sendAPNS(rows[0].registrationId);
+					break;
+			}
+			
 		}
 	});
 }
