@@ -10,7 +10,7 @@ var apnsOptions = {
     keyId: conf.keyId,
     teamId: conf.teamId
   },
-  production: false
+  production: true
 };
 var apnProvider = new apn.Provider(apnsOptions);
 
@@ -25,7 +25,7 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 
 			});
 		} else if (rows.length) {
-			if (rows[0].registration_id !== registrationId) {
+			if (rows[0].registration_id !== params.registrationId) {
 				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [params.registrationId, deviceAddress], function() {
 
 				})
@@ -36,7 +36,6 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 
 eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [registrationId, deviceAddress], function() {
-
 	});
 });
 
@@ -76,11 +75,11 @@ function sendRest(registrationIds) {
 	});
 }
 
-function sendAPNS(registrationId) {
+function sendAPNS(registrationId, msg_cnt) {
 	var note = new apn.Notification();
 
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-	note.badge = 1;
+	note.badge = msg_cnt;
 	note.sound = "ping.aiff";
 	note.alert = "New message";
 	note.payload = {'messageFrom': 'Byteball'};
@@ -93,14 +92,16 @@ function sendAPNS(registrationId) {
 }
 
 function sendPushAboutMessage(device_address) {
-	db.query("SELECT registrationId, platform FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
+	db.query("SELECT registrationId, platform, COUNT(1) as `msg_cnt` FROM push_registrations \n\
+		JOIN device_messages USING(device_address) \n\
+		WHERE device_address=?", [device_address], function(rows) {
 		if (rows.length > 0) {
 			switch (rows[0].platform) {
 				case "android":
-					sendRest([rows[0].registrationId]);
+					sendRest([rows[0].registrationId], rows[0].msg_cnt);
 					break;
 				case "ios":
-					sendAPNS(rows[0].registrationId);
+					sendAPNS(rows[0].registrationId, rows[0].msg_cnt);
 					break;
 			}
 			

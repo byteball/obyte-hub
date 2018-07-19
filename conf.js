@@ -8,7 +8,7 @@ exports.minClientVersion = '2.2.0';
 exports.pushApiProjectNumber = 0;
 exports.pushApiKey = '';
 
-// ios Push Notifications APNS config
+// iOS Push Notifications APNS config
 exports.APNsAuthKey = ''; // *.p8 filepath or buffer with key itself
 exports.keyId = '';
 exports.teamId = '';
