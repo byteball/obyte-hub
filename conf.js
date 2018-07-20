@@ -8,6 +8,11 @@ exports.minClientVersion = '2.4.0';
 exports.pushApiProjectNumber = 0;
 exports.pushApiKey = '';
 
+// iOS Push Notifications APNS config
+exports.APNsAuthKey = ''; // *.p8 filepath or buffer with key itself
+exports.keyId = '';
+exports.teamId = '';
+
 exports.port = 6611;
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;

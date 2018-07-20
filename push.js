@@ -2,21 +2,40 @@ var db = require('byteballcore/db');
 var conf = require('byteballcore/conf');
 var eventBus = require('byteballcore/event_bus.js');
 var https = require('https');
+var apn = require('apn');
 
+var push_enabled = {};
+push_enabled['ios'] = !!conf.APNsAuthKey;
+push_enabled['android'] = !!conf.pushApiProjectNumber;
+
+var apnsOptions = {
+  token: {
+    key: conf.APNsAuthKey,
+    keyId: conf.keyId,
+    teamId: conf.teamId
+  },
+  production: true
+};
+var apnProvider = new apn.Provider(apnsOptions);
 
 eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 	sendPushAboutMessage(objDeviceMessage.to);
 });
 
-eventBus.on("enableNotification", function(deviceAddress, registrationId) {
+eventBus.on("enableNotification", function(deviceAddress, params) {
+	if (typeof params == "string") // old clients
+		params = {registrationId: params};
+	params.platform = params.platform || 'android';
+	if (!push_enabled[params.platform])
+		return;
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
-			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address) VALUES (?, ?)", [registrationId, deviceAddress], function() {
+			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address, platform) VALUES (?, ?, ?)", [params.registrationId, deviceAddress, params.platform], function() {
 
 			});
 		} else if (rows.length) {
-			if (rows[0].registration_id !== registrationId) {
-				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [registrationId, deviceAddress], function() {
+			if (rows[0].registration_id !== params.registrationId) {
+				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [params.registrationId, deviceAddress], function() {
 
 				})
 			}
@@ -26,11 +45,10 @@ eventBus.on("enableNotification", function(deviceAddress, registrationId) {
 
 eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [registrationId, deviceAddress], function() {
-
 	});
 });
 
-function sendRest(registrationIds) {
+function sendAndroidNotification(registrationIds) {
 	var options = {
 		host: 'android.googleapis.com',
 		port: 443,
@@ -66,10 +84,35 @@ function sendRest(registrationIds) {
 	});
 }
 
+function sendiOSNotification(registrationId, msg_cnt) {
+	var note = new apn.Notification();
+
+	note.badge = msg_cnt;
+	note.sound = "ping.aiff";
+	note.alert = "New message";
+	note.payload = {'messageFrom': 'Byteball'};
+	note.topic = "org.byteball.wallet";
+
+	apnProvider.send(note, registrationId).then((result) => {
+	}, function(err) {
+		console.error(err);
+    });
+}
+
 function sendPushAboutMessage(device_address) {
-	db.query("SELECT registrationId FROM push_registrations WHERE device_address=?", [device_address], function(rows) {
-		if (rows.length > 0) {
-			sendRest([rows[0].registrationId]);
+	db.query("SELECT registrationId, platform, COUNT(1) AS `msg_cnt` FROM push_registrations \n\
+		JOIN device_messages USING(device_address) \n\
+		WHERE device_address=?", [device_address], function(rows) {
+		if (rows[0].registrationId) {
+			switch (rows[0].platform) {
+				case "android":
+					sendAndroidNotification([rows[0].registrationId]);
+					break;
+				case "ios":
+					sendiOSNotification(rows[0].registrationId, rows[0].msg_cnt);
+					break;
+			}
+			
 		}
 	});
 }
