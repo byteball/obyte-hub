@@ -100,7 +100,7 @@ function sendiOSNotification(registrationId, msg_cnt) {
 }
 
 function sendPushAboutMessage(device_address) {
-	db.query("SELECT registrationId, platform, COUNT(1) as `msg_cnt` FROM push_registrations \n\
+	db.query("SELECT registrationId, platform, COUNT(1) AS `msg_cnt` FROM push_registrations \n\
 		JOIN device_messages USING(device_address) \n\
 		WHERE device_address=?", [device_address], function(rows) {
 		if (rows[0].registrationId) {
