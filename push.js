@@ -4,6 +4,10 @@ var eventBus = require('byteballcore/event_bus.js');
 var https = require('https');
 var apn = require('apn');
 
+var push_enabled = {};
+push_enabled['ios'] = !!conf.APNsAuthKey;
+push_enabled['android'] = !!conf.pushApiProjectNumber;
+
 var apnsOptions = {
   token: {
     key: conf.APNsAuthKey,
@@ -19,6 +23,11 @@ eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 });
 
 eventBus.on("enableNotification", function(deviceAddress, params) {
+	if (typeof params == "string") // old clients
+		params = {registrationId: params};
+	params.platform = params.platform || 'android';
+	if (!push_enabled[params.platform])
+		return;
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
 			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address, platform) VALUES (?, ?, ?)", [params.registrationId, deviceAddress, params.platform], function() {
@@ -39,7 +48,7 @@ eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 	});
 });
 
-function sendRest(registrationIds) {
+function sendAndroidNotification(registrationIds) {
 	var options = {
 		host: 'android.googleapis.com',
 		port: 443,
@@ -75,10 +84,9 @@ function sendRest(registrationIds) {
 	});
 }
 
-function sendAPNS(registrationId, msg_cnt) {
+function sendiOSNotification(registrationId, msg_cnt) {
 	var note = new apn.Notification();
 
-	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = msg_cnt;
 	note.sound = "ping.aiff";
 	note.alert = "New message";
@@ -95,13 +103,13 @@ function sendPushAboutMessage(device_address) {
 	db.query("SELECT registrationId, platform, COUNT(1) as `msg_cnt` FROM push_registrations \n\
 		JOIN device_messages USING(device_address) \n\
 		WHERE device_address=?", [device_address], function(rows) {
-		if (rows.length > 0) {
+		if (rows[0].registrationId) {
 			switch (rows[0].platform) {
 				case "android":
-					sendRest([rows[0].registrationId], rows[0].msg_cnt);
+					sendAndroidNotification([rows[0].registrationId]);
 					break;
 				case "ios":
-					sendAPNS(rows[0].registrationId, rows[0].msg_cnt);
+					sendiOSNotification(rows[0].registrationId, rows[0].msg_cnt);
 					break;
 			}
 			
