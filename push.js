@@ -9,12 +9,12 @@ push_enabled['ios'] = !!conf.APNsAuthKey;
 push_enabled['android'] = !!conf.pushApiProjectNumber;
 
 var apnsOptions = {
-  token: {
-    key: conf.APNsAuthKey,
-    keyId: conf.keyId,
-    teamId: conf.teamId
-  },
-  production: true
+	token: {
+		key: conf.APNsAuthKey,
+		keyId: conf.keyId,
+		teamId: conf.teamId
+	},
+	production: true
 };
 var apnProvider = new apn.Provider(apnsOptions);
 
