@@ -16,7 +16,8 @@ var apnsOptions = {
   },
   production: true
 };
-var apnProvider = new apn.Provider(apnsOptions);
+if (push_enabled['ios'])
+	var apnProvider = new apn.Provider(apnsOptions);
 
 eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 	sendPushAboutMessage(objDeviceMessage.to);
@@ -103,7 +104,7 @@ function sendPushAboutMessage(device_address) {
 	db.query("SELECT registrationId, platform, COUNT(1) AS `msg_cnt` FROM push_registrations \n\
 		JOIN device_messages USING(device_address) \n\
 		WHERE device_address=?", [device_address], function(rows) {
-		if (rows[0].registrationId) {
+		if (rows[0].registrationId && push_enabled[rows[0].platform]) {
 			switch (rows[0].platform) {
 				case "android":
 					sendAndroidNotification([rows[0].registrationId]);
@@ -112,7 +113,6 @@ function sendPushAboutMessage(device_address) {
 					sendiOSNotification(rows[0].registrationId, rows[0].msg_cnt);
 					break;
 			}
-			
 		}
 	});
 }
