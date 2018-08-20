@@ -211,3 +211,11 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Verify your Steem username, and your payers don''t need to know your Byteball address any longer, they just write steem/username as recipient.  After first successful verification, you get a reward in Bytes, the amount depends on your Steem reputation.  Other apps offer discounts or bonuses to users with high reputation.  These apps include: ICOs, Real name attestation bot, Buy Bytes with Visa or Mastercard bot.',
    'A7SqDnEgwYOEhPDtJDZUVS4YtBfDwe42DVKGWaOX7pUA@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	3,
+   'Username registration bot',
+   'Buy a username and receive money to your @username instead of a less user-friendly cryptocurrency address.
+
+Proceeds from the sale of usernames go to Byteball community fund and help fund the development and promotion of the platform.',
+   'A52nAAlO05BLIfuoZk6ZrW5GjJYvB6XHlCxZBJjpax3c@byteball.org/bb#0000'
+);
