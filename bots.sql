@@ -219,3 +219,10 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 Proceeds from the sale of usernames go to Byteball community fund and help fund the development and promotion of the platform.',
    'A52nAAlO05BLIfuoZk6ZrW5GjJYvB6XHlCxZBJjpax3c@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Nousplatform ICO',
+   'Nousplatform is a decentralized next-gen investment ecosystem. Nousplatform is set to disrupt the traditional AuM market with the introduction of smart contracts and blockchain technology. The platform empowers everyone with simple and efficient access to the investment world. Discounts apply for Byteball and Steem users.
+
+Website: https://nousplatform.com',
+   'A6K87dFpPsYgLH3S+5ekN6/OUiLCAE1JyE7bgcMcQYR3@byteball.org/bb#0000'
+);
