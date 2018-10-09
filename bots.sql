@@ -226,3 +226,22 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Website: https://nousplatform.com',
    'A6K87dFpPsYgLH3S+5ekN6/OUiLCAE1JyE7bgcMcQYR3@byteball.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Whitelittle reward chat room',
+   'Whitelittle is a chat room for newcomer who want to enter the blockchain industry. The purpose is to bulid an information discovery ecological platform that provides effective help for newcomer based on the byteball technology. Here you can chat and help others without being censored and get some rewards.',
+   'A0DQNw3dCVSOdBhDFYShaf4ZY107Tfk9H7b7LndtXAVc@byteball.org/bb#0000'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'Dice bot',
+   'A very simple, and provably fair, dice game.
+
+Developer: Evgeny Stulnikov',
+   'AoytQbCrauzJ7q9iP9OxvgXIaEtbtlgWYSdyVy6cxHC6@byteball.org/bb#play'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'ClearCost ICO: booking hotels at cost price',
+   'Clearcost.Club books accommodations in hotels worldwide cheaper than the lowest market price by 5% to 15% and more. ClearCost = Cost price + membership fee. The membership fee in CCWT tokens is about four times less than in USD, and this ratio will grow. CCWT are unique tokens with the economic justification for the price. Our ITO is active until October 31, 2018.
+
+Website: https://clearcost.io',
+   'AohcgBmUWV729vYhvzzxoE9Au+egHEN0APGy1D+vOY2T@byteball.org/bb#0000'
+);
