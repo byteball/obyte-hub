@@ -249,3 +249,11 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Website: https://clearcost.io',
    'AohcgBmUWV729vYhvzzxoE9Au+egHEN0APGy1D+vOY2T@byteball.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	3,
+   'Draw Airdrop',
+   'Get a chance to win a weekly prize just by linking your existing balance.  The greater is your balance, the greater is your chance to win.  No payment is required!  The prizes are paid from the undistributed funds.
+
+If you refer new users to the draw and one of them wins, you also win.',
+   'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@byteball.org/bb#0000'
+);
