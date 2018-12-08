@@ -23,6 +23,7 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 	'This oracle posts Merkle Roots of all Bitcoin transactions in a block every time a new Bitcoin block is mined. You can use its data to P2P trade Bytes vs BTC. If you are receiving Bytes (sending bitcoins), chat with the oracle after sending your bitcoins to get the Merkle Proof of your Bitcoin transaction and unlock your bytes from the smart contract.', 
 	'A7C96Bhg4Gpb2Upw/Ky/YfGG8BKe5DjTiBuJFGAX50N1@byteball.org/bb#0000'
 );
+/*
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Rosie bot', 
 	'This is an open-source conversational AI, serving Rosie (chatbot base) through Pandorabots'' API. Without modifying the code, developers can serve any other AIML-compliant chatbot.
@@ -30,6 +31,7 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Laurentiu-Andronache, https://github.com/Laurentiu-Andronache/byteball-chatbot-Rosie', 
 	'ApOpqXbI7GpqOl3Z96QW/GSNgv04g4RcFr/xpaDmN9cg@byteball.org/bb#0000'
 );
+*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Byteball Asset Manager', 
 	'Asset directory and asset creation platform for Byteball. The chatbot provides a simple yet powerful interface to define and issue custom Byteball assets. Assets behave similarly to the native currency "bytes": they are transferable and exchangeable. They can represent anything that has value such as debt, shares, loyalty points, airtime minutes, commodities, other fiat or crypto currencies.
@@ -66,11 +68,13 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Source code: https://github.com/byteball/poll-bot', 
 	'AhMVGrYMCoeOHUaR9v/CZzTC34kScUeA4OBkRCxnWQM+@byteball.org/bb#0000'
 );
+/*
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Blackbytes Exchange BEEB (Trustful)',
 	'Instant buy and sell batches of Blackbytes 24/7. No need to find a peer anymore: the bot is the peer. Note that you are trusting the coins, as well as private histories of blackbytes, to the exchange operator.', 
 	'AxV6ohKFORqIGfGqCZgjK1HlL8vBiNltcWWaI0Rc9yN+@byteball.fr/bb#0000'
 );
+*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Blackbyte Exchange (Semi-trustless)',
 	'Instantly exchange Blackbytes and Bytes or create your own orders in the book. It''s trustless when selling Blackbytes, meaning all users are always in control of their own Blackbytes, and trustful when buying. Need help or want to socialize? You can directly chat with many other users.', 
