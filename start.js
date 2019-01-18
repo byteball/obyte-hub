@@ -1,5 +1,14 @@
 /*jslint node: true */
 "use strict";
+var fs = require('fs');
+var desktopApp = require('ocore/desktop_app.js');
+var appDataDir = desktopApp.getAppDataDir();
+var path = require('path');
+
+if (require.main === module && !fs.existsSync(appDataDir) && fs.existsSync(path.dirname(appDataDir)+'/byteball-hub')){
+	console.log('=== will rename old hub data dir');
+	fs.renameSync(path.dirname(appDataDir)+'/byteball-hub', appDataDir);
+}
 require('byteball-relay');
 var conf = require('./conf');
 var network = require('ocore/network');
