@@ -2,8 +2,8 @@
 "use strict";
 require('byteball-relay');
 var conf = require('./conf');
-var network = require('byteballcore/network');
-var eventBus = require('byteballcore/event_bus.js');
+var network = require('ocore/network');
+var eventBus = require('ocore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
 

@@ -1,6 +1,6 @@
-var db = require('byteballcore/db');
-var conf = require('byteballcore/conf');
-var eventBus = require('byteballcore/event_bus.js');
+var db = require('ocore/db');
+var conf = require('ocore/conf');
+var eventBus = require('ocore/event_bus.js');
 var https = require('https');
 var apn = require('apn');
 

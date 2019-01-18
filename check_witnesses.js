@@ -1,9 +1,9 @@
 /*jslint node: true */
 "use strict";
-var db = require('byteballcore/db.js');
-var storage = require('byteballcore/storage.js');
-var mail = require('byteballcore/mail.js');
-var conf = require('byteballcore/conf.js');
+var db = require('ocore/db.js');
+var storage = require('ocore/storage.js');
+var mail = require('ocore/mail.js');
+var conf = require('ocore/conf.js');
 
 function notifyAdmin(message){
 	write(message);
