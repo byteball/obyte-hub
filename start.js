@@ -9,7 +9,7 @@ if (require.main === module && !fs.existsSync(appDataDir) && fs.existsSync(path.
 	console.log('=== will rename old hub data dir');
 	fs.renameSync(path.dirname(appDataDir)+'/byteball-hub', appDataDir);
 }
-require('byteball-relay');
+require('obyte-relay');
 var conf = require('./conf');
 var network = require('ocore/network');
 var eventBus = require('ocore/event_bus.js');
