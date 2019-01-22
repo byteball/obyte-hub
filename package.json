@@ -1,12 +1,14 @@
 {
   "name": "obyte-hub",
-  "description": "Byteball Hub",
-  "author": "Byteball",
+  "description": "Obyte Hub",
+  "author": "Obyte",
   "version": "0.1.5",
   "main": "start.js",
   "keywords": [
     "hub",
+    "obyte",
     "byteball",
+    "DAG",
     "messaging",
     "chat"
   ],
@@ -15,11 +17,11 @@
   },
   "license": "MIT",
   "repository": {
-    "url": "git://github.com/byteball/byteball-hub.git",
+    "url": "git://github.com/byteball/obyte-hub.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/byteball/byteball-hub/issues"
+    "url": "https://github.com/byteball/obyte-hub/issues"
   },
   "browser": {
     "request": "browser-request",
@@ -27,7 +29,7 @@
   },
   "dependencies": {
     "apn": "^2.2.0",
-    "byteball-relay": "git+https://github.com/byteball/byteball-relay.git",
+    "obyte-relay": "git+https://github.com/byteball/obyte-relay.git",
     "request": "^2.81.0"
   }
 }
