@@ -61,7 +61,7 @@ exports.initial_witnesses = [
 */
 
 exports.initial_peers = [
-	'wss://byteball.org/bb'
+	'wss://obyte.org/bb'
 ];
 
 exports.trustedRegistries = {
