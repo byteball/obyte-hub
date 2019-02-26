@@ -264,5 +264,5 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 This bot was first developed for Byteball Bot War in December 2018.
 
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
-   'AohcgBmUWV729vYhvzzxoE9Au+egHEN0APGy1D+vOY2T@obyte.org/bb#0000'
+   'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
 );
