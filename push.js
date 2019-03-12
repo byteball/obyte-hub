@@ -73,7 +73,7 @@ function sendAndroidNotification(registrationIds) {
 		"registration_ids": registrationIds,
 		"data": {
 			"message": "New message",
-			"title": "Byteball",
+			"title": "Obyte",
 			"vibrate": 1,
 			"sound": 1
 		}
@@ -91,7 +91,7 @@ function sendiOSNotification(registrationId, msg_cnt) {
 	note.badge = msg_cnt;
 	note.sound = "ping.aiff";
 	note.alert = "New message";
-	note.payload = {'messageFrom': 'Byteball'};
+	note.payload = {'messageFrom': 'Obyte'};
 	note.topic = "org.byteball.wallet";
 
 	apnProvider.send(note, registrationId).then((result) => {
