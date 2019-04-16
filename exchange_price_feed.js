@@ -68,6 +68,7 @@ function updateFreebeRates(state, onDone) {
 }
 
 function updateFutureRates(state, onDone) {
+	// transactions.json is more up-to-date than ticker.json
 	const apiUri = 'https://cryptox.pl/api/FUTUREBTC/transactions.json';
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
