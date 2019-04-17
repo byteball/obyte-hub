@@ -83,12 +83,12 @@ function updateFutureRates(state, onDone) {
 				return onDone();
 			}
 			if (rates['BTC_USD'] && price) {
-				rates['FUTURE_BTC'] = price;
-				rates['FUTURE_USD'] = rates['BTC_USD'] * price;
+				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_BTC'] = price;
+				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_USD'] = rates['BTC_USD'] * price;
 				state.updated = true;
 			}
 			if (rates['GBYTE_BTC'] && price) {
-				rates['FUTURE_GBYTE'] = price / rates['GBYTE_BTC'];
+				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_GBYTE'] = price / rates['GBYTE_BTC'];
 				state.updated = true;
 			}
 		}
