@@ -125,7 +125,7 @@ Developer: papabyte.com',
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Real name attestation bot',
-   'Verify your real name to get access to services that require KYC.  Attestation that proves your verification is saved on the public database, but no personal data is published without your request.  Your data is saved in your wallet and you can easily disclose it to the service that needs the data.  After first successful verification, you are rewarded with $20.00 worth of Bytes from the distribution fund.',
+   'Verify your real name to get access to services that require KYC.  Attestation that proves your verification is saved on the public database, but no personal data is published without your request.  Your data is saved in your wallet and you can easily disclose it to the service that needs the data.  After first successful verification, you are reimbursed the price of the attestation and rewarded with $8.00 worth of Bytes from the distribution fund, the reward is time-locked on a smart contract for 1 year.',
    'AsYnI7C8WuXqb2aLMSr0nfpLC+u3FRSLWwkp1e9ib15Z@obyte.org/bb#0000'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
