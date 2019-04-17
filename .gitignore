@@ -38,3 +38,4 @@ Session.vim
 
 log
 .env
+package-lock.json

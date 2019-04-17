@@ -23,6 +23,8 @@ function updateBittrexRates(state, onDone) {
 				}
 			});
 			if (Object.keys(prices).length == symbols.length) {
+				rates['BTC_USD'] = prices['USDT-BTC'];
+				rates['GBYTE_BTC'] = prices['BTC-GBYTE'];
 				rates['GBYTE_USD'] = prices['BTC-GBYTE'] * prices['USDT-BTC'];
 				state.updated = true;
 			}
@@ -49,12 +51,49 @@ function updateFreebeRates(state, onDone) {
 				return onDone();
 			}
 			if (rates['GBYTE_USD'] && price) {
+				rates['GBB_GBYTE'] = price;
 				rates['GBB_USD'] = rates['GBYTE_USD'] * price;
+				state.updated = true;
+			}
+			if (rates['GBYTE_BTC'] && price) {
+				rates['GBB_BTC'] = rates['GBYTE_BTC'] * price;
 				state.updated = true;
 			}
 		}
 		else {
 			console.log("Can't get currency rates from freebe");
+		}
+		onDone();
+	});
+}
+
+function updateFutureRates(state, onDone) {
+	// transactions.json is more up-to-date than ticker.json
+	const apiUri = 'https://cryptox.pl/api/FUTUREBTC/transactions.json';
+	request(apiUri, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log("cryptox: ", body);
+			let price;
+			try{
+				price = parseFloat(JSON.parse(body)[0].price);
+				console.log("FUTURE/BTC = "+price);
+			}
+			catch(e){
+				console.log('bad response from cryptox:', e);
+				return onDone();
+			}
+			if (rates['BTC_USD'] && price) {
+				rates['FUTURE_BTC'] = price;
+				rates['FUTURE_USD'] = rates['BTC_USD'] * price;
+				state.updated = true;
+			}
+			if (rates['GBYTE_BTC'] && price) {
+				rates['FUTURE_GBYTE'] = price / rates['GBYTE_BTC'];
+				state.updated = true;
+			}
+		}
+		else {
+			console.log("Can't get currency rates from cryptox");
 		}
 		onDone();
 	});
@@ -68,6 +107,9 @@ function updateRates(){
 		},
 		function(cb){
 			updateFreebeRates(state, cb);
+		},
+		function(cb){
+			updateFutureRates(state, cb);
 		}
 	], function(){
 		console.log(rates);
