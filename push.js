@@ -51,9 +51,9 @@ eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 
 function sendAndroidNotification(registrationIds) {
 	var options = {
-		host: 'android.googleapis.com',
+		host: 'fcm.googleapis.com',
 		port: 443,
-		path: '/gcm/send',
+		path: '/fcm/send',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
