@@ -108,13 +108,13 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Project page and investor information: http://titan-coin.com',
     'AqXgqz9CIqi+pq9RKCVgs9wDBj+XMQdi4414XUjTFL3W@obyte.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
     'Byteball-Altcoin Exchange Bot',
     'Exchange over 60 altcoins to Bytes, Bytes to altcoins, or altcoins to altcoins. Receive your coins as fast as the network confirms your transaction. The fee is only 0.75%.  Powered by Changelly.
     
 Developer: Robert Huber, http://byteball-exchange-bot.com',
     'AiAuuTYQgLL9JBdkpfXU3pjm2RZklmObGAKYB5gJioBG@obyte.org/bb#bytExchange'
-);
+);*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
    'CFD Trading (Trustful)',
    'Buy or sell contract for difference and try to take advantage when the price of a crypto-currency is moving up or moving down without owning it directly.
