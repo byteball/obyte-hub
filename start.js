@@ -28,6 +28,11 @@ eventBus.on('peer_version', function (ws, body) {
 	}
 });
 
+if (conf.known_witnesses)
+	eventBus.on('client_logged_in', function(ws){
+		network.sendJustsaying(ws, 'known_witnesses', conf.known_witnesses);
+	});
+
 function compareVersions(currentVersion, minVersion) {
 	if (currentVersion === minVersion) return '==';
 

@@ -65,4 +65,63 @@ exports.trustedRegistries = {
 	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': 'market'
 };
 
+exports.known_witnesses = process.env.testnet ? null : {
+	'BVVJ2K7ENPZZ3VYZFWQWK7ISPCATFIW3': {
+		name: "Founder's BVV witness and accredited investor attestor",
+	},
+	'DJMMI5JYA5BWQYSXDPRZJVLW3UGL3GJS': {
+		name: "Founder's DJM witness",
+	},
+	'FOPUBEUPBC6YLIQDLKL6EW775BMV7YOH': {
+		name: "Founder's FOPU witness and Bitcoin oracle",
+	},
+	'GFK3RDAPQLLNCMQEVGGD2KCPZTLSG3HN': {
+		name: "Founder's GFK witness and flight delays oracle",
+	},
+	'H5EZTQE7ABFH27AUDTQFMZIALANK6RBG': {
+		name: "Founder's H5 witness and email attestor",
+	},
+	'I2ADHGP4HL6J37NQAD73J7E5SKFIXJOT': {
+		name: "Founder's IA2 witness and real name attestor",
+	},
+	'JEDZYC2HMGDBIDQKG3XSTXUSHMCBK725': {
+		name: "Founder's JED witness and Steem attestor",
+	},
+	'JPQKPRI5FMTQRJF4ZZMYZYDQVRD55OTC': {
+		name: "Founder's JPQ witness and price oracle",
+	},
+	'OYW2XTDKSNKGSEZ27LMGNOPJSYIXHBHC': {
+		name: "Founder's OYW witness",
+	},
+	'S7N5FE42F6ONPNDQLCF64E2MGFYKQR2I': {
+		name: "Founder's S7 witness",
+	},
+	'TKT4UESIKTTRALRRLWS4SENSTJX6ODCW': {
+		name: "Founder's TKT witness and sport oracle",
+	},
+	'UENJPVZ7HVHM6QGVGT6MWOJGGRTUTJXQ': {
+		name: "Founder's UEN witness and username attestor",
+	},
+	'MEJGDND55XNON7UU3ZKERJIZMMXJTVCV': {
+		name: "byteball.fr",
+	},
+	'4GDZSXHEFVFMHCUCSHZVXBVF5T2LJHMU': {
+		name: "Rogier Eijkelhof",
+		url: "https://medium.com/obyte/first-decentralized-witness-candidate-rogier-eijkelhof-9e5619166334"
+	},
+	'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF': {
+		name: "Fabien Marino",
+		url: "https://medium.com/obyte/second-independent-witness-candidate-fabien-marino-d4e8dccadee"
+	},
+	'4FIZC3KZ3ZQSSVOKFEUHKCTQWAWD6YMF': {
+		name: "Raivo Malter",
+	},
+	'IMMP5FWQXY6IZ53OIYQ46PHSI5T3MAYQ': {
+		name: "Demelza Hays",
+	},
+	'25XDFVFRP7BZ2SNSESFKUTF52W42JCSL': {
+		name: "Brad Morrison",
+	},
+};
+
 console.log('finished hub conf');
