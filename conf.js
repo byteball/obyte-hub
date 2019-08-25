@@ -122,6 +122,9 @@ exports.known_witnesses = process.env.testnet ? null : {
 	'25XDFVFRP7BZ2SNSESFKUTF52W42JCSL': {
 		name: "Brad Morrison",
 	},
+	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
+		name: "Bittrex",
+	},
 };
 
 console.log('finished hub conf');
