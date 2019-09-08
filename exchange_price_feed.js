@@ -37,7 +37,7 @@ function updateBittrexRates(state, onDone) {
 }
 
 function updateFreebeRates(state, onDone) {
-	const apiUri = 'http://freebe.byte-ball.com/last';
+	const apiUri = 'https://blackbytes.io/last';
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			console.log("freebe: ", body);
