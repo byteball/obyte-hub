@@ -13,6 +13,10 @@ function updateBittrexRates(state, onDone) {
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			let arrCoinInfos = JSON.parse(body).result;
+			if (!arrCoinInfos) {
+				console.log('bad rates from bittrex');
+				return onDone();
+			}
 			let prices = {};
 			arrCoinInfos.forEach(coinInfo => {
 				if (!coinInfo.Last)
