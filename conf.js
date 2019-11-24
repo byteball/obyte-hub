@@ -113,6 +113,10 @@ exports.known_witnesses = process.env.testnet ? null : {
 		name: "Fabien Marino",
 		url: "https://medium.com/obyte/second-independent-witness-candidate-fabien-marino-d4e8dccadee"
 	},
+	'2TO6NYBGX3NF5QS24MQLFR7KXYAMCIE5': {
+		name: "Bosch",
+		url: "https://medium.com/@stgtconnectory/autonomous-auctioneer-stuttgart-connectory-hackathon-e5a703c6217a#2cc1"
+	},
 	'4FIZC3KZ3ZQSSVOKFEUHKCTQWAWD6YMF': {
 		name: "Raivo Malter",
 	},
