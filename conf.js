@@ -127,4 +127,6 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 };
 
+exports.ArbRegistries = {'L32E5T647AHAYDVQFWJYHDJTOWUQEBPV': 'arbstore.ngrok.io'};
+
 console.log('finished hub conf');
