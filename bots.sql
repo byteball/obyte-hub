@@ -48,7 +48,7 @@ Developer: Hyena',
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Slice&Dice MUD', 
-	'Combining the elements of provably fair online gambling and text-based multi-user dungeons (MUDs), Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a wandering dungeon inhabitant who delves into the cruel underground caverns with the primary goal of finding food and shelter. Doing so requires them to gamble on the Byteball tokens and to get into fights with other cave explorers as part of the endless struggle for survival.
+	'Combining the elements of provably fair online gambling and text-based multi-user dungeons (MUDs), Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a wandering dungeon inhabitant who delves into the cruel underground caverns with the primary goal of finding food and shelter. Doing so requires them to gamble on the Obyte tokens and to get into fights with other cave explorers as part of the endless struggle for survival.
 
 Developer: CoinGaming.io', 
 	'Aka6qIh7Cc0FsdyWM/BRzye1ftDbcme5TzE88bI43P+/@obyte.org/bb#0000'
@@ -145,13 +145,13 @@ Website: https://silentnotary.com',
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Email attestation bot',
-   'Verify your email adddress, and your payers don''t need to know your Byteball address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
+   'Verify your email adddress, and your payers don''t need to know your Obyte address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
    'Al+nIuRMIr8PGvi3BkIVU+S/VZ1Xm2SM3yR3z4IoyMbJ@obyte.org/bb#0000'
 );
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Exchange Bot',
-   'Exchange Byteball-issued tokens against Bytes or token vs token.  The exchange is based on smart contracts, so you don''t have to trust the exchange operator.',
+   'Exchange Obyte-issued tokens against Bytes or token vs token.  The exchange is based on smart contracts, so you don''t have to trust the exchange operator.',
    'A8GXYB3lSvSsvej+ZQgfF2prwx8gopMx8j5JwwUS9ZVD@obyte.org/bb#0000'
 );
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
@@ -183,7 +183,7 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'World Community Grid linking bot',
-   'Donate your device’s spare computing power to help scientists solve the world’s biggest problems in health and sustainability, and earn some Bytes in the meantime.  This bot allows you to link your Byteball address and WCG account in order to receive daily rewards for your contribution to WCG computations.
+   'Donate your device’s spare computing power to help scientists solve the world’s biggest problems in health and sustainability, and earn some Bytes in the meantime.  This bot allows you to link your Obyte address and WCG account in order to receive daily rewards for your contribution to WCG computations.
 
 WCG is an IBM sponsored project, more info at https://www.worldcommunitygrid.org',
    'A/JWTKvgJQ/gq9Ra+TCGbvff23zqJ9Ec3Bp0XHxyZOaJ@obyte.org/bb#0000'
@@ -197,7 +197,7 @@ Developer: HDRProtocol, https://github.com/HDRProtocol/exchanger',
 );*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
    'Private chat room bot',
-   'This chatbot allows several persons to chat together using the Byteball messaging system. The bot decrypts messages and relays them to other users after reencryption. For best privacy, run your own instance of this bot using the source code below, any cheap VPS is enough to host it.
+   'This chatbot allows several persons to chat together using the Obyte messaging system. The bot decrypts messages and relays them to other users after reencryption. For best privacy, run your own instance of this bot using the source code below, any cheap VPS is enough to host it.
 
 Developer: Papabyte, https://github.com/Papabyte/Private-chat-room',
    'AuB9N1V8OOdc9M5JrpNOCqI3LAcLWetitkT3MqK/Ij5U@obyte.org/bb#0000'
@@ -212,7 +212,7 @@ Website: https://www.aworker.io',
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Steem attestation bot',
-   'Verify your Steem username, and your payers don''t need to know your Byteball address any longer, they just write steem/username as recipient.  After first successful verification, you get a reward in Bytes, the amount depends on your Steem reputation.  Other apps offer discounts or bonuses to users with high reputation.  These apps include: ICOs, Real name attestation bot, Buy Bytes with Visa or Mastercard bot.',
+   'Verify your Steem username, and your payers don''t need to know your Obyte address any longer, they just write steem/username as recipient.  After first successful verification, you get a reward in Bytes, the amount depends on your Steem reputation.  Other apps offer discounts or bonuses to users with high reputation.  These apps include: ICOs, Real name attestation bot, Buy Bytes with Visa or Mastercard bot.',
    'A7SqDnEgwYOEhPDtJDZUVS4YtBfDwe42DVKGWaOX7pUA@obyte.org/bb#0000'
 );
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
@@ -220,7 +220,7 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Username registration bot',
    'Buy a username and receive money to your @username instead of a less user-friendly cryptocurrency address.
 
-Proceeds from the sale of usernames go to Byteball community fund and help fund the development and promotion of the platform.',
+Proceeds from the sale of usernames go to Obyte community fund and help fund the development and promotion of the platform.',
    'A52nAAlO05BLIfuoZk6ZrW5GjJYvB6XHlCxZBJjpax3c@obyte.org/bb#0000'
 );
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
@@ -232,7 +232,7 @@ Website: https://nousplatform.com',
 );*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
    'Whitelittle reward chat room',
-   'Whitelittle is a chat room for newcomer who want to enter the blockchain industry. The purpose is to bulid an information discovery ecological platform that provides effective help for newcomer based on the byteball technology. Here you can chat and help others without being censored and get some rewards.',
+   'Whitelittle is a chat room for newcomer who want to enter the blockchain industry. The purpose is to bulid an information discovery ecological platform that provides effective help for newcomer based on the Obyte technology. Here you can chat and help others without being censored and get some rewards.',
    'A0DQNw3dCVSOdBhDFYShaf4ZY107Tfk9H7b7LndtXAVc@obyte.org/bb#0000'
 );
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
@@ -261,7 +261,7 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
    'Know-it-all Bot',
    'This bot is all about user participation and giving gratitude using incentivized Q&A.  Users pose questions and add reward with bytes for faster replies, better answers and more importantly to give thanks to participants.  Bring in experts on any social platform using a simple link, vote for the right answer and both of you can get rewarded!
 
-This bot was first developed for Byteball Bot War in December 2018.
+This bot was first developed for Obyte Bot War in December 2018.
 
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
    'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
