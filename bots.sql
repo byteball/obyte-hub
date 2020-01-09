@@ -33,10 +33,10 @@ Developer: Laurentiu-Andronache, https://github.com/Laurentiu-Andronache/bytebal
 );
 */
 INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Byteball Asset Manager', 
-	'Asset directory and asset creation platform for Byteball. The chatbot provides a simple yet powerful interface to define and issue custom Byteball assets. Assets behave similarly to the native currency "bytes": they are transferable and exchangeable. They can represent anything that has value such as debt, shares, loyalty points, airtime minutes, commodities, other fiat or crypto currencies.
+	'Obyte Asset Manager', 
+	'Asset directory and asset creation platform for Obyte. The chatbot provides a simple yet powerful interface to define and issue custom Obyte assets. Assets behave similarly to the native currency "bytes": they are transferable and exchangeable. They can represent anything that has value such as debt, shares, loyalty points, airtime minutes, commodities, other fiat or crypto currencies.
 
-Developer: Peter Miklos, https://byteball.market', 
+Developer: Peter Miklos, https://obyte.app', 
 	'Ao2SRelXb23nTnom+KHhLIzK4nyk0WAlE3vRWk5K25Gg@obyte.org/bb#0000'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
