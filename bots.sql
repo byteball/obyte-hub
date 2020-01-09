@@ -266,3 +266,12 @@ This bot was first developed for Obyte Bot War in December 2018.
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
    'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   '幸运字节 Luckybytes',
+   'A lottery which you can play using your Bytes. Three different game modes to participate in and follow the principle of "the winner takes all". All games are provably fair. Each lottey comes with a game proof hash which lets player validate and prove the results against manipulation.
+
+一个可以用字节来玩的抽奖游戏. 三种不同的游戏模式, 适用"赢家通吃"原则. 所有游戏都是可证明公平的, 即每盘游戏都会有一个哈希证明, 玩家可以验证游戏没有被操控.
+
+https://lucky.obytechina.org',
+   'Ao1eMaw8OncQCmoC6lBFVsjMo6ryf+jO1G+N09DDJEwU@hub.obytechina.org/bb#0000'
+);
