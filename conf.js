@@ -129,6 +129,10 @@ exports.known_witnesses = process.env.testnet ? null : {
 	'25XDFVFRP7BZ2SNSESFKUTF52W42JCSL': {
 		name: "Brad Morrison",
 	},
+	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J': {
+		name: "PolloPollo",
+		url: "https://medium.com/@casper_43503/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
+	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
 	},
