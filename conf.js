@@ -119,9 +119,11 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 	'DXYWHSZ72ZDNDZ7WYZXKWBBH425C6WZN': {
 		name: "Bind Creative",
+		url: "https://medium.com/obyte/bind-creative-announces-candidacy-to-become-obyte-witness-c06109bf8de1"
 	},
 	'4FIZC3KZ3ZQSSVOKFEUHKCTQWAWD6YMF': {
 		name: "Raivo Malter",
+		url: "https://medium.com/obyte/raivo-malter-announces-candidacy-to-become-obyte-witness-a7f7471cef4e"
 	},
 	'IMMP5FWQXY6IZ53OIYQ46PHSI5T3MAYQ': {
 		name: "Demelza Hays",
@@ -131,7 +133,7 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J': {
 		name: "PolloPollo",
-		url: "https://medium.com/@casper_43503/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
+		url: "https://medium.com/obyte/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
 	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
