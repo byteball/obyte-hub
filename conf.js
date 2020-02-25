@@ -2,7 +2,7 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '2.8.0';
+exports.minClientVersion = '3.0.1';
 
 // https://console.developers.google.com
 exports.pushApiProjectNumber = 0;
