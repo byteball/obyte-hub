@@ -39,20 +39,6 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 Developer: Peter Miklos, https://obyte.app', 
 	'Ao2SRelXb23nTnom+KHhLIzK4nyk0WAlE3vRWk5K25Gg@obyte.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Zork I game', 
-	'Play one of the earliest interactive fiction computer games developed between 1977 and 1979. The game unfolds in a maze-like dungeon, where the user must battle trolls and solve puzzles in order to find twenty trophies to bring back to the house outside which the game begins.
-
-Developer: Hyena', 
-	'A/SCXz5tNuJDLuCO8PXpsfUoL7dCMBGnvSST7z0YPXjd@obyte.org/bb#0000'
-);
-INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Slice&Dice MUD', 
-	'Combining the elements of provably fair online gambling and text-based multi-user dungeons (MUDs), Slice&Dice Dungeon delivers a unique gaming experience for everyone. The player takes a role of a wandering dungeon inhabitant who delves into the cruel underground caverns with the primary goal of finding food and shelter. Doing so requires them to gamble on the Obyte tokens and to get into fights with other cave explorers as part of the endless struggle for survival.
-
-Developer: CoinGaming.io', 
-	'Aka6qIh7Cc0FsdyWM/BRzye1ftDbcme5TzE88bI43P+/@obyte.org/bb#0000'
-);
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	1,
 	'Flight delay insurance', 
