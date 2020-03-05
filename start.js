@@ -25,6 +25,8 @@ eventBus.on('peer_version', function (ws, body) {
 			network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
 		if (compareVersions(body.program_version, '3.0.1') == '<')
 			ws.close(1000, "mandatory upgrade");
+		if (conf.minClientVersionForChat && compareVersions(body.program_version, conf.minClientVersionForChat) === '<')
+			ws.blockChat = true;
 	}
 });
 

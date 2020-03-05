@@ -2,7 +2,8 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '3.0.1';
+exports.minClientVersion = '3.0.2';
+exports.minClientVersionForChat = '3.0.2';
 
 // https://console.developers.google.com
 exports.pushApiProjectNumber = 0;
