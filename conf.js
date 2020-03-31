@@ -63,7 +63,8 @@ exports.initial_peers = [
 ];
 
 exports.trustedRegistries = {
-	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': 'market'
+	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': { name: 'market' },
+	'VGR3HJBD5LKSVIBAM7BRC22DBCURPZCI': { name: 'DTR', allow_updates: true },
 };
 
 exports.known_witnesses = process.env.testnet ? null : {

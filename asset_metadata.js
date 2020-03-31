@@ -22,8 +22,8 @@ function handlePotentialAssetMetadataUnit(unit){
 			if (arrAuthorAddresses.length !== 1)
 				return console.log("ignoring multi-authored unit "+unit);
 			let registry_address = arrAuthorAddresses[0];
-			let registry_name = conf.trustedRegistries[registry_address];
-			if (!registry_name)
+			let registry = conf.trustedRegistries[registry_address];
+			if (!registry)
 				return console.log("not authored by registry: "+unit);
 			let arrAssetMetadataPayloads = [];
 			objUnit.messages.forEach(message => {
@@ -47,9 +47,9 @@ function handlePotentialAssetMetadataUnit(unit){
 					return console.log("asset "+payload.asset+" not found");
 				db.query("SELECT 1 FROM asset_metadata WHERE name=? AND registry_address!=?", [payload.name, registry_address], rows => {
 					if (rows.length > 0) // maybe more than one
-						suffix = registry_name;
+						suffix = registry.name;
 					db.query("SELECT asset FROM asset_metadata WHERE name=? AND registry_address=?", [payload.name, registry_address], rows => {
-						if (rows.length > 0){ // maybe more than one
+						if (rows.length > 0 && !registry.allow_updates){ // maybe more than one
 							let bSame = (rows[0].asset === payload.asset);
 							if (bSame)
 								return mail.sendBugEmail("asset "+payload.asset+" already registered by the same registry "+registry_address+" by the same name "+payload.name);
@@ -57,10 +57,11 @@ function handlePotentialAssetMetadataUnit(unit){
 								return mail.sendBugEmail("registry "+registry_address+" attempted to register the same name "+payload.name+" under another asset "+payload.asset+" while the name is already assigned to "+rows[0].asset);
 						}
 						db.query("SELECT name, registry_address FROM asset_metadata WHERE asset=?", [payload.asset], rows => {
-							if (rows.length > 0)
+							if (rows.length > 0 && !registry.allow_updates)
 								return mail.sendBugEmail("registry "+registry_address+" attempted to register asset "+payload.asset+" again, old name "+rows[0].name+" by "+rows[0].registry_address+", new name "+payload.name);
+							var verb = registry.allow_updates ? "REPLACE" : "INSERT";
 							db.query(
-								"INSERT INTO asset_metadata (asset, metadata_unit, registry_address, suffix, name, decimals) VALUES (?,?,?, ?,?,?)", 
+								verb + " INTO asset_metadata (asset, metadata_unit, registry_address, suffix, name, decimals) VALUES (?,?,?, ?,?,?)", 
 								[payload.asset, unit, registry_address, suffix, payload.name, payload.decimals]
 							);
 						});
