@@ -62,8 +62,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 );
 */
 INSERT INTO bots (name, description, pairing_code) VALUES (
-	'Blackbyte Exchange (Semi-trustless)',
-	'Instantly exchange Blackbytes and Bytes or create your own orders in the book. It''s trustless when selling Blackbytes, meaning all users are always in control of their own Blackbytes, and trustful when buying. Need help or want to socialize? You can directly chat with many other users.', 
+	'Blackbytes.io Exchange (Semi-trustless)',
+	'Instantly exchange Blackbytes and Bytes or create your own orders in the book. It''s trustless when selling Blackbytes, meaning all users are always in control of their own Blackbytes, and trustful when buying. Need help or want to socialize? You can directly chat with many other users.
+
+Check the website https://blackbytes.io for graphs of the order book, historical price charts and FAQ.', 
 	'ApSicldzuDl675iiUyWdmO7pLl8MPgeuNg4qOr13EkNJ@obyte.org/bb#globalchat'
 );
 INSERT INTO bots (name, description, pairing_code) VALUES (
