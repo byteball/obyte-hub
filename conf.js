@@ -64,7 +64,7 @@ exports.initial_peers = [
 
 exports.trustedRegistries = {
 	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': { name: 'market' },
-	'ZT2B6UYBAEHDU5M3EM2MSMVA5OC2AHAY': { name: 'DTR', allow_updates: true },
+	'O6H6ZIFI57X3PLTYHOCVYPP5A553CYFQ': { name: 'DTR', allow_updates: true },
 };
 
 exports.known_witnesses = process.env.testnet ? null : {
