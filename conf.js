@@ -2,7 +2,8 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '2.8.0';
+exports.minClientVersion = '3.0.3';
+exports.minClientVersionForChat = '3.0.3';
 
 // https://console.developers.google.com
 exports.pushApiProjectNumber = 0;
@@ -30,15 +31,15 @@ exports.storage = 'sqlite';
 
 exports.initial_witnesses = !process.env.testnet ? [
 	'BVVJ2K7ENPZZ3VYZFWQWK7ISPCATFIW3',
-	'DJMMI5JYA5BWQYSXDPRZJVLW3UGL3GJS',
+	'2TO6NYBGX3NF5QS24MQLFR7KXYAMCIE5',
 	'FOPUBEUPBC6YLIQDLKL6EW775BMV7YOH',
 	'GFK3RDAPQLLNCMQEVGGD2KCPZTLSG3HN',
 	'H5EZTQE7ABFH27AUDTQFMZIALANK6RBG',
 	'I2ADHGP4HL6J37NQAD73J7E5SKFIXJOT',
 	'4GDZSXHEFVFMHCUCSHZVXBVF5T2LJHMU',
 	'JPQKPRI5FMTQRJF4ZZMYZYDQVRD55OTC',
-	'OYW2XTDKSNKGSEZ27LMGNOPJSYIXHBHC',
-	'S7N5FE42F6ONPNDQLCF64E2MGFYKQR2I',
+	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J',
+	'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF',
 	'TKT4UESIKTTRALRRLWS4SENSTJX6ODCW',
 	'UENJPVZ7HVHM6QGVGT6MWOJGGRTUTJXQ'
 ]
@@ -62,7 +63,8 @@ exports.initial_peers = [
 ];
 
 exports.trustedRegistries = {
-	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': 'market'
+	'AM6GTUKENBYA54FYDAKX2VLENFZIMXWG': { name: 'market' },
+	'O6H6ZIFI57X3PLTYHOCVYPP5A553CYFQ': { name: 'DTR', allow_updates: true },
 };
 
 exports.known_witnesses = process.env.testnet ? null : {
@@ -114,17 +116,26 @@ exports.known_witnesses = process.env.testnet ? null : {
 		url: "https://medium.com/obyte/second-independent-witness-candidate-fabien-marino-d4e8dccadee"
 	},
 	'2TO6NYBGX3NF5QS24MQLFR7KXYAMCIE5': {
-		name: "Bosch",
+		name: "Bosch Connectory Stuttgart",
 		url: "https://medium.com/@stgtconnectory/autonomous-auctioneer-stuttgart-connectory-hackathon-e5a703c6217a#2cc1"
+	},
+	'DXYWHSZ72ZDNDZ7WYZXKWBBH425C6WZN': {
+		name: "Bind Creative",
+		url: "https://medium.com/obyte/bind-creative-announces-candidacy-to-become-obyte-witness-c06109bf8de1"
 	},
 	'4FIZC3KZ3ZQSSVOKFEUHKCTQWAWD6YMF': {
 		name: "Raivo Malter",
+		url: "https://medium.com/obyte/raivo-malter-announces-candidacy-to-become-obyte-witness-a7f7471cef4e"
 	},
 	'IMMP5FWQXY6IZ53OIYQ46PHSI5T3MAYQ': {
 		name: "Demelza Hays",
 	},
 	'25XDFVFRP7BZ2SNSESFKUTF52W42JCSL': {
 		name: "Brad Morrison",
+	},
+	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J': {
+		name: "PolloPollo",
+		url: "https://medium.com/obyte/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
 	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
