@@ -21,8 +21,8 @@ exports.bSaveJointJson = true;
 exports.bLight = false;
 
 // this is used by wallet vendor only, to redirect bug reports to developers' email
-exports.bug_sink_email = 'admin@example.org';
-exports.bugs_from_email = 'bugs@example.org';
+exports.bug_sink_email = ''; // 'admin@example.org';
+exports.bugs_from_email = ''; // 'bugs@example.org';
 
 exports.HEARTBEAT_TIMEOUT = 300*1000;
 
