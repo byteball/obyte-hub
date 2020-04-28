@@ -1,6 +1,6 @@
 {
-  "name": "obyte-hub",
-  "description": "Obyte Hub",
+  "name": "arbregistry",
+  "description": "arbregistry",
   "author": "Obyte",
   "version": "0.1.5",
   "main": "start.js",
