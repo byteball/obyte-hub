@@ -137,6 +137,14 @@ exports.known_witnesses = process.env.testnet ? null : {
 		name: "PolloPollo",
 		url: "https://medium.com/obyte/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
 	},
+	'UE25S4GRWZOLNXZKY4VWFHNJZWUSYCQC': {
+		name: "Institute For the Future at University of Nicosia",
+		url: "https://medium.com/@klitos/the-institute-for-the-future-iff-at-the-university-of-nicosia-announces-candidacy-to-become-an-ec5a3342070b"
+	},
+	'JMFXY26FN76GWJJG7N36UI2LNONOGZJV': {
+		name: "Cryptoshare Studio",
+		url: "https://bbfans.org/2020/04/27/a-brief-introduction-to-cryptoshare-studio/"
+	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
 	},
