@@ -149,13 +149,13 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 Website: https://worldopoly.io',
    'AwyoKVsyxajATgLXa9Jhh8NBRTnUaZNHdi85c43g+GoJ@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'WhiteLittle Airdrop 小白币糖果机器人',
    '小白链机器人送出小白币糖果。小白链是专门为想进入区块链行业的小白们量身打造的帮助平台，其目的是建立一个基于字节雪球技术为小白们提供有效帮助的信息发现生态平台。小白链的设计初衷是构建一套合理的激励机制，能够及时得到帮助，又让提供帮助的区块链从业者得到合理的回报。
 
 开发者：123cb.net',
    'Ahe4jkq5GvgLQ2h5ftqRMjWBBumUEN96tWoSfEQ9TGHF@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Buy Bytes with Visa or Mastercard',
@@ -218,11 +218,11 @@ Proceeds from the sale of usernames go to Obyte community fund and help fund the
 Website: https://nousplatform.com',
    'A6K87dFpPsYgLH3S+5ekN6/OUiLCAE1JyE7bgcMcQYR3@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Whitelittle reward chat room',
    'Whitelittle is a chat room for newcomer who want to enter the blockchain industry. The purpose is to bulid an information discovery ecological platform that provides effective help for newcomer based on the Obyte technology. Here you can chat and help others without being censored and get some rewards.',
    'A0DQNw3dCVSOdBhDFYShaf4ZY107Tfk9H7b7LndtXAVc@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Dice bot',
    'A very simple, and provably fair, dice game.
@@ -245,7 +245,7 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 If you refer new users to the draw and one of them wins, you also win.',
    'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Know-it-all Bot',
    'This bot is all about user participation and giving gratitude using incentivized Q&A.  Users pose questions and add reward with bytes for faster replies, better answers and more importantly to give thanks to participants.  Bring in experts on any social platform using a simple link, vote for the right answer and both of you can get rewarded!
 
@@ -253,7 +253,7 @@ This bot was first developed for Obyte Bot War in December 2018.
 
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
    'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
    '幸运字节 Luckybytes',
    'A lottery which you can play using your Bytes. Three different game modes to participate in and follow the principle of "the winner takes all". All games are provably fair. Each lottey comes with a game proof hash which lets player validate and prove the results against manipulation.
