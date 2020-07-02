@@ -145,6 +145,10 @@ exports.known_witnesses = process.env.testnet ? null : {
 		name: "Cryptoshare Studio",
 		url: "https://bbfans.org/2020/04/27/a-brief-introduction-to-cryptoshare-studio/"
 	},
+	'FL3LIHRXYE6PS7AADJLDOYZKDO2UVVNS': {
+		name: "Travin Keith",
+		url: "https://medium.com/@TravinKeith/obyte-order-provider-candidacy-7b81e2860cd5"
+	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
 	},
