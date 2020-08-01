@@ -136,12 +136,12 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Verify your email adddress, and your payers don''t need to know your Obyte address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
    'Al+nIuRMIr8PGvi3BkIVU+S/VZ1Xm2SM3yR3z4IoyMbJ@obyte.org/bb#0000'
 );
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Exchange Bot',
    'Exchange Obyte-issued tokens against Bytes or token vs token.  The exchange is based on smart contracts, so you don''t have to trust the exchange operator.',
    'A8GXYB3lSvSsvej+ZQgfF2prwx8gopMx8j5JwwUS9ZVD@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Worldopoly ICO',
    'Worldopoly is the world’s first mobile game combining AR, AI, Geolocationing, Blockchain, and DAG. The ICO is active until 17 May 2018, and you can buy WPT tokens with Bytes, BTC, or Ether.  WPT token is issued both on Byteball and Ethereum platforms but investors on Byteball platform receive increased bonus (even if they pay in ETH or BTC) for investments up to 30 ETH.
