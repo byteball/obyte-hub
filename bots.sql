@@ -136,12 +136,12 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Verify your email adddress, and your payers don''t need to know your Obyte address any longer, they just write your email address as recipient.    After first successful verification, you are rewarded with $10.00 worth of Bytes from the distribution fund if your email is on one of whitelisted domains.',
    'Al+nIuRMIr8PGvi3BkIVU+S/VZ1Xm2SM3yR3z4IoyMbJ@obyte.org/bb#0000'
 );
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Exchange Bot',
    'Exchange Obyte-issued tokens against Bytes or token vs token.  The exchange is based on smart contracts, so you don''t have to trust the exchange operator.',
    'A8GXYB3lSvSsvej+ZQgfF2prwx8gopMx8j5JwwUS9ZVD@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Worldopoly ICO',
    'Worldopoly is the world’s first mobile game combining AR, AI, Geolocationing, Blockchain, and DAG. The ICO is active until 17 May 2018, and you can buy WPT tokens with Bytes, BTC, or Ether.  WPT token is issued both on Byteball and Ethereum platforms but investors on Byteball platform receive increased bonus (even if they pay in ETH or BTC) for investments up to 30 ETH.
@@ -149,13 +149,13 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 Website: https://worldopoly.io',
    'AwyoKVsyxajATgLXa9Jhh8NBRTnUaZNHdi85c43g+GoJ@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'WhiteLittle Airdrop 小白币糖果机器人',
    '小白链机器人送出小白币糖果。小白链是专门为想进入区块链行业的小白们量身打造的帮助平台，其目的是建立一个基于字节雪球技术为小白们提供有效帮助的信息发现生态平台。小白链的设计初衷是构建一套合理的激励机制，能够及时得到帮助，又让提供帮助的区块链从业者得到合理的回报。
 
 开发者：123cb.net',
    'Ahe4jkq5GvgLQ2h5ftqRMjWBBumUEN96tWoSfEQ9TGHF@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Buy Bytes with Visa or Mastercard',
@@ -197,12 +197,12 @@ Developer: Papabyte, https://github.com/Papabyte/Private-chat-room',
 Website: https://www.aworker.io',
    'AvGhQmEMSdS4FSBnUOR/L9EhMjQQb83q/WGLjC9ChWYe@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'Steem attestation bot',
    'Verify your Steem username, and your payers don''t need to know your Obyte address any longer, they just write steem/username as recipient.  After first successful verification, you get a reward in Bytes, the amount depends on your Steem reputation.  Other apps offer discounts or bonuses to users with high reputation.  These apps include: ICOs, Real name attestation bot, Buy Bytes with Visa or Mastercard bot.',
    'A7SqDnEgwYOEhPDtJDZUVS4YtBfDwe42DVKGWaOX7pUA@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Username registration bot',
@@ -218,11 +218,11 @@ Proceeds from the sale of usernames go to Obyte community fund and help fund the
 Website: https://nousplatform.com',
    'A6K87dFpPsYgLH3S+5ekN6/OUiLCAE1JyE7bgcMcQYR3@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Whitelittle reward chat room',
    'Whitelittle is a chat room for newcomer who want to enter the blockchain industry. The purpose is to bulid an information discovery ecological platform that provides effective help for newcomer based on the Obyte technology. Here you can chat and help others without being censored and get some rewards.',
    'A0DQNw3dCVSOdBhDFYShaf4ZY107Tfk9H7b7LndtXAVc@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Dice bot',
    'A very simple, and provably fair, dice game.
@@ -245,7 +245,7 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 If you refer new users to the draw and one of them wins, you also win.',
    'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Know-it-all Bot',
    'This bot is all about user participation and giving gratitude using incentivized Q&A.  Users pose questions and add reward with bytes for faster replies, better answers and more importantly to give thanks to participants.  Bring in experts on any social platform using a simple link, vote for the right answer and both of you can get rewarded!
 
@@ -253,7 +253,7 @@ This bot was first developed for Obyte Bot War in December 2018.
 
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
    'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
    '幸运字节 Luckybytes',
    'A lottery which you can play using your Bytes. Three different game modes to participate in and follow the principle of "the winner takes all". All games are provably fair. Each lottey comes with a game proof hash which lets player validate and prove the results against manipulation.
@@ -262,4 +262,11 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 
 https://lucky.obytechina.org',
    'Ao1eMaw8OncQCmoC6lBFVsjMo6ryf+jO1G+N09DDJEwU@hub.obytechina.org/bb#0000'
+);
+INSERT INTO bots (name, description, pairing_code) VALUES (
+   'OSwap.cc altcoin exchange',
+   'OSwap.cc bot is an exchange bot for GBYTE, which enables you to exchange GBYTE with several hundreds of cryptocurrencies, two-way. 
+
+If you want to exchange more crypto assets, please visit OSwap exchange: https://oswap.cc.',
+   'A2hyUbe/RePfAKHC5eY8/lAI17jgkVysxx9wpE+9dcwz@hub.obytechina.org/bb#0000'
 );

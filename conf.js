@@ -2,7 +2,7 @@
 "use strict";
 
 exports.clientName = 'byteball';
-exports.minClientVersion = '3.0.3';
+exports.minClientVersion = '3.2.0';
 exports.minClientVersionForChat = '3.0.3';
 
 // https://console.developers.google.com
@@ -30,18 +30,18 @@ exports.storage = 'sqlite';
 
 
 exports.initial_witnesses = !process.env.testnet ? [
-	'BVVJ2K7ENPZZ3VYZFWQWK7ISPCATFIW3',
+	'DXYWHSZ72ZDNDZ7WYZXKWBBH425C6WZN',
 	'2TO6NYBGX3NF5QS24MQLFR7KXYAMCIE5',
 	'FOPUBEUPBC6YLIQDLKL6EW775BMV7YOH',
 	'GFK3RDAPQLLNCMQEVGGD2KCPZTLSG3HN',
-	'H5EZTQE7ABFH27AUDTQFMZIALANK6RBG',
+	'JMFXY26FN76GWJJG7N36UI2LNONOGZJV',
 	'I2ADHGP4HL6J37NQAD73J7E5SKFIXJOT',
 	'4GDZSXHEFVFMHCUCSHZVXBVF5T2LJHMU',
 	'JPQKPRI5FMTQRJF4ZZMYZYDQVRD55OTC',
 	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J',
 	'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF',
 	'TKT4UESIKTTRALRRLWS4SENSTJX6ODCW',
-	'UENJPVZ7HVHM6QGVGT6MWOJGGRTUTJXQ'
+	'UE25S4GRWZOLNXZKY4VWFHNJZWUSYCQC'
 ]
 : [
 	'2FF7PSL7FYXVU5UIQHCVDTTPUOOG75GX',
@@ -136,6 +136,18 @@ exports.known_witnesses = process.env.testnet ? null : {
 	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J': {
 		name: "PolloPollo",
 		url: "https://medium.com/obyte/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
+	},
+	'UE25S4GRWZOLNXZKY4VWFHNJZWUSYCQC': {
+		name: "Institute For the Future at University of Nicosia",
+		url: "https://medium.com/@klitos/the-institute-for-the-future-iff-at-the-university-of-nicosia-announces-candidacy-to-become-an-ec5a3342070b"
+	},
+	'JMFXY26FN76GWJJG7N36UI2LNONOGZJV': {
+		name: "Cryptoshare Studio",
+		url: "https://bbfans.org/2020/04/27/a-brief-introduction-to-cryptoshare-studio/"
+	},
+	'FL3LIHRXYE6PS7AADJLDOYZKDO2UVVNS': {
+		name: "Travin Keith",
+		url: "https://medium.com/@TravinKeith/obyte-order-provider-candidacy-7b81e2860cd5"
 	},
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
