@@ -71,9 +71,9 @@ function updateFreebeRates(state, onDone) {
 	});
 }
 
-function updateFutureRates(state, onDone) {
+function updateBTC_20200701Rates(state, onDone) {
 	// transactions.json is more up-to-date than ticker.json
-	const apiUri = 'https://cryptox.pl/api/FUTUREBTC/transactions.json';
+	const apiUri = 'https://cryptox.pl/api/BTC_20200701BTC/transactions.json';
 	request(apiUri, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			console.log("cryptox: ", body);
@@ -87,12 +87,12 @@ function updateFutureRates(state, onDone) {
 				return onDone();
 			}
 			if (rates['BTC_USD'] && price) {
-				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_BTC'] = price;
-				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_USD'] = rates['BTC_USD'] * price;
+				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_BTC'] = price;
+				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_USD'] = rates['BTC_USD'] * price;
 				state.updated = true;
 			}
 			if (rates['GBYTE_BTC'] && price) {
-				rates['NMuNvOJRO2ZY9L17uKtsa7OYkgsV8LfSBIV9BUoVJPQ=_GBYTE'] = price / rates['GBYTE_BTC'];
+				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_GBYTE'] = price / rates['GBYTE_BTC'];
 				state.updated = true;
 			}
 		}
@@ -113,7 +113,7 @@ function updateRates(){
 			updateFreebeRates(state, cb);
 		},
 		function(cb){
-			updateFutureRates(state, cb);
+			updateBTC_20200701Rates(state, cb);
 		}
 	], function(){
 		console.log(rates);
