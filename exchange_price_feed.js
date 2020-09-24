@@ -65,6 +65,23 @@ function updateOstableRates(state, onDone) {
 				}
 				state.updated = true;
 			});
+			arrCoinInfos.forEach(coinInfo => {
+				if (!coinInfo.last_price || coinInfo.quote_id === 'base' || coinInfo.base_id === 'base')
+					return;
+				console.log("new exchange rate: " + coinInfo.market_name + " = " + coinInfo.last_price);
+				if (rates[coinInfo.quote_id +'_GBYTE']) {
+					rates[coinInfo.base_id +'_GBYTE'] = rates[coinInfo.quote_id +'_GBYTE'] * coinInfo.last_price;
+					state.updated = true;
+				}
+				if (rates[coinInfo.quote_id +'_BTC']) {
+					rates[coinInfo.base_id +'_BTC'] = rates[coinInfo.quote_id +'_BTC'] * coinInfo.last_price;
+					state.updated = true;
+				}
+				if (rates[coinInfo.quote_id +'_USD']) {
+					rates[coinInfo.base_id +'_USD'] = rates[coinInfo.quote_id +'_USD'] * coinInfo.last_price;
+					state.updated = true;
+				}
+			});
 		}
 		else {
 			console.error("Can't get currency rates from ostable", error, body);
