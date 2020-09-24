@@ -97,7 +97,7 @@ function updateFreebeRates(state, onDone) {
 			let price;
 			try{
 				price = parseFloat(JSON.parse(body).price_bytes);
-				console.log("new exchange rate: GBB-GB = " + price);
+				console.log("new exchange rate: GBB-GBYTE = " + price);
 			}
 			catch(e){
 				console.log('bad response from freebe:', e);
