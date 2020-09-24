@@ -97,7 +97,7 @@ function updateFreebeRates(state, onDone) {
 			let price;
 			try{
 				price = parseFloat(JSON.parse(body).price_bytes);
-				console.log("new exchange rate: GBB/GB = " + price);
+				console.log("new exchange rate: GBB-GB = " + price);
 			}
 			catch(e){
 				console.log('bad response from freebe:', e);
@@ -128,7 +128,7 @@ function updateBTC_20200701Rates(state, onDone) {
 			let price;
 			try{
 				price = parseFloat(JSON.parse(body)[0].price);
-				console.log("new exchange rate: BTC_20200701/BTC = " + price);
+				console.log("new exchange rate: BTC_20200701-BTC = " + price);
 			}
 			catch(e){
 				console.log('bad response from cryptox:', e);
