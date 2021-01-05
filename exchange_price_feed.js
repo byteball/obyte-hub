@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 const async = require('async');
-const request = require('request');
+const request = require('request').defaults({timeout: 10 * 1000});
 const eventBus = require('ocore/event_bus.js');
 const network = require('ocore/network.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
@@ -68,17 +68,13 @@ function updateOstableRates(state, onDone) {
 			let arrCoinInfos;
 			try {arrCoinInfos = JSON.parse(body);} catch(e){}
 			if (!arrCoinInfos) {
-				console.log('bad rates from ostable');
+				console.log('bad rates from ostable data api');
 				return onDone();
 			}
 			arrCoinInfos.forEach(coinInfo => {
 				if (!coinInfo.last_price || coinInfo.quote_id !== 'base' || coinInfo.base_id === 'base')
 					return;
-				rates[coinInfo.base_id +'_GBYTE'] = coinInfo.last_price;
 				console.log("new exchange rate: " + coinInfo.market_name + " = " + coinInfo.last_price);
-				if (rates['GBYTE_BTC']) {
-					rates[coinInfo.base_id +'_BTC'] = rates['GBYTE_BTC'] * coinInfo.last_price;
-				}
 				if (rates['GBYTE_USD']) {
 					rates[coinInfo.base_id +'_USD'] = rates['GBYTE_USD'] * coinInfo.last_price;
 				}
@@ -88,14 +84,6 @@ function updateOstableRates(state, onDone) {
 				if (!coinInfo.last_price || coinInfo.quote_id === 'base' || coinInfo.base_id === 'base')
 					return;
 				console.log("new exchange rate: " + coinInfo.market_name + " = " + coinInfo.last_price);
-				if (rates[coinInfo.quote_id +'_GBYTE']) {
-					rates[coinInfo.base_id +'_GBYTE'] = rates[coinInfo.quote_id +'_GBYTE'] * coinInfo.last_price;
-					state.updated = true;
-				}
-				if (rates[coinInfo.quote_id +'_BTC']) {
-					rates[coinInfo.base_id +'_BTC'] = rates[coinInfo.quote_id +'_BTC'] * coinInfo.last_price;
-					state.updated = true;
-				}
 				if (rates[coinInfo.quote_id +'_USD']) {
 					rates[coinInfo.base_id +'_USD'] = rates[coinInfo.quote_id +'_USD'] * coinInfo.last_price;
 					state.updated = true;
@@ -103,7 +91,31 @@ function updateOstableRates(state, onDone) {
 			});
 		}
 		else {
-			console.error("Can't get currency rates from ostable", error, body);
+			console.error("Can't get currency rates from ostable data api", error, body);
+		}
+		onDone();
+	});
+}
+
+function updateOstableReferralsRates(state, onDone) {
+	const apiUri = 'https://referrals.ostable.org/prices';
+	request(apiUri, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			let arrCoinInfos;
+			try {arrCoinInfos = JSON.parse(body).data;} catch(e){}
+			if (!arrCoinInfos) {
+				console.log('bad rates from ostable referrals api');
+				return onDone();
+			}
+			for (var asset in arrCoinInfos) {
+				if (!asset || asset === 'base')
+					continue;
+				rates[asset +'_USD'] = arrCoinInfos[asset];
+				state.updated = true;
+			}
+		}
+		else {
+			console.error("Can't get currency rates from ostable referrals api", error, body);
 		}
 		onDone();
 	});
@@ -154,12 +166,7 @@ function updateBTC_20200701Rates(state, onDone) {
 				return onDone();
 			}
 			if (rates['BTC_USD'] && price) {
-				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_BTC'] = price;
 				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_USD'] = rates['BTC_USD'] * price;
-				state.updated = true;
-			}
-			if (rates['GBYTE_BTC'] && price) {
-				rates['ZVuuh5oWAJnISvtOFdzHAa7QTl/CG7T2KDfAGB4qSxk=_GBYTE'] = price / rates['GBYTE_BTC'];
 				state.updated = true;
 			}
 		}
@@ -179,15 +186,18 @@ function updateRates(){
 		function(cb){
 			updateBittrexRates(state, cb);
 		},
+		// function(cb){
+		// 	updateOstableRates(state, cb);
+		// },
 		function(cb){
-			updateOstableRates(state, cb);
+			updateOstableReferralsRates(state, cb);
 		},
 		function(cb){
 			updateFreebeRates(state, cb);
 		},
-		function(cb){
-			updateBTC_20200701Rates(state, cb);
-		}
+		// function(cb){
+		// 	updateBTC_20200701Rates(state, cb);
+		// },
 	], function(){
 		console.log(rates);
 		if (state.updated)
