@@ -237,14 +237,14 @@ Developer: Evgeny Stulnikov',
 Website: https://clearcost.io',
    'AohcgBmUWV729vYhvzzxoE9Au+egHEN0APGy1D+vOY2T@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Draw Airdrop',
    'Get a chance to win a weekly prize just by linking your existing balance.  The greater is your balance, the greater is your chance to win.  No payment is required!  The prizes are paid from the undistributed funds.
 
 If you refer new users to the draw and one of them wins, you also win.',
    'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Know-it-all Bot',
    'This bot is all about user participation and giving gratitude using incentivized Q&A.  Users pose questions and add reward with bytes for faster replies, better answers and more importantly to give thanks to participants.  Bring in experts on any social platform using a simple link, vote for the right answer and both of you can get rewarded!
