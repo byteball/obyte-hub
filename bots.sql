@@ -3,11 +3,11 @@
 	'Allows you to link your Bitcoin and Byteball addresses for participation in Byteball distribution.', 
 	'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Byte-BTC exchange', 
 	'Buy or sell Bytes for BTC instantly. Advanced users can offer their price, post pending orders and see the order book.', 
 	'Ar2ukVqx309sX+LoC9RVOpfATgXskt+Ser5jVr3Q2FOo@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Flight delays oracle', 
 	'If you bought a P2P insurance against flight delays and your flight was delayed, chat with this oracle to have it post the data about your flight. After the data is posted, you can unlock the insurance contract and sweep its funds.', 
