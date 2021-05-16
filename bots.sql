@@ -263,7 +263,8 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 https://lucky.obytechina.org',
    'Ao1eMaw8OncQCmoC6lBFVsjMo6ryf+jO1G+N09DDJEwU@hub.obytechina.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+   4,
    'OSwap.cc altcoin exchange',
    'OSwap.cc bot is an exchange bot for GBYTE, which enables you to buy GBYTE with BTC. 
 
