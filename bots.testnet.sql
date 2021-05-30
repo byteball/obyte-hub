@@ -22,3 +22,10 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
     'Creates a real name attestation for testing',
     'A2PYJKbRlIswBpP38VUiUs37206NnU+jViGnTe23Juvi@obyte.org/bb-test#0000'
 );
+INSERT INTO bots (name, description, pairing_code) VALUES (
+    'Arbstore',
+    'Registers new arbiters and communicates with plaintiffs about their disputes.
+
+https://testnet.arbstore.org',
+    'A3BSnhJPyLZvRAJ9ot36R5Ar9L7CZA0Bhp/+vnbnLfux@obyte.org/bb-test#0000'
+);
