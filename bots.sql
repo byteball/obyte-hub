@@ -3,11 +3,11 @@
 	'Allows you to link your Bitcoin and Byteball addresses for participation in Byteball distribution.', 
 	'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Byte-BTC exchange', 
 	'Buy or sell Bytes for BTC instantly. Advanced users can offer their price, post pending orders and see the order book.', 
 	'Ar2ukVqx309sX+LoC9RVOpfATgXskt+Ser5jVr3Q2FOo@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (name, description, pairing_code) VALUES (
 	'Flight delays oracle', 
 	'If you bought a P2P insurance against flight delays and your flight was delayed, chat with this oracle to have it post the data about your flight. After the data is posted, you can unlock the insurance contract and sweep its funds.', 
@@ -237,14 +237,14 @@ Developer: Evgeny Stulnikov',
 Website: https://clearcost.io',
    'AohcgBmUWV729vYhvzzxoE9Au+egHEN0APGy1D+vOY2T@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Draw Airdrop',
    'Get a chance to win a weekly prize just by linking your existing balance.  The greater is your balance, the greater is your chance to win.  No payment is required!  The prizes are paid from the undistributed funds.
 
 If you refer new users to the draw and one of them wins, you also win.',
    'A2WMb6JEIrMhxVk+I0gIIW1vmM3ToKoLkNF8TqUV5UvX@obyte.org/bb#0000'
-);
+);*/
 /*INSERT INTO bots (name, description, pairing_code) VALUES (
    'Know-it-all Bot',
    'This bot is all about user participation and giving gratitude using incentivized Q&A.  Users pose questions and add reward with bytes for faster replies, better answers and more importantly to give thanks to participants.  Bring in experts on any social platform using a simple link, vote for the right answer and both of you can get rewarded!
@@ -263,10 +263,17 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 https://lucky.obytechina.org',
    'Ao1eMaw8OncQCmoC6lBFVsjMo6ryf+jO1G+N09DDJEwU@hub.obytechina.org/bb#0000'
 );
-INSERT INTO bots (name, description, pairing_code) VALUES (
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+   4,
    'OSwap.cc altcoin exchange',
-   'OSwap.cc bot is an exchange bot for GBYTE, which enables you to exchange GBYTE with several hundreds of cryptocurrencies, two-way. 
+   'OSwap.cc bot is an exchange bot for GBYTE, which enables you to buy GBYTE with BTC. 
 
 If you want to exchange more crypto assets, please visit OSwap exchange: https://oswap.cc.',
-   'A2hyUbe/RePfAKHC5eY8/lAI17jgkVysxx9wpE+9dcwz@hub.obytechina.org/bb#0000'
+   'AjnVLTAz+4HZF3RcW6hl4bwqMOyJCSMO3xw46rnHsFYc@obyte.org/bb#0000'
+);
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'GitHub attestation bot',
+   'Verify your GitHub username and link it to your Obyte address. Also works for organizations. In a future release, you will be able to receive payments to github/username alias instead of the regular Obyte address.',
+   'A7mopY9L4F+/G+CUMjxFm8royoFl2hde5n9oUWVUkfEI@obyte.org/bb#0000'
 );
