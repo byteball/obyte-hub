@@ -154,4 +154,6 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 };
 
+exports.arbstores = process.env.testnet ? {'5OISSD4XXDPGDPKLEKKHABUHX5CXLM6H': 'https://testnet.arbstore.org'} : {};
+
 console.log('finished hub conf');
