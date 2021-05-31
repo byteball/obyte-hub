@@ -37,6 +37,6 @@ exports.trustedRegistries = [
     'ZQFHJXFWT2OCEBXF26GFXJU4MPASWPJT'
 ];
 
-exports.ArbStores = {'JDWHTTJTMMOGZULXJCWWDDV4IIEQAMZ6': 'http://localhost:9003'};
+exports.arbstores = {'CLNGEQDVKE3IXZXPYARS4MJCQA4BKYPB': 'https://arbstore.org'};
 
 console.log('finished hub conf');

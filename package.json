@@ -1,6 +1,6 @@
 {
-  "name": "arbregistry",
-  "description": "arbregistry",
+  "name": "obyte-hub",
+  "description": "Obyte Hub",
   "author": "Obyte",
   "version": "0.1.5",
   "main": "start.js",
@@ -31,5 +31,8 @@
     "apn": "^2.2.0",
     "obyte-relay": "git+https://github.com/byteball/obyte-relay.git",
     "request": "^2.81.0"
+  },
+  "resolutions": {
+    "level-rocksdb": "^4.0.0"
   }
 }
