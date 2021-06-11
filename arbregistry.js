@@ -2,7 +2,11 @@ const db = require('ocore/db');
 const conf = require('ocore/conf');
 const eventBus = require('ocore/event_bus.js');
 
+if (!conf.arbstores)
+	return;
 let arbstore_addresses = Object.keys(conf.arbstores);
+if (arbstore_addresses.length === 0)
+	return;
 
 // snipe for arbiter announces on arbstores
 eventBus.on('mci_became_stable', async mci => {
