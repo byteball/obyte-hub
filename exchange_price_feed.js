@@ -4,6 +4,7 @@ const async = require('async');
 const request = require('request').defaults({timeout: 10 * 1000});
 const eventBus = require('ocore/event_bus.js');
 const network = require('ocore/network.js');
+const storage = require('ocore/storage.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
 
 const rates = {};
@@ -121,6 +122,79 @@ function updateOstableReferralsRates(state, onDone) {
 	});
 }
 
+function requestAsync(url) {
+	return new Promise((resolve, reject) => {
+		request(url, (error, response, body) => {
+			if (error)
+				return reject(error);
+			if (response.statusCode != 200)
+				return reject("non-200 status code " + response.statusCode);
+			resolve(body);
+		});
+	});
+}
+
+
+const nativeSymbols = {
+	Ethereum: 'ETH',
+	BSC: 'BNB',
+};
+
+const coingeckoChains = {
+	Ethereum: 'ethereum',
+	BSC: 'binance-smart-chain',
+};
+
+const fetchCryptocompareExchangeRate = async (in_currency, out_currency) => {
+	let data = await requestAsync(`https://min-api.cryptocompare.com/data/price?fsym=${in_currency}&tsyms=${out_currency}`);
+	data = JSON.parse(data);
+	if (!data[out_currency])
+		throw new Error(`no ${out_currency} in response ${JSON.stringify(data)}`);
+	return data[out_currency];
+}
+
+async function fetchERC20ExchangeRate(chain, token_address, quote) {
+	if (token_address === '0x4DBCdF9B62e891a7cec5A2568C3F4FAF9E8Abe2b') // USDC rinkeby
+		token_address = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
+	if (token_address === '0xbF7A7169562078c96f0eC1A8aFD6aE50f12e5A99') // BAT rinkeby
+		token_address = '0x0D8775F648430679A709E98d2b0Cb6250d2887EF';
+	if (token_address === '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee') // BUSD testnet
+		token_address = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
+	let data = await requestAsync(`https://api.coingecko.com/api/v3/coins/${chain}/contract/${token_address.toLowerCase()}`);
+	data = JSON.parse(data);
+	const prices = data.market_data.current_price;
+	quote = quote.toLowerCase();
+	if (!prices[quote])
+		throw new Error(`no ${quote} in response ${JSON.stringify(data)}`);
+	return prices[quote];
+}
+
+async function updateImportedAssetsRates(state, onDone) {
+	const import_factory_aa = 'KFAJZYLH6T3W2U6LNQJYIWXJVSBB24FN';
+	storage.readAAStateVars(import_factory_aa, 'import_', 'import_', 0, async vars => {
+		for (let var_name in vars) {
+			const { asset, asset_decimals, home_network, home_asset } = vars[var_name];
+			const chain = coingeckoChains[home_network];
+			if (!chain) {
+				console.error('unknown network ' + home_network);
+				continue;
+			}
+			try {
+				if (home_asset === '0x0000000000000000000000000000000000000000')
+					rates[asset + '_USD'] = await fetchCryptocompareExchangeRate(nativeSymbols[home_network], 'USD');
+				else
+					rates[asset + '_USD'] = await fetchERC20ExchangeRate(chain, home_asset, 'USD');
+				state.updated = true;
+			}
+			catch (e) {
+				console.error('failed to fetch the rate of', home_asset, 'on', home_network, e);
+			}
+		}
+		onDone();
+	});
+}
+
+
 function updateFreebeRates(state, onDone) {
 	const apiUri = 'https://blackbytes.io/last';
 	request(apiUri, function (error, response, body) {
@@ -191,6 +265,9 @@ function updateRates(){
 		// },
 		function(cb){
 			updateOstableReferralsRates(state, cb);
+		},
+		function(cb){
+			updateImportedAssetsRates(state, cb);
 		},
 		function(cb){
 			updateFreebeRates(state, cb);
