@@ -8,6 +8,7 @@ const storage = require('ocore/storage.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
 
 const rates = {};
+const finished_rates;
 const decimalsInfo = {};
 
 function updateBitfinexRates(state, onDone) {
@@ -197,7 +198,7 @@ async function updateImportedAssetsRates(state, onDone) {
 }
 
 async function updateOswapPoolTokenRates(state, onDone) {
-	const pool_factory_aa = 'B22543LKSS35Z55ROU4GDN26RT6MDKWU';
+	const pool_factory_aa = process.env.testnet ? 'PFNAFDKV6HKKFIEB2R2ZE4IAPSDNNIGX' : 'B22543LKSS35Z55ROU4GDN26RT6MDKWU';
 	const pools = {};
 	const vars = await storage.readAAStateVars(pool_factory_aa, 'pools.', 'pools.', 0);
 	const db = require('ocore/db.js');
@@ -221,6 +222,8 @@ async function updateOswapPoolTokenRates(state, onDone) {
 					console.error('pool assets missing', pool_address);
 					continue;
 				}
+				if (rates[asset + '_USD']) // already known (2nd pass)
+					continue;
 				const price0 = getAssetUSDPrice(asset0);
 				const price1 = getAssetUSDPrice(asset1);
 				if (!price0 && !price1) {
@@ -240,12 +243,14 @@ async function updateOswapPoolTokenRates(state, onDone) {
 				if (asset0value && !asset1value) {
 					asset1value = asset0value; // dollar values of both assets are always equal in 50/50 pools
 					rates[asset1 + '_USD'] = asset1value / balance1_in_display_units;
+					console.log('setting ' + asset1 + ' rate to ' + asset1value + ' / ' + balance1_in_display_units);
 				}
 				else if (!asset0value && asset1value) {
 					asset0value = asset1value; // dollar values of both assets are always equal in 50/50 pools
 					rates[asset0 + '_USD'] = asset0value / balance0_in_display_units;
+					console.log('setting ' + asset0 + ' rate to ' + asset0value + ' / ' + balance0_in_display_units);
 				}
-				if (!asset0value || !asset1value) // should be already skipped
+				else if (!asset0value && !asset1value) // should be already skipped
 					throw Error("none of the values is known")
 				const total_pool_value = asset0value + asset1value;
 
@@ -347,6 +352,7 @@ function updateBTC_20200701Rates(state, onDone) {
 }
 
 function updateRates(){
+	rates = {}; // reset
 	let state = {updated: false};
 	async.series([
 		function(cb){
@@ -375,21 +381,22 @@ function updateRates(){
 		// },
 	], function(){
 		console.log(rates);
+		finished_rates = rates;
 		if (state.updated)
 			broadcastNewRates();
 	});
 }
 
 function broadcastNewRates(){
-	network.sendAllInboundJustsaying('exchange_rates', rates);
+	network.sendAllInboundJustsaying('exchange_rates', finished_rates);
 }
 
 eventBus.on('client_logged_in', function(ws){
 	if (Object.keys(rates).length > 0)
-		network.sendJustsaying(ws, 'exchange_rates', rates);
+		network.sendJustsaying(ws, 'exchange_rates', finished_rates || rates);
 });
 
 updateRates();
 setInterval(updateRates, 1000 * 60 * 5);
 
-exports.rates = rates;
+//exports.rates = rates;
