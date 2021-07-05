@@ -7,8 +7,8 @@ const network = require('ocore/network.js');
 const storage = require('ocore/storage.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
 
-const rates = {};
-const finished_rates;
+let rates = {};
+let finished_rates;
 const decimalsInfo = {};
 
 function updateBitfinexRates(state, onDone) {
