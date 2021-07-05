@@ -207,82 +207,79 @@ async function updateOswapPoolTokenRates(state, onDone) {
 		pools[pool_address] = pools[pool_address] || {};
 		pools[pool_address][key] = vars[var_name];
 	}
-	for (let pool_address in pools){
-		try {
-			const asset = pools[pool_address].asset;
-			const asset0 = pools[pool_address].asset0;
-			const asset1 = pools[pool_address].asset1;
-			if (!asset || !asset0 || !asset1){
-				console.error('pool assets missing', pool_address);
-				continue;
-			}
-			if (asset0 !== 'base' && asset1 !== 'base') {
-				if (!getAssetUSDPrice(asset0) || !getAssetUSDPrice(asset1)) {
-					console.error('price missing for pool assets', pool_address);
+
+	// several passes to find prices of tokens not paired directly with known tokens, such as in pools GBYTE-A, A-B
+	for (let i = 0; i < 3; i++) 
+		await scanPools();
+	onDone();
+
+	async function scanPools() {
+		for (let pool_address in pools) {
+			try {
+				const { asset, asset0, asset1 } = pools[pool_address];
+				if (!asset || !asset0 || !asset1) {
+					console.error('pool assets missing', pool_address);
 					continue;
 				}
-			}
-			else if (!getAssetUSDPrice(asset0) && !getAssetUSDPrice(asset1)) {
-				console.error('both prices missing for pool assets', pool_address);
-				continue;
-			}
-
-			const balances = await storage.readAABalances(db, pool_address); 
-			if (!balances[asset0] || !balances[asset1]) {
-				console.error('pool balances empty', pool_address);
-				continue;
-			}
-			let asset0value = await getAssetAmount(balances[asset0], asset0) * getAssetUSDPrice(asset0);
-			let asset1value = await getAssetAmount(balances[asset1], asset1) * getAssetUSDPrice(asset1);
-			if (!asset0value || !asset1value) {
-				// if traded with GBYTE, pool total pool size is double the GBYTE
-				if (asset0 !== 'base' && asset1 !== 'base') {
-					console.error('pool asset no value', pool_address, balances);
+				const price0 = getAssetUSDPrice(asset0);
+				const price1 = getAssetUSDPrice(asset1);
+				if (!price0 && !price1) {
+					console.error('both prices missing for pool assets', pool_address);
 					continue;
 				}
-				else if (asset0 === 'base') {
-					asset1value = asset0value;
-				}
-				else if (asset1 === 'base') {
-					asset0value = asset1value;
-				}
-			}
-			const total_pool_value = asset0value + asset1value;
 
-			const pool_data = await storage.readAAStateVars(pool_address, 'supply', 'supply', 1);
-			if (!pool_data['supply']) {
-				console.error('pool asset supply empty', pool_address);
-				continue;
+				const balances = await storage.readAABalances(db, pool_address);
+				if (!balances[asset0] || !balances[asset1]) {
+					console.error('pool balances empty', pool_address);
+					continue;
+				}
+				const balance0_in_display_units = await getAssetAmount(balances[asset0], asset0);
+				const balance1_in_display_units = await getAssetAmount(balances[asset1], asset1);
+				let asset0value = balance0_in_display_units * price0;
+				let asset1value = balance1_in_display_units * price1;
+				if (asset0value && !asset1value) {
+					asset1value = asset0value; // dollar values of both assets are always equal in 50/50 pools
+					rates[asset1 + '_USD'] = asset1value / balance1_in_display_units;
+				}
+				else if (!asset0value && asset1value) {
+					asset0value = asset1value; // dollar values of both assets are always equal in 50/50 pools
+					rates[asset0 + '_USD'] = asset0value / balance0_in_display_units;
+				}
+				if (!asset0value || !asset1value) // should be already skipped
+					throw Error("none of the values is known")
+				const total_pool_value = asset0value + asset1value;
+
+				const supply = await storage.readAAStateVar(pool_address, 'supply');
+				if (!supply) {
+					console.error('pool asset supply empty', pool_address);
+					continue;
+				}
+				rates[asset + '_USD'] = total_pool_value / supply;
+				state.updated = true;
 			}
-			rates[asset + '_USD'] = total_pool_value / pool_data['supply'];
-			state.updated = true;
-		}
-		catch (e) {
-			console.error('failed to fetch the rate for', pool_address, 'pool', e);
+			catch (e) {
+				console.error('failed to fetch the rate for', pool_address, 'pool', e);
+			}
 		}
 	}
-	onDone();
 
 	async function getAssetAmount(balance, asset) {
 		const asset_registry = 'O6H6ZIFI57X3PLTYHOCVYPP5A553CYFQ';
-		let decimals = null;
+		let decimals = 0; // default for unregistered assets
 		if (asset === 'base')
 			decimals = 9;
-		else if (decimalsInfo[asset])
+		else if (typeof decimalsInfo[asset] === 'number')
 			decimals = decimalsInfo[asset];
 		else {
-			const current_desc = await storage.readAAStateVars(asset_registry, "current_desc_" + asset, "current_desc_" + asset, 1);
-			if (current_desc["current_desc_" + asset]) {
-				const desc_hash = current_desc["current_desc_" + asset];
-				const asset_data = await storage.readAAStateVars(asset_registry, 'decimals_' + desc_hash, 'decimals_' + desc_hash, 1);
-				if (asset_data['decimals_'+ desc_hash]) {
-					decimals = asset_data['decimals_'+ desc_hash];
+			const desc_hash = await storage.readAAStateVar(asset_registry, "current_desc_" + asset);
+			if (desc_hash) {
+				const dec = await storage.readAAStateVar(asset_registry, 'decimals_' + desc_hash);
+				if (typeof dec === 'number') {
+					decimals = dec;
 					decimalsInfo[asset] = decimals;
 				}
 			}
 		}
-		if (decimals === null)
-			return 0;
 		return balance / (10 ** decimals);
 	}
 
