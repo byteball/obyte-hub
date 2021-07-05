@@ -8,6 +8,7 @@ const storage = require('ocore/storage.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
 
 const rates = {};
+const decimalsInfo = {};
 
 function updateBitfinexRates(state, onDone) {
 	const apiUri = 'https://api.bitfinex.com/v1/pubticker/btcusd';
@@ -179,6 +180,7 @@ async function updateImportedAssetsRates(state, onDone) {
 				console.error('unknown network ' + home_network);
 				continue;
 			}
+			decimalsInfo[asset] = asset_decimals; // cache for updateOswapPoolTokenRates()
 			try {
 				if (home_asset === '0x0000000000000000000000000000000000000000')
 					rates[asset + '_USD'] = await fetchCryptocompareExchangeRate(nativeSymbols[home_network], 'USD');
@@ -194,6 +196,102 @@ async function updateImportedAssetsRates(state, onDone) {
 	});
 }
 
+async function updateOswapPoolTokenRates(state, onDone) {
+	const pool_factory_aa = 'B22543LKSS35Z55ROU4GDN26RT6MDKWU';
+	const pools = {};
+	const vars = await storage.readAAStateVars(pool_factory_aa, 'pools.', 'pools.', 0);
+	const db = require('ocore/db.js');
+
+	for (let var_name in vars) {
+		const [prefix, pool_address, key] = var_name.split('.');
+		pools[pool_address] = pools[pool_address] || {};
+		pools[pool_address][key] = vars[var_name];
+	}
+	for (let pool_address in pools){
+		try {
+			const asset = pools[pool_address].asset;
+			const asset0 = pools[pool_address].asset0;
+			const asset1 = pools[pool_address].asset1;
+			if (!asset || !asset0 || !asset1){
+				console.error('pool assets missing', pool_address);
+				continue;
+			}
+			if (asset0 !== 'base' && asset1 !== 'base') {
+				if (!getAssetUSDPrice(asset0) || !getAssetUSDPrice(asset1)) {
+					console.error('price missing for pool assets', pool_address);
+					continue;
+				}
+			}
+			else if (!getAssetUSDPrice(asset0) && !getAssetUSDPrice(asset1)) {
+				console.error('both prices missing for pool assets', pool_address);
+				continue;
+			}
+
+			const balances = await storage.readAABalances(db, pool_address); 
+			if (!balances[asset0] || !balances[asset1]) {
+				console.error('pool balances empty', pool_address);
+				continue;
+			}
+			let asset0value = await getAssetAmount(balances[asset0], asset0) * getAssetUSDPrice(asset0);
+			let asset1value = await getAssetAmount(balances[asset1], asset1) * getAssetUSDPrice(asset1);
+			if (!asset0value || !asset1value) {
+				// if traded with GBYTE, pool total pool size is double the GBYTE
+				if (asset0 !== 'base' && asset1 !== 'base') {
+					console.error('pool asset no value', pool_address, balances);
+					continue;
+				}
+				else if (asset0 === 'base') {
+					asset1value = asset0value;
+				}
+				else if (asset1 === 'base') {
+					asset0value = asset1value;
+				}
+			}
+			const total_pool_value = asset0value + asset1value;
+
+			const pool_data = await storage.readAAStateVars(pool_address, 'supply', 'supply', 1);
+			if (!pool_data['supply']) {
+				console.error('pool asset supply empty', pool_address);
+				continue;
+			}
+			rates[asset + '_USD'] = total_pool_value / pool_data['supply'];
+			state.updated = true;
+		}
+		catch (e) {
+			console.error('failed to fetch the rate for', pool_address, 'pool', e);
+		}
+	}
+	onDone();
+
+	async function getAssetAmount(balance, asset) {
+		const asset_registry = 'O6H6ZIFI57X3PLTYHOCVYPP5A553CYFQ';
+		let decimals = null;
+		if (asset === 'base')
+			decimals = 9;
+		else if (decimalsInfo[asset])
+			decimals = decimalsInfo[asset];
+		else {
+			const current_desc = await storage.readAAStateVars(asset_registry, "current_desc_" + asset, "current_desc_" + asset, 1);
+			if (current_desc["current_desc_" + asset]) {
+				const desc_hash = current_desc["current_desc_" + asset];
+				const asset_data = await storage.readAAStateVars(asset_registry, 'decimals_' + desc_hash, 'decimals_' + desc_hash, 1);
+				if (asset_data['decimals_'+ desc_hash]) {
+					decimals = asset_data['decimals_'+ desc_hash];
+					decimalsInfo[asset] = decimals;
+				}
+			}
+		}
+		if (decimals === null)
+			return 0;
+		return balance / (10 ** decimals);
+	}
+
+	function getAssetUSDPrice(asset){
+		if (asset === 'base') asset = 'GBYTE';
+		if (rates[asset + '_USD'])
+			return rates[asset + '_USD'];
+	}
+}
 
 function updateFreebeRates(state, onDone) {
 	const apiUri = 'https://blackbytes.io/last';
@@ -268,6 +366,9 @@ function updateRates(){
 		},
 		function(cb){
 			updateImportedAssetsRates(state, cb);
+		},
+		function(cb){
+			updateOswapPoolTokenRates(state, cb);
 		},
 		function(cb){
 			updateFreebeRates(state, cb);
