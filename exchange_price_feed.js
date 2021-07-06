@@ -10,6 +10,7 @@ require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
 let rates = {};
 let finished_rates;
 const decimalsInfo = {};
+let updating = false;
 
 function updateBitfinexRates(state, onDone) {
 	const apiUri = 'https://api.bitfinex.com/v1/pubticker/btcusd';
@@ -352,6 +353,9 @@ function updateBTC_20200701Rates(state, onDone) {
 }
 
 function updateRates(){
+	if (updating)
+		return console.log('already updating rates, will skip');
+	updating = true;
 	rates = {}; // reset
 	let state = {updated: false};
 	async.series([
@@ -384,6 +388,7 @@ function updateRates(){
 		finished_rates = rates;
 		if (state.updated)
 			broadcastNewRates();
+		updating = false;
 	});
 }
 
