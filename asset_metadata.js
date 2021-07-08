@@ -73,7 +73,7 @@ function handlePotentialAssetMetadataUnit(unit){
 }
 
 function scanPastMetadataUnits(){
-	db.query("SELECT unit FROM unit_authors WHERE address IN(?)", [arrRegistryAddresses], rows => {
+	db.query("SELECT unit FROM unit_authors WHERE address IN(?) ORDER BY rowid", [arrRegistryAddresses], rows => {
 		let arrUnits = rows.map(row => row.unit);
 		arrUnits.forEach(handlePotentialAssetMetadataUnit);
 	});
