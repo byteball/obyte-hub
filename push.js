@@ -7,6 +7,7 @@ var apn = require('apn');
 var push_enabled = {};
 push_enabled['ios'] = !!conf.APNsAuthKey;
 push_enabled['android'] = !!conf.pushApiProjectNumber;
+push_enabled['firebase'] = push_enabled['android'] && !!conf.pushApiBothFirebase;
 
 var apnsOptions = {
 	token: {
@@ -27,7 +28,7 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 	if (typeof params == "string") // old clients
 		params = {registrationId: params};
 	params.platform = params.platform || 'android';
-	if (!push_enabled[params.platform])
+	if (!push_enabled[conf.pushApiBothFirebase ? 'firebase' : params.platform])
 		return;
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
@@ -49,7 +50,7 @@ eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 	});
 });
 
-function sendAndroidNotification(registrationIds) {
+function sendFirebaseNotification(registrationIds, message, msg_cnt) {
 	var options = {
 		host: 'fcm.googleapis.com',
 		port: 443,
@@ -63,21 +64,32 @@ function sendAndroidNotification(registrationIds) {
 
 	var req = https.request(options, function(res) {
 		res.on('data', function(d) {
-			if (res.statusCode !== 200) {
-				console.log('Error push rest. code: ' + res.statusCode + ' Text: ' + d);
-				console.log(registrationIds);
-			}
+			if (res.statusCode !== 200)
+				console.error('Error push rest. code: ' + res.statusCode + ' Text: ' + d, registrationIds);
 		});
 	});
-	req.write(JSON.stringify({
+	var payload = {
 		"registration_ids": registrationIds,
+		"content_available": true, // wakes the app, needed for iOS
+		//"collapse_key": "New message", // groups notification as one
 		"data": {
 			"message": "New message",
 			"title": "Obyte",
 			"vibrate": 1,
 			"sound": 1
 		}
-	}));
+	};
+	if (message && message.pubkey) {
+		payload.data.pubkey = message.pubkey;
+	}
+	if (conf.pushApiBothFirebase) {
+		payload.notification = {
+			"title": "Obyte", // not visible on iOS phones and tablets.
+			"body": "New message",
+			"badge": msg_cnt // iOS only
+		};
+	}
+	req.write(JSON.stringify(payload));
 	req.end();
 
 	req.on('error', function(e) {
@@ -85,32 +97,44 @@ function sendAndroidNotification(registrationIds) {
 	});
 }
 
-function sendiOSNotification(registrationId, msg_cnt) {
+function sendiOSNotification(registrationId, message, msg_cnt) {
 	var note = new apn.Notification();
 
 	note.badge = msg_cnt;
 	note.sound = "ping.aiff";
 	note.alert = "New message";
 	note.payload = {'messageFrom': 'Obyte'};
-	note.topic = "org.byteball.wallet";
+	if (message && message.pubkey) {
+		note.payload.pubkey = message.pubkey;
+	}
+	note.topic = conf.bundleId || "org.byteball.wallet";
 
 	apnProvider.send(note, registrationId).then((result) => {
+		if (result.failed && result.failed.length)
+			console.error(result.failed);
 	}, function(err) {
 		console.error(err);
     });
 }
 
 function sendPushAboutMessage(device_address) {
-	db.query("SELECT registrationId, platform, COUNT(1) AS `msg_cnt` FROM push_registrations \n\
+	db.query("SELECT registrationId, platform, message, COUNT(1) AS `msg_cnt` FROM push_registrations \n\
 		JOIN device_messages USING(device_address) \n\
 		WHERE device_address=?", [device_address], function(rows) {
-		if (rows[0].registrationId && push_enabled[rows[0].platform]) {
-			switch (rows[0].platform) {
+		var platform = conf.pushApiBothFirebase ? 'firebase' : rows[0].platform;
+		if (rows[0].registrationId && push_enabled[platform]) {
+			var last_message;
+			try {
+				last_message = JSON.parse(rows[0].message);
+			}
+			catch (err) {}
+			switch (platform) {
+				case "firebase":
 				case "android":
-					sendAndroidNotification([rows[0].registrationId]);
+					sendFirebaseNotification([rows[0].registrationId], last_message, rows[0].msg_cnt);
 					break;
 				case "ios":
-					sendiOSNotification(rows[0].registrationId, rows[0].msg_cnt);
+					sendiOSNotification(rows[0].registrationId, last_message, rows[0].msg_cnt);
 					break;
 			}
 		}
