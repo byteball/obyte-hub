@@ -386,6 +386,7 @@ function updateRates(){
 	], function(){
 		console.log(rates);
 		finished_rates = rates;
+		network.setExchangeRates(rates);
 		if (state.updated)
 			broadcastNewRates();
 		updating = false;
