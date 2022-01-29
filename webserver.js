@@ -71,7 +71,7 @@ async function start(ws) {
     }
 
     try {
-      await network.sendRequest(ws, `${allowed_light_methods.includes(method) ? "light/" : ""}${method}`, params, false, (_ws, _request, data) => {
+      network.sendRequest(ws, `${allowed_light_methods.includes(method) ? "light/" : ""}${method}`, params, false, (_ws, _request, data) => {
         if (!data) return response.send({ error: "Not found data" }, 404);
 
         if (data.error) return response.send({ error: data.error }, 400);
