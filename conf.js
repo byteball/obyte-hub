@@ -15,6 +15,8 @@ exports.keyId = '';
 exports.teamId = '';
 
 exports.port = 6611;
+exports.webServerPort = 3005;
+
 //exports.myUrl = 'wss://mydomain.com/bb';
 exports.bServeAsHub = true;
 exports.bSaveJointJson = true;

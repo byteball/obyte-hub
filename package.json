@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "apn": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
     "obyte-relay": "git+https://github.com/byteball/obyte-relay.git",
     "request": "^2.81.0"
   },

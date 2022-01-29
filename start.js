@@ -16,6 +16,7 @@ var network = require('ocore/network');
 var eventBus = require('ocore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
+const start = require('./webserver.js');
 
 if (conf.trustedRegistries && Object.keys(conf.trustedRegistries).length > 0)
 	require('./asset_metadata.js');
@@ -29,6 +30,10 @@ eventBus.on('peer_version', function (ws, body) {
 		if (conf.minClientVersionForChat && compareVersions(body.program_version, conf.minClientVersionForChat) === '<')
 			ws.blockChat = true;
 	}
+});
+
+eventBus.once('connected', function (ws) {
+	network.initWitnessesIfNecessary(ws, () => start(ws));
 });
 
 if (conf.known_witnesses)
