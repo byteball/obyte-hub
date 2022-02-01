@@ -34,7 +34,7 @@ eventBus.on('peer_version', function (ws, body) {
 
 eventBus.once('connected', function (ws) {
 	if (conf.webServerPort) {
-		network.initWitnessesIfNecessary(ws, () => start(ws));
+		network.initWitnessesIfNecessary(ws, start);
 	}
 });
 

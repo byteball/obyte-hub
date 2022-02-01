@@ -38,7 +38,7 @@ const methods_without_params = [
   "get_peers",
 ]
 
-async function start(ws) {
+async function start() {
   const app = express();
   const server = require('http').Server(app);
 
@@ -54,7 +54,7 @@ async function start(ws) {
 
     params = Object.assign({}, params);
 
-    if (!allowed_light_methods.includes(method) && !allowed_not_light_methods.includes(method))
+    if (!(allowed_light_methods.includes(method) || allowed_not_light_methods.includes(method)))
       return response.send({ error: `method is not found: ${method}` }, 405);
 
     // parameter mutation
@@ -71,16 +71,36 @@ async function start(ws) {
     }
 
     try {
-      network.sendRequest(ws, `${allowed_light_methods.includes(method) ? "light/" : ""}${method}`, params, false, (_ws, _request, data) => {
-        if (!data) return response.send({ error: "Not found data" }, 404);
+      ws = {
+        assocPendingRequests: {},
+        assocCommandsInPreparingResponse: {},
+        peer: "local",
+        readyState: 1,
+        OPEN: 1,
+        send: function (msg) {
+          try {
+            const [type, message] = JSON.parse(msg);
+            
+            if (type === "response") {
+              if (!("error" in message.response)) {
+                return response.status(200).send({ data: message.response || null });
+              } else {
+                return response.status(400).send({ error: message.response.error });
+              }
+            } else {
+              return response.status(500).send({ error: "unknown request type" });
+            }
+          } catch {
+            console.error("can't parse messages");
+            return response.status(500).send({ error: "message parse error" });
+          }
+        }
+      }
 
-        if (data.error) return response.send({ error: data.error }, 400);
-
-        return response.send({ data: data || {} }, 200);
-      });
+      network.handleRequest(ws, "local", `${allowed_light_methods.includes(method) ? "light/" : ""}${method}`, params)
 
     } catch (e) {
-      return response.send(null, 500);
+      return response.status(500).send({ error: e });
     }
   });
 
