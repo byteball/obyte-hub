@@ -38,7 +38,7 @@ const methods_without_params = [
   "get_peers",
 ]
 
-async function start() {
+async function startWebserver() {
   const app = express();
   const server = require('http').Server(app);
 
@@ -80,7 +80,7 @@ async function start() {
         send: function (msg) {
           try {
             const [type, message] = JSON.parse(msg);
-            
+
             if (type === "response") {
               if (!("error" in message.response)) {
                 return response.status(200).send({ data: message.response || null });
@@ -109,4 +109,4 @@ async function start() {
   });
 }
 
-module.exports = start;
+module.exports = startWebserver;

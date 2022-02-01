@@ -16,7 +16,7 @@ var network = require('ocore/network');
 var eventBus = require('ocore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
-const start = require('./webserver.js');
+const startWebserver = require('./webserver.js');
 
 if (conf.trustedRegistries && Object.keys(conf.trustedRegistries).length > 0)
 	require('./asset_metadata.js');
@@ -34,7 +34,7 @@ eventBus.on('peer_version', function (ws, body) {
 
 eventBus.once('connected', function (ws) {
 	if (conf.webServerPort) {
-		network.initWitnessesIfNecessary(ws, start);
+		startWebserver();
 	}
 });
 
