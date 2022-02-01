@@ -70,7 +70,7 @@ async function startWebserver() {
     }
 
     try {
-      ws = {
+      let ws = {
         assocPendingRequests: {},
         assocCommandsInPreparingResponse: {},
         peer: "local",
