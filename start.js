@@ -16,6 +16,7 @@ var network = require('ocore/network');
 var eventBus = require('ocore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
+const startWebserver = require('./webserver.js');
 
 if (conf.trustedRegistries && Object.keys(conf.trustedRegistries).length > 0)
 	require('./asset_metadata.js');
@@ -28,6 +29,12 @@ eventBus.on('peer_version', function (ws, body) {
 			ws.close(1000, "mandatory upgrade");
 		if (conf.minClientVersionForChat && compareVersions(body.program_version, conf.minClientVersionForChat) === '<')
 			ws.blockChat = true;
+	}
+});
+
+eventBus.once('connected', function (ws) {
+	if (conf.webServerPort) {
+		startWebserver();
 	}
 });
 
