@@ -81,7 +81,9 @@ async function startWebserver() {
             const [type, message] = JSON.parse(msg);
 
             if (type === "response") {
-              if (!("error" in message.response) && !("joint_not_found" in message.response)) {
+              const responseIsObject = typeof message.response === "object";
+              
+              if (!(responseIsObject && ("error" in message.response)) && !(responseIsObject && ("joint_not_found" in message.response))) {
                 return response.status(200).send({ data: message.response || null });
               } else {
                 let error = "unknown error";
