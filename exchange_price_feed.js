@@ -272,11 +272,15 @@ async function updateOswapPoolTokenRates(state, onDone) {
 }
 
 async function updateOswapV2PoolTokenRates(state, onDone) {
-	const pool_factory_aa = 'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3';
-	const pools = {};
-	const factoryVars = await storage.readAAStateVars(pool_factory_aa);
+	const pool_factory_aas = ['OQLU4HOAIVJ32SDVBJA6AKD52OVTHAOF', 'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3'];
+	let factoryVars = {};
+	for (let pool_factory_aa of pool_factory_aas) {
+		const vars = await storage.readAAStateVars(pool_factory_aa);
+		factoryVars = { ...factoryVars, ...vars };
+	}
 	const db = require('ocore/db.js');
 
+	const pools = {};
 	for (let var_name in factoryVars) {
 		const pool_address = var_name.replace('pool_', '');
 		const pool = factoryVars[var_name];
