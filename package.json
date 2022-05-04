@@ -35,6 +35,5 @@
     "request": "^2.81.0"
   },
   "resolutions": {
-    "level-rocksdb": "^4.0.0"
   }
 }
