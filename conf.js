@@ -156,6 +156,12 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 };
 
-exports.arbstores = process.env.testnet ? {'5OISSD4XXDPGDPKLEKKHABUHX5CXLM6H': 'https://testnet.arbstore.org'} : {};
+exports.arbstores = process.env.testnet
+	? {
+		'5OISSD4XXDPGDPKLEKKHABUHX5CXLM6H': 'https://testnet.arbstore.org'
+	}
+	: {
+		'62J53JMSYIU65GMFN2EO6NR5Z74NGDOS': 'https://arbstore.org'
+	};
 
 console.log('finished hub conf');
