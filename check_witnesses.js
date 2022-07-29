@@ -5,12 +5,12 @@ var storage = require('ocore/storage.js');
 var mail = require('ocore/mail.js');
 var conf = require('ocore/conf.js');
 
-function notifyAdmin(message){
+function notifyAdmin(message, to){
 	write(message);
 	if (!conf.admin_email || !conf.from_email)
 		return write('cannot notify admin as admin_email or from_email are not defined');
 	mail.sendmail({
-		to: conf.admin_email,
+		to: to,
 		from: conf.from_email,
 		subject: message,
 		body: 'Check witnesses:\n'+message
@@ -37,7 +37,10 @@ storage.readLastMainChainIndex(function(last_mci){
 			if (rows.length === 0)
 				return process.exit(0);
 			var arrMissingWitnesses = rows.map(row => row.address);
-			notifyAdmin('Missing witnesses: '+arrMissingWitnesses.join(', '));
+			notifyAdmin('Missing witnesses: '+arrMissingWitnesses.join(', '), conf.admin_email);
+			for (let addr of arrMissingWitnesses)
+				if (conf.witnessAdmins && conf.witnessAdmins[addr])
+					notifyAdmin('Missing witness: ' + addr, conf.witnessAdmins[addr]);
 			process.exit(0);
 		}
 	);
