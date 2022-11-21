@@ -65,7 +65,7 @@ function sendFirebaseNotification(registrationIds, message, msg_cnt) {
 	var req = https.request(options, function(res) {
 		res.on('data', function(d) {
 			if (res.statusCode !== 200)
-				console.error('Error push rest. code: ' + res.statusCode + ' Text: ' + d, registrationIds);
+				console.log('Error push rest. code: ' + res.statusCode + ' Text: ' + d, registrationIds);
 		});
 	});
 	var payload = {
@@ -93,11 +93,12 @@ function sendFirebaseNotification(registrationIds, message, msg_cnt) {
 	req.end();
 
 	req.on('error', function(e) {
-		console.error(e);
+		console.log('firebase error', e);
 	});
 }
 
 function sendiOSNotification(registrationId, message, msg_cnt) {
+	console.log('sending ios push notification', registrationId, message, msg_cnt);
 	var note = new apn.Notification();
 
 	note.badge = msg_cnt;
@@ -111,9 +112,11 @@ function sendiOSNotification(registrationId, message, msg_cnt) {
 
 	apnProvider.send(note, registrationId).then((result) => {
 		if (result.failed && result.failed.length)
-			console.error(result.failed);
+			console.log('sending ios push: result failed', result.failed);
+		else
+			console.log('successfully sent ios push', result);
 	}, function(err) {
-		console.error(err);
+		console.log('sending ios push failed', err);
     });
 }
 
@@ -127,7 +130,7 @@ function sendPushAboutMessage(device_address) {
 			try {
 				last_message = JSON.parse(rows[0].message);
 			}
-			catch (err) {}
+			catch (err) { }
 			switch (platform) {
 				case "firebase":
 				case "android":
@@ -138,6 +141,8 @@ function sendPushAboutMessage(device_address) {
 					break;
 			}
 		}
+		else
+			console.log(`${device_address} not registered for push`);
 	});
 }
 
