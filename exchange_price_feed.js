@@ -4,6 +4,7 @@ const async = require('async');
 const request = require('request').defaults({timeout: 10 * 1000});
 const eventBus = require('ocore/event_bus.js');
 const network = require('ocore/network.js');
+const db = require('ocore/db.js');
 const storage = require('ocore/storage.js');
 const { executeGetter } = require('ocore/formula/evaluation.js');
 require("tls").DEFAULT_ECDH_CURVE = "auto"; // fix for Node 8
@@ -197,6 +198,15 @@ async function updateImportedAssetsRates(state, onDone) {
 		}
 		onDone();
 	});
+}
+
+async function updateOswapTokenRate(state, onDone) {
+	const oswap_token_aa = 'OSWAPWKOXZKJPYWATNK47LRDV4UN4K7H';
+	const price = await executeGetter(db, oswap_token_aa, 'get_price', []);
+	const { asset } = await storage.readAAStateVar(oswap_token_aa, 'constants');
+	rates[asset + '_USD'] = price * rates['GBYTE_USD'];
+	state.updated = true;
+	onDone();
 }
 
 async function updateOswapPoolTokenRates(state, onDone) {
@@ -462,6 +472,9 @@ function updateRates(){
 		},
 		function(cb){
 			updateImportedAssetsRates(state, cb);
+		},
+		function(cb){
+			updateOswapTokenRate(state, cb);
 		},
 		function(cb){
 			updateOswapV2PoolTokenRates(state, cb);
