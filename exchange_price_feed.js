@@ -67,6 +67,14 @@ function updateBittrexRates(state, onDone) {
 	});
 }
 
+async function updateGbyteRates(state, onDone) {
+	rates['GBYTE_USD'] = await executeGetter(db, 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
+	if (rates['BTC_USD'])
+		rates['GBYTE_BTC'] = rates['GBYTE_USD'] / rates['BTC_USD'];
+	state.updated = true;
+	onDone();
+}
+
 function updateOstableRates(state, onDone) {
 	const apiUri = 'https://data.ostable.org/api/v1/summary';
 	request(apiUri, function (error, response, body) {
@@ -464,7 +472,7 @@ function updateRates(){
 			updateBitfinexRates(state, cb);
 		},
 		function(cb){
-			updateBittrexRates(state, cb);
+			updateGbyteRates(state, cb);
 		},
 		// function(cb){
 		// 	updateOstableRates(state, cb);
