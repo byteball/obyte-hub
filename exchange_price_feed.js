@@ -68,7 +68,7 @@ function updateBittrexRates(state, onDone) {
 }
 
 async function updateGbyteRates(state, onDone) {
-	rates['GBYTE_USD'] = await executeGetter(db, 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
+	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'HZCD3MDGCLU2G2IVYGGTMTZXS7DII2O5' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
 	if (rates['BTC_USD'])
 		rates['GBYTE_BTC'] = rates['GBYTE_USD'] / rates['BTC_USD'];
 	state.updated = true;
