@@ -254,7 +254,7 @@ This bot was first developed for Obyte Bot War in December 2018.
 Developer: Terence Lee, https://github.com/whoisterencelee/know-it-all-bot',
    'Ai9tK3w0yQNvbR8kpQU5uOLRloQQXdFXJFFNZkdQN8fr@obyte.org/bb#0000'
 );*/
-INSERT INTO bots (name, description, pairing_code) VALUES (
+/*INSERT INTO bots (name, description, pairing_code) VALUES (
    '幸运字节 Luckybytes',
    'A lottery which you can play using your Bytes. Three different game modes to participate in and follow the principle of "the winner takes all". All games are provably fair. Each lottey comes with a game proof hash which lets player validate and prove the results against manipulation.
 
@@ -262,15 +262,15 @@ INSERT INTO bots (name, description, pairing_code) VALUES (
 
 https://lucky.obytechina.org',
    'Ao1eMaw8OncQCmoC6lBFVsjMo6ryf+jO1G+N09DDJEwU@hub.obytechina.org/bb#0000'
-);
-INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+);*/
+/*INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    4,
    'OSwap.cc altcoin exchange',
    'OSwap.cc bot is an exchange bot for GBYTE, which enables you to buy GBYTE with BTC. 
 
 If you want to exchange more crypto assets, please visit OSwap exchange: https://oswap.cc.',
    'A+jdjOpMI8APj8jCXeI2nnuysHxBH1BxdIuxvbmU7BBk@obyte.org/bb#0000'
-);
+);*/
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	2,
    'GitHub attestation bot',
