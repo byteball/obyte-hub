@@ -277,3 +277,9 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Verify your GitHub username and link it to your Obyte address. Also works for organizations. In a future release, you will be able to receive payments to github/username alias instead of the regular Obyte address.',
    'A7mopY9L4F+/G+CUMjxFm8royoFl2hde5n9oUWVUkfEI@obyte.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Kivach discord bot',
+   'Link your Obyte address to your discord username and get a special status on the Obyte discord server depending on the total amount of your donations on kivach.org.',
+   'Az4iIH8AdlI+arT2k4Jo0wCfl2T/O51iH2dFMnPj/NCe@obyte.org/bb#0000'
+);
