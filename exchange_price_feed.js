@@ -14,6 +14,15 @@ let finished_rates;
 const decimalsInfo = {};
 let updating = false;
 
+
+async function checkThatDBNotEmpty(onDone) {
+	const rows = await db.query("SELECT 1 FROM units LIMIT 1");
+	if (rows.length) {
+		onDone();
+	} else {
+		eventBus.once('new_joint', onDone);
+	}
+}
 function updateBitfinexRates(state, onDone) {
 	const apiUri = 'https://api.bitfinex.com/v1/pubticker/btcusd';
 	request(apiUri, function (error, response, body) {
@@ -470,6 +479,9 @@ function updateRates(){
 	rates = {}; // reset
 	let state = {updated: false};
 	async.series([
+		function (cb) {
+			checkThatDBNotEmpty(cb);
+		},
 		function(cb){
 			updateBitfinexRates(state, cb);
 		},
