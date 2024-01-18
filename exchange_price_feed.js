@@ -23,6 +23,7 @@ async function checkThatDBNotEmpty(onDone) {
 		eventBus.once('new_joint', onDone);
 	}
 }
+
 function updateBitfinexRates(state, onDone) {
 	const apiUri = 'https://api.bitfinex.com/v1/pubticker/btcusd';
 	request(apiUri, function (error, response, body) {
@@ -79,7 +80,7 @@ function updateBittrexRates(state, onDone) {
 async function updateGbyteRates(state, onDone) {
 	if (process.env.devnet)
 		return onDone();
-	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'HZCD3MDGCLU2G2IVYGGTMTZXS7DII2O5' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
+	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'CFJTSWILG4FJGJJAN7II7FHP2TAFBB57' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
 	if (rates['BTC_USD'])
 		rates['GBYTE_BTC'] = rates['GBYTE_USD'] / rates['BTC_USD'];
 	state.updated = true;
