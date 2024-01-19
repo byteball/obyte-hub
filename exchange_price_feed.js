@@ -20,7 +20,7 @@ async function checkThatDBNotEmpty(onDone) {
 	if (rows.length) {
 		onDone();
 	} else {
-		eventBus.once('new_joint', onDone);
+		eventBus.once('new_joint', () => onDone());
 	}
 }
 
