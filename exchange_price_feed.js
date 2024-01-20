@@ -17,7 +17,7 @@ let updating = false;
 
 async function checkDBFullSync(onDone) {
 	if(network.isCatchingUp()) {
-		return onDone("DB not sync");
+		return onDone("The database is completely out of sync");
 	}
 	
 	return onDone();
