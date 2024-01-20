@@ -15,13 +15,6 @@ const decimalsInfo = {};
 let updating = false;
 
 
-async function checkDBFullSync(onDone) {
-	if(network.isCatchingUp()) {
-		return onDone("The database is completely out of sync");
-	}
-	
-	return onDone();
-}
 
 function updateBitfinexRates(state, onDone) {
 	const apiUri = 'https://api.bitfinex.com/v1/pubticker/btcusd';
@@ -78,6 +71,8 @@ function updateBittrexRates(state, onDone) {
 
 async function updateGbyteRates(state, onDone) {
 	if (process.env.devnet)
+		return onDone();
+	if (network.isCatchingUp()) 
 		return onDone();
 	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'CFJTSWILG4FJGJJAN7II7FHP2TAFBB57' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
 	if (rates['BTC_USD'])
@@ -194,6 +189,8 @@ async function fetchERC20ExchangeRate(chain, token_address, quote) {
 }
 
 async function updateImportedAssetsRates(state, onDone) {
+	if (network.isCatchingUp())
+		return onDone();
 	const import_factory_aa = 'KFAJZYLH6T3W2U6LNQJYIWXJVSBB24FN';
 	storage.readAAStateVars(import_factory_aa, 'import_', 'import_', 0, async vars => {
 		for (let var_name in vars) {
@@ -222,6 +219,8 @@ async function updateImportedAssetsRates(state, onDone) {
 async function updateOswapTokenRate(state, onDone) {
 	if (process.env.devnet)
 		return onDone();
+	if (network.isCatchingUp())
+		return onDone();
 	const oswap_token_aa = process.env.testnet ? 'IGUTWKORU2CVHHFUFY3OG7LQKKLCRJSA' : 'OSWAPWKOXZKJPYWATNK47LRDV4UN4K7H';
 	const price = await executeGetter(db, oswap_token_aa, 'get_price', []);
 	const { asset } = await storage.readAAStateVar(oswap_token_aa, 'constants');
@@ -231,6 +230,8 @@ async function updateOswapTokenRate(state, onDone) {
 }
 
 async function updateOswapPoolTokenRates(state, onDone) {
+	if (network.isCatchingUp())
+		return onDone();
 	const pool_factory_aa = process.env.testnet ? 'PFNAFDKV6HKKFIEB2R2ZE4IAPSDNNIGX' : 'B22543LKSS35Z55ROU4GDN26RT6MDKWU';
 	const pools = {};
 	const vars = await storage.readAAStateVars(pool_factory_aa, 'pools.', 'pools.', 0);
@@ -303,6 +304,8 @@ async function updateOswapPoolTokenRates(state, onDone) {
 }
 
 async function updateOswapV2PoolTokenRates(state, onDone) {
+	if (network.isCatchingUp())
+		return onDone();
 	const pool_factory_aas = ['OQLU4HOAIVJ32SDVBJA6AKD52OVTHAOF', 'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3'];
 	let factoryVars = {};
 	for (let pool_factory_aa of pool_factory_aas) {
@@ -479,9 +482,6 @@ function updateRates(){
 	rates = {}; // reset
 	let state = {updated: false};
 	async.series([
-		function (cb) {
-			checkDBFullSync(cb);
-		},
 		function(cb){
 			updateBitfinexRates(state, cb);
 		},
@@ -512,11 +512,7 @@ function updateRates(){
 		// function(cb){
 		// 	updateBTC_20200701Rates(state, cb);
 		// },
-	], function(err){
-		if (err) {
-			return console.error(err);
-		}
-		
+	], function(){
 		console.log(rates);
 		finished_rates = rates;
 		network.setExchangeRates(rates);
