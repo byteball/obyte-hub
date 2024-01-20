@@ -15,13 +15,12 @@ const decimalsInfo = {};
 let updating = false;
 
 
-async function checkThatDBNotEmpty(onDone) {
-	const rows = await db.query("SELECT 1 FROM units LIMIT 1");
-	if (rows.length) {
-		onDone();
-	} else {
-		eventBus.once('new_joint', onDone);
+async function checkDBFullSync(onDone) {
+	if(network.isCatchingUp()) {
+		return onDone("DB not sync");
 	}
+	
+	return onDone();
 }
 
 function updateBitfinexRates(state, onDone) {
@@ -481,7 +480,7 @@ function updateRates(){
 	let state = {updated: false};
 	async.series([
 		function (cb) {
-			checkThatDBNotEmpty(cb);
+			checkDBFullSync(cb);
 		},
 		function(cb){
 			updateBitfinexRates(state, cb);
@@ -513,7 +512,11 @@ function updateRates(){
 		// function(cb){
 		// 	updateBTC_20200701Rates(state, cb);
 		// },
-	], function(){
+	], function(err){
+		if (err) {
+			return console.error(err);
+		}
+		
 		console.log(rates);
 		finished_rates = rates;
 		network.setExchangeRates(rates);
