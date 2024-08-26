@@ -157,11 +157,15 @@ function requestAsync(url) {
 const nativeSymbols = {
 	Ethereum: 'ETH',
 	BSC: 'BNB',
+	Polygon: 'MATIC',
+	Kava: 'KAVA',
 };
 
 const coingeckoChains = {
 	Ethereum: 'ethereum',
 	BSC: 'binance-smart-chain',
+	Polygon: 'polygon-pos',
+	Kava: 'kava',
 };
 
 const fetchCryptocompareExchangeRate = async (in_currency, out_currency) => {
