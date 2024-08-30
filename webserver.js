@@ -27,12 +27,16 @@ const allowed_methods = [
   "get_peers",
   "get_joint",
   "get_last_mci",
+  "get_system_vars",
+  "get_system_var_votes",
 ];
 
 const methods_without_params = [
   "get_last_mci",
   "get_witnesses",
   "get_peers",
+  "get_system_vars",
+  "get_system_var_votes",
 ];
 
 async function startWebserver() {
