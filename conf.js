@@ -111,11 +111,11 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 	'4GDZSXHEFVFMHCUCSHZVXBVF5T2LJHMU': {
 		name: "Rogier Eijkelhof",
-		url: "https://medium.com/obyte/first-decentralized-witness-candidate-rogier-eijkelhof-9e5619166334"
+		url: "https://blog.obyte.org/first-decentralized-witness-candidate-rogier-eijkelhof-9e5619166334"
 	},
 	'FAB6TH7IRAVHDLK2AAWY5YBE6CEBUACF': {
 		name: "Fabien Marino",
-		url: "https://medium.com/obyte/second-independent-witness-candidate-fabien-marino-d4e8dccadee"
+		url: "https://blog.obyte.org/second-independent-witness-candidate-fabien-marino-d4e8dccadee"
 	},
 	'2TO6NYBGX3NF5QS24MQLFR7KXYAMCIE5': {
 		name: "Bosch Connectory Stuttgart",
@@ -123,11 +123,11 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 	'DXYWHSZ72ZDNDZ7WYZXKWBBH425C6WZN': {
 		name: "Bind Creative",
-		url: "https://medium.com/obyte/bind-creative-announces-candidacy-to-become-obyte-witness-c06109bf8de1"
+		url: "https://blog.obyte.org/bind-creative-announces-candidacy-to-become-obyte-witness-c06109bf8de1"
 	},
 	'4FIZC3KZ3ZQSSVOKFEUHKCTQWAWD6YMF': {
 		name: "Raivo Malter",
-		url: "https://medium.com/obyte/raivo-malter-announces-candidacy-to-become-obyte-witness-a7f7471cef4e"
+		url: "https://blog.obyte.org/raivo-malter-announces-candidacy-to-become-obyte-witness-a7f7471cef4e"
 	},
 	'IMMP5FWQXY6IZ53OIYQ46PHSI5T3MAYQ': {
 		name: "Demelza Hays",
@@ -137,7 +137,7 @@ exports.known_witnesses = process.env.testnet ? null : {
 	},
 	'APABTE2IBKOIHLS2UNK6SAR4T5WRGH2J': {
 		name: "PolloPollo",
-		url: "https://medium.com/obyte/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
+		url: "https://blog.obyte.org/dlt-based-charity-platform-pollopollo-announces-candidacy-to-become-obyte-witness-7dc60480684f"
 	},
 	'UE25S4GRWZOLNXZKY4VWFHNJZWUSYCQC': {
 		name: "Institute For the Future at University of Nicosia",
