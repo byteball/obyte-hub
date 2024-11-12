@@ -26,7 +26,7 @@ exports.bLight = false;
 exports.bug_sink_email = ''; // 'admin@example.org';
 exports.bugs_from_email = ''; // 'bugs@example.org';
 
-exports.HEARTBEAT_TIMEOUT = 300*1000;
+exports.HEARTBEAT_TIMEOUT = 30*1000;
 
 exports.storage = 'sqlite';
 
