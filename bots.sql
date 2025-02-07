@@ -283,3 +283,15 @@ INSERT INTO bots (rank, name, description, pairing_code) VALUES (
    'Link your Obyte address to your discord username and get a special status on the Obyte discord server depending on the total amount of your donations on kivach.org.',
    'Az4iIH8AdlI+arT2k4Jo0wCfl2T/O51iH2dFMnPj/NCe@obyte.org/bb#0000'
 );
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Discord attestation bot',
+   'Verify your Discord username and link it to your Obyte address. This might be required to access some apps and receive notifications from them. In a future release, you will be able to receive payments to discord/username alias instead of the regular Obyte address.',
+   'Ama48/uKO+/Tjv28zFKwElBO4SEQNuWAM1VPJkl4DTZO@obyte.org/bb#0000'
+);
+INSERT INTO bots (rank, name, description, pairing_code) VALUES (
+	2,
+   'Telegram attestation bot',
+   'Verify your Telegram username and link it to your Obyte address. This might be required to access some apps and receive notifications from them. In a future release, you will be able to receive payments to tg/username alias instead of the regular Obyte address.',
+   'A1KwcOAZSWwBnXwa1BKfmhEP2yow1kaUuoi5A6HLOzJZ@obyte.org/bb#0000'
+);
