@@ -25,8 +25,12 @@ eventBus.on('peer_sent_new_message', function(ws, objDeviceMessage) {
 });
 
 eventBus.on("enableNotification", function(deviceAddress, params) {
+	if (!params)
+		return console.log("no params in enableNotification")
 	if (typeof params == "string") // old clients
 		params = {registrationId: params};
+	else if (typeof params !== "object")
+		return console.log("invalid params in enableNotification", params);
 	params.platform = params.platform || 'android';
 	if (!push_enabled[conf.pushApiBothFirebase ? 'firebase' : params.platform])
 		return;
