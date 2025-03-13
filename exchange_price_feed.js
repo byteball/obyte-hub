@@ -69,10 +69,14 @@ function updateBittrexRates(state, onDone) {
 	});
 }
 
+function isReady() {
+	return storage.getMinRetrievableMci() && !network.isCatchingUp();
+}
+
 async function updateGbyteRates(state, onDone) {
 	if (process.env.devnet)
 		return onDone();
-	if (network.isCatchingUp()) 
+	if (!isReady()) 
 		return onDone();
 	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'CFJTSWILG4FJGJJAN7II7FHP2TAFBB57' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
 	if (rates['BTC_USD'])
@@ -193,7 +197,7 @@ async function fetchERC20ExchangeRate(chain, token_address, quote) {
 }
 
 async function updateImportedAssetsRates(state, onDone) {
-	if (network.isCatchingUp())
+	if (!isReady()) 
 		return onDone();
 	const import_factory_aa = 'KFAJZYLH6T3W2U6LNQJYIWXJVSBB24FN';
 	storage.readAAStateVars(import_factory_aa, 'import_', 'import_', 0, async vars => {
@@ -223,7 +227,7 @@ async function updateImportedAssetsRates(state, onDone) {
 async function updateOswapTokenRate(state, onDone) {
 	if (process.env.devnet)
 		return onDone();
-	if (network.isCatchingUp())
+	if (!isReady()) 
 		return onDone();
 	const oswap_token_aa = process.env.testnet ? 'IGUTWKORU2CVHHFUFY3OG7LQKKLCRJSA' : 'OSWAPWKOXZKJPYWATNK47LRDV4UN4K7H';
 	const price = await executeGetter(db, oswap_token_aa, 'get_price', []);
@@ -234,7 +238,7 @@ async function updateOswapTokenRate(state, onDone) {
 }
 
 async function updateOswapPoolTokenRates(state, onDone) {
-	if (network.isCatchingUp())
+	if (!isReady()) 
 		return onDone();
 	const pool_factory_aa = process.env.testnet ? 'PFNAFDKV6HKKFIEB2R2ZE4IAPSDNNIGX' : 'B22543LKSS35Z55ROU4GDN26RT6MDKWU';
 	const pools = {};
@@ -308,7 +312,7 @@ async function updateOswapPoolTokenRates(state, onDone) {
 }
 
 async function updateOswapV2PoolTokenRates(state, onDone) {
-	if (network.isCatchingUp())
+	if (!isReady()) 
 		return onDone();
 	const pool_factory_aas = ['OQLU4HOAIVJ32SDVBJA6AKD52OVTHAOF', 'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3'];
 	let factoryVars = {};
