@@ -32,6 +32,8 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 	else if (typeof params !== "object")
 		return console.log("invalid params in enableNotification", params);
 	params.platform = params.platform || 'android';
+	if (typeof params.registrationId !== 'string' || typeof params.platform !== 'string')
+		return console.log('invalid registrationId or platform in enableNotification', params);
 	if (!push_enabled[conf.pushApiBothFirebase ? 'firebase' : params.platform])
 		return;
 	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
@@ -50,6 +52,8 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 });
 
 eventBus.on("disableNotification", function(deviceAddress, registrationId) {
+	if (typeof registrationId !== 'string')
+		return console.log('invalid registrationId in disableNotification', registrationId);
 	db.query("DELETE FROM push_registrations WHERE registrationId=? and device_address=?", [registrationId, deviceAddress], function() {
 	});
 });
