@@ -206,7 +206,7 @@ Website: https://www.aworker.io',
 INSERT INTO bots (rank, name, description, pairing_code) VALUES (
 	3,
    'Username registration bot',
-   'Buy a username and receive money to your @username instead of a less user-friendly cryptocurrency address.
+   'Buy a username and receive money to your @@username instead of a less user-friendly cryptocurrency address.
 
 Proceeds from the sale of usernames go to Obyte community fund and help fund the development and promotion of the platform.',
    'A52nAAlO05BLIfuoZk6ZrW5GjJYvB6XHlCxZBJjpax3c@obyte.org/bb#0000'
