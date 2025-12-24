@@ -154,6 +154,10 @@ exports.known_witnesses = process.env.testnet ? null : {
 	'QR542JXX7VJ5UJOZDKHTJCXAYWOATID2': {
 		name: "Bittrex",
 	},
+	'XY6JXVBITD4EKY3DFT27XS65D2M3FJ5V': {
+		name: "CariPower (Luc Chase)",
+		url: "https://www.linkedin.com/pulse/powering-future-obyte-caripower-seeks-become-your-trusted-order-dmobe"
+	},
 };
 
 exports.arbstores = process.env.testnet
