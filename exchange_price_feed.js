@@ -152,11 +152,13 @@ function updateOstableReferralsRates(state, onDone) {
 
 function requestAsync(url) {
 	return new Promise((resolve, reject) => {
-		request(url, (error, response, body) => {
+		request({ url, headers: { 'User-Agent': 'cc-rates' } }, (error, response, body) => {
 			if (error)
 				return reject(error);
-			if (response.statusCode != 200)
+			if (response.statusCode != 200) {
+				console.log("non-200 response", url, response);
 				return reject("non-200 status code " + response.statusCode);
+			}
 			resolve(body);
 		});
 	});
@@ -225,6 +227,7 @@ async function updateImportedAssetsRates(state, onDone) {
 				console.error('failed to fetch the rate of', home_asset, 'on', home_network, e);
 			}
 		}
+		console.log('rates of imported assets', rates);
 		onDone();
 	});
 }
