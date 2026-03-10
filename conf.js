@@ -21,6 +21,7 @@ exports.webServerPort = 3005;
 exports.bServeAsHub = true;
 exports.bSaveJointJson = true;
 exports.bLight = false;
+exports.bDryRunNewTriggers = true;
 
 // this is used by wallet vendor only, to redirect bug reports to developers' email
 exports.bug_sink_email = ''; // 'admin@example.org';
