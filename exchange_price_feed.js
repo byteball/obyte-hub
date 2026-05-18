@@ -322,7 +322,11 @@ async function updateOswapPoolTokenRates(state, onDone) {
 async function updateOswapV2PoolTokenRates(state, onDone) {
 	if (!isReadyAndHasAAs()) 
 		return onDone();
-	const pool_factory_aas = ['OQLU4HOAIVJ32SDVBJA6AKD52OVTHAOF', 'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3'];
+	const pool_factory_aas = [
+		'OQLU4HOAIVJ32SDVBJA6AKD52OVTHAOF',
+		'4YI76KIHLEWB5VEFFCTA776TMGP7IA3L', // Apr 2026
+		'MODBFVX2J2TRPQUK7XFTFQK73AB64NF3',
+	];
 	let factoryVars = {};
 	for (let pool_factory_aa of pool_factory_aas) {
 		const vars = await storage.readAAStateVars(pool_factory_aa);
