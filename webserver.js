@@ -46,6 +46,8 @@ async function startWebserver() {
   app.use(cors());
   app.use(express.json())
 
+  let requestCount = 0;
+
   app.post('*', async function (request, response) {
     let params = request.body;
 
@@ -115,7 +117,10 @@ async function startWebserver() {
         }
       }
 
-      network.handleRequest(ws, "local", method, params);
+      requestCount++;
+      const tag = "local_" + requestCount;
+      console.log(`webserver: handling ${method} with tag ${tag} and params`, params);
+      network.handleRequest(ws, tag, method, params);
 
     } catch (e) {
       return response.status(500).send({ error: e });
