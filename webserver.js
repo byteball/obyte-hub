@@ -105,7 +105,8 @@ async function startWebserver() {
                 return response.status(400).send({ error });
               }
             } else {
-              return response.status(500).send({ error: "unknown request type" });
+              console.log("webserver: ignoring unknown message type", msg);
+              // return response.status(500).send({ error: "unknown request type" });
             }
           } catch (e) {
             console.error("webserver: can't parse messages", e);
