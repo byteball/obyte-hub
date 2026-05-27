@@ -84,35 +84,39 @@ async function startWebserver() {
         readyState: 1,
         OPEN: 1,
         send: function (msg) {
-          if (responseSent)
-            return console.error("webserver: response already sent, can't send more messages");
-          responseSent = true;
           try {
             const [type, message] = JSON.parse(msg);
 
-            if (type === "response") {
-              const responseIsObject = typeof message.response === "object" && !!message.response;
-              
-              if (!(responseIsObject && ("error" in message.response)) && !(responseIsObject && ("joint_not_found" in message.response))) {
-                return response.status(200).send({ data: message.response || null });
-              } else {
-                let error = "unknown error";
-
-                if ("error" in message.response) {
-                  error = message.response.error;
-                } else if ("joint_not_found" in message.response) {
-                  error = "joint not found"
-                }
-
-                return response.status(400).send({ error });
-              }
-            } else {
+            if (type !== "response") {
               console.log("webserver: ignoring unknown message type", msg);
-              // return response.status(500).send({ error: "unknown request type" });
+              return;
+            }
+
+            if (responseSent)
+              return console.error("webserver: response already sent, can't send more messages");
+            responseSent = true;
+
+            const responseIsObject = typeof message.response === "object" && !!message.response;
+
+            if (!(responseIsObject && ("error" in message.response)) && !(responseIsObject && ("joint_not_found" in message.response))) {
+              return response.status(200).send({ data: message.response || null });
+            } else {
+              let error = "unknown error";
+
+              if ("error" in message.response) {
+                error = message.response.error;
+              } else if ("joint_not_found" in message.response) {
+                error = "joint not found"
+              }
+
+              return response.status(400).send({ error });
             }
           } catch (e) {
             console.error("webserver: can't parse messages", e);
-            return response.status(500).send({ error: "message parse error" });
+            if (!responseSent) {
+              responseSent = true;
+              return response.status(500).send({ error: "message parse error" });
+            }
           }
         }
       }
