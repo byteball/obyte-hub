@@ -74,6 +74,7 @@ async function startWebserver() {
     }
 
     try {
+      let responseSent = false;
       let ws = {
         assocPendingRequests: {},
         assocCommandsInPreparingResponse: {},
@@ -81,6 +82,9 @@ async function startWebserver() {
         readyState: 1,
         OPEN: 1,
         send: function (msg) {
+          if (responseSent)
+            return console.error("webserver: response already sent, can't send more messages");
+          responseSent = true;
           try {
             const [type, message] = JSON.parse(msg);
 
@@ -103,8 +107,8 @@ async function startWebserver() {
             } else {
               return response.status(500).send({ error: "unknown request type" });
             }
-          } catch {
-            console.error("can't parse messages");
+          } catch (e) {
+            console.error("webserver: can't parse messages", e);
             return response.status(500).send({ error: "message parse error" });
           }
         }
