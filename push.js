@@ -1,13 +1,14 @@
 var db = require('ocore/db');
 var conf = require('ocore/conf');
 var eventBus = require('ocore/event_bus.js');
-var https = require('https');
+const admin = require('firebase-admin');
 var apn = require('apn');
 
 var push_enabled = {};
 push_enabled['ios'] = !!conf.APNsAuthKey;
-push_enabled['android'] = !!conf.pushApiProjectNumber;
+push_enabled['android'] = !!(conf.pushApiProjectNumber && conf.firebaseServiceAccountFile);
 push_enabled['firebase'] = push_enabled['android'] && !!conf.pushApiBothFirebase;
+const firebaseApp = push_enabled['android'] ? createFirebaseApp() : null;
 
 var apnsOptions = {
 	token: {
@@ -58,50 +59,58 @@ eventBus.on("disableNotification", function(deviceAddress, registrationId) {
 	});
 });
 
-function sendFirebaseNotification(registrationIds, message, msg_cnt) {
-	var options = {
-		host: 'fcm.googleapis.com',
-		port: 443,
-		path: '/fcm/send',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'key=' + conf.pushApiKey
-		}
-	};
+function getFirebaseCredential() {
+	return admin.credential.cert(require(conf.firebaseServiceAccountFile));
+}
 
-	var req = https.request(options, function(res) {
-		res.on('data', function(d) {
-			if (res.statusCode !== 200)
-				console.log('Error push rest. code: ' + res.statusCode + ' Text: ' + d, registrationIds);
-		});
+function createFirebaseApp() {
+	return admin.initializeApp({
+		projectId: conf.pushApiProjectNumber,
+		credential: getFirebaseCredential()
 	});
-	var payload = {
-		"registration_ids": registrationIds,
-		"content_available": true, // wakes the app, needed for iOS
-		//"collapse_key": "New message", // groups notification as one
-		"data": {
-			"message": "New message",
-			"title": "Obyte",
-			"vibrate": 1,
-			"sound": 1
+}
+
+function buildFcmMessage(registrationId, message, msg_cnt) {
+	const payload = {
+		token: registrationId,
+		data: {
+			message: 'New message',
+			title: 'Obyte',
+			vibrate: '1',
+			sound: '1'
+		},
+		android: {
+			priority: 'high'
 		}
 	};
-	if (message && message.pubkey) {
-		payload.data.pubkey = message.pubkey;
-	}
 	if (conf.pushApiBothFirebase) {
 		payload.notification = {
-			"title": "Obyte", // not visible on iOS phones and tablets.
-			"body": "New message",
-			"badge": msg_cnt // iOS only
+			title: 'Obyte',
+			body: 'New message'
+		};
+		payload.apns = {
+			payload: {
+				aps: {
+					badge: Number(msg_cnt) || 0,
+					sound: 'ping.aiff',
+					'content-available': 1
+				}
+			}
 		};
 	}
-	req.write(JSON.stringify(payload));
-	req.end();
+	if (message && message.pubkey)
+		payload.data.pubkey = String(message.pubkey);
+	return payload;
+}
 
-	req.on('error', function(e) {
-		console.log('firebase error', e);
+function sendFirebaseNotification(registrationIds, message, msg_cnt) {
+	if (!firebaseApp)
+		return console.log('firebase push disabled: missing firebase app');
+	registrationIds.forEach(function(registrationId) {
+		const payload = buildFcmMessage(registrationId, message, msg_cnt);
+		admin.messaging(firebaseApp).send(payload).catch(function(err) {
+			console.log('firebase error', err, [registrationId]);
+		});
 	});
 }
 
