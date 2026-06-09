@@ -6,7 +6,7 @@ var apn = require('apn');
 
 var push_enabled = {};
 push_enabled['ios'] = !!conf.APNsAuthKey;
-push_enabled['android'] = !!(conf.pushApiProjectNumber && conf.firebaseServiceAccountFile);
+push_enabled['android'] = !!(conf.firebaseProjectId && conf.firebaseServiceAccountFile);
 push_enabled['firebase'] = push_enabled['android'] && !!conf.pushApiBothFirebase;
 const firebaseApp = push_enabled['android'] ? createFirebaseApp() : null;
 
@@ -65,7 +65,7 @@ function getFirebaseCredential() {
 
 function createFirebaseApp() {
 	return admin.initializeApp({
-		projectId: conf.pushApiProjectNumber,
+		projectId: conf.firebaseProjectId,
 		credential: getFirebaseCredential()
 	});
 }

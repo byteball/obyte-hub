@@ -6,7 +6,7 @@ exports.minClientVersion = '5.0.2';
 exports.minClientVersionForChat = '3.0.3';
 
 // https://console.developers.google.com
-exports.pushApiProjectNumber = '';
+exports.firebaseProjectId = '';
 exports.firebaseServiceAccountFile = '';
 
 // iOS Push Notifications APNS config
