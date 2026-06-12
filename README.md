@@ -35,9 +35,9 @@ If you want to change any defaults, refer to the documentation of [ocore](../../
 
 ### Android
 
-To enable push notifications for Android users of your hub you need to create a new project in Google Console https://console.developers.google.com and add Google Cloud Messaging API.  In your hub's conf (conf.js or conf.json) add these two settings copied from the Google Console:
-* `pushApiProjectNumber`: get it from settings (under dots menu in the upper right)
-* `pushApiKey`: your API key
+To enable push notifications for Android users of your hub you need to create a Firebase project, enable Firebase Cloud Messaging API, and create a service account private key.  In your hub's conf (conf.js or conf.json) add these settings:
+* `firebaseProjectId`: your Firebase project id
+* `firebaseServiceAccountFile`: full path to the service account JSON key
 
 ### iOS
 
