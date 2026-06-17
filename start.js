@@ -22,6 +22,8 @@ if (conf.trustedRegistries && Object.keys(conf.trustedRegistries).length > 0)
 	require('./asset_metadata.js');
 
 eventBus.on('peer_version', function (ws, body) {
+	if (typeof body.program_version !== 'string')
+		return console.log('peer_version: bad program_version', body.program_version);
 	if (body.program == conf.clientName) {
 		if (conf.minClientVersion && compareVersions(body.program_version, conf.minClientVersion) == '<')
 			network.sendJustsaying(ws, 'new_version', {version: conf.minClientVersion});
@@ -48,6 +50,7 @@ function compareVersions(currentVersion, minVersion) {
 
 	var cV = currentVersion.match(/([0-9])+/g);
 	var mV = minVersion.match(/([0-9])+/g);
+	if (!cV || !mV) return undefined;
 	var l = Math.min(cV.length, mV.length);
 	var diff;
 
