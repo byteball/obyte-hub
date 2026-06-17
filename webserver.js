@@ -81,6 +81,7 @@ async function startWebserver() {
         assocPendingRequests: {},
         assocCommandsInPreparingResponse: {},
         peer: "local",
+        host: request.ip,
         readyState: 1,
         OPEN: 1,
         send: function (msg) {
@@ -123,7 +124,7 @@ async function startWebserver() {
 
       requestCount++;
       const tag = "local_" + requestCount;
-      console.log(`webserver: handling ${method} with tag ${tag} and params`, params);
+      console.log(`webserver: ${request.ip} handling ${method} with tag ${tag} and params`, params);
       network.handleRequest(ws, tag, method, params);
 
     } catch (e) {
