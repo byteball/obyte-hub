@@ -58,7 +58,7 @@ async function startWebserver() {
     if (!method)
       return response.status(405).send({ error: `method is not found: ${path}` });
 
-    if (!methods_without_params.includes(method) && (typeof params !== 'object' || Object.keys(params).length === 0)) return response.send({ error: "Not valid params" }, 400);
+    if (!methods_without_params.includes(method) && (typeof params !== 'object' || Object.keys(params).length === 0)) return response.status(400).send({ error: "Not valid params" });
 
     params = Object.assign({}, params);
 
