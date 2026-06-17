@@ -128,7 +128,8 @@ async function startWebserver() {
       network.handleRequest(ws, tag, method, params);
 
     } catch (e) {
-      return response.status(500).send({ error: e });
+      console.error("webserver: error handling request", e);
+      return response.status(500).send({ error: 'internal error' });
     }
   });
 
