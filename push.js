@@ -37,13 +37,13 @@ eventBus.on("enableNotification", function(deviceAddress, params) {
 		return console.log('invalid registrationId or platform in enableNotification', params);
 	if (!push_enabled[conf.pushApiBothFirebase ? 'firebase' : params.platform])
 		return;
-	db.query("SELECT device_address FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
+	db.query("SELECT device_address, registrationId FROM push_registrations WHERE device_address=? LIMIT 0,1", [deviceAddress], function(rows) {
 		if (rows.length === 0) {
 			db.query("INSERT "+db.getIgnore()+" INTO push_registrations (registrationId, device_address, platform) VALUES (?, ?, ?)", [params.registrationId, deviceAddress, params.platform], function() {
 
 			});
 		} else if (rows.length) {
-			if (rows[0].registration_id !== params.registrationId) {
+			if (rows[0].registrationId !== params.registrationId) {
 				db.query("UPDATE push_registrations SET registrationId = ? WHERE device_address = ?", [params.registrationId, deviceAddress], function() {
 
 				})
