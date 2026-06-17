@@ -498,6 +498,7 @@ function updateBTC_20200701Rates(state, onDone) {
 function updateRates(){
 	if (updating)
 		return console.log('already updating rates, will skip');
+	console.log('will update rates');
 	updating = true;
 	rates = {}; // reset
 	let state = {updated: false};
@@ -533,7 +534,7 @@ function updateRates(){
 		// 	updateBTC_20200701Rates(state, cb);
 		// },
 	], function(){
-		console.log(rates);
+		console.log('new rates', rates);
 		finished_rates = rates;
 		network.setExchangeRates(rates);
 		if (state.updated)
