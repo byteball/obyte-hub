@@ -166,10 +166,10 @@ function requestAsync(url) {
 
 
 const nativeSymbols = {
-	Ethereum: 'ETH',
-	BSC: 'BNB',
-	Polygon: 'MATIC',
-	Kava: 'KAVA',
+	Ethereum: 'ethereum',
+	BSC: 'binancecoin',
+	Polygon: 'polygon-ecosystem-token',
+	Kava: 'kava',
 };
 
 const coingeckoChains = {
@@ -179,12 +179,16 @@ const coingeckoChains = {
 	Kava: 'kava',
 };
 
-const fetchCryptocompareExchangeRate = async (in_currency, out_currency) => {
-	let data = await requestAsync(`https://min-api.cryptocompare.com/data/price?fsym=${in_currency}&tsyms=${out_currency}`);
+const fetchNativeExchangeRate = async (in_currency, out_currency) => {
+	let data = await requestAsync(`https://api.coingecko.com/api/v3/simple/price?ids=${in_currency}&vs_currencies=${out_currency}`);
 	data = JSON.parse(data);
-	if (!data[out_currency])
+
+	if (!data[in_currency])
+		throw new Error(`no ${in_currency} in response ${JSON.stringify(data)}`);
+	if (!data[in_currency][out_currency])		
 		throw new Error(`no ${out_currency} in response ${JSON.stringify(data)}`);
-	return data[out_currency];
+
+	return data[in_currency][out_currency];
 }
 
 async function fetchERC20ExchangeRate(chain, token_address, quote) {
@@ -218,7 +222,7 @@ async function updateImportedAssetsRates(state, onDone) {
 			decimalsInfo[asset] = asset_decimals; // cache for updateOswapPoolTokenRates()
 			try {
 				if (home_asset === '0x0000000000000000000000000000000000000000')
-					rates[asset + '_USD'] = await fetchCryptocompareExchangeRate(nativeSymbols[home_network], 'USD');
+					rates[asset + '_USD'] = await fetchNativeExchangeRate(nativeSymbols[home_network], 'USD');
 				else
 					rates[asset + '_USD'] = await fetchERC20ExchangeRate(chain, home_asset, 'USD');
 				state.updated = true;
@@ -527,9 +531,9 @@ function updateRates(){
 		function(cb){
 			updateOswapPoolTokenRates(state, cb);
 		},
-		function(cb){
-			updateFreebeRates(state, cb);
-		},
+		// function(cb){
+		// 	updateFreebeRates(state, cb);
+		// },
 		// function(cb){
 		// 	updateBTC_20200701Rates(state, cb);
 		// },
