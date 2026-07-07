@@ -180,6 +180,9 @@ const coingeckoChains = {
 };
 
 const fetchNativeExchangeRate = async (in_currency, out_currency) => {
+	in_currency = in_currency.toLowerCase();
+	out_currency = out_currency.toLowerCase();
+	
 	let data = await requestAsync(`https://api.coingecko.com/api/v3/simple/price?ids=${in_currency}&vs_currencies=${out_currency}`);
 	data = JSON.parse(data);
 
