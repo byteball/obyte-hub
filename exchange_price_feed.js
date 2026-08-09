@@ -244,7 +244,7 @@ async function updateOswapTokenRate(state, onDone) {
 		return onDone();
 	if (!isReadyAndHasAAs()) 
 		return onDone();
-	const oswap_token_aa = process.env.testnet ? 'IGUTWKORU2CVHHFUFY3OG7LQKKLCRJSA' : 'OSWAPWKOXZKJPYWATNK47LRDV4UN4K7H';
+	const oswap_token_aa = process.env.testnet ? 'IGUTWKORU2CVHHFUFY3OG7LQKKLCRJSA' : 'OSWAP2243TPPVDCKVKNWDXEHS4YMSEGY';
 	const price = await executeGetter(db, oswap_token_aa, 'get_price', []);
 	const { asset } = await storage.readAAStateVar(oswap_token_aa, 'constants');
 	rates[asset + '_USD'] = price * rates['GBYTE_USD'];
