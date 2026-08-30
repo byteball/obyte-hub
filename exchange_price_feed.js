@@ -83,7 +83,7 @@ async function updateGbyteRates(state, onDone) {
 		return onDone();
 	if (!isReadyAndHasAAs()) 
 		return onDone();
-	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'CFJTSWILG4FJGJJAN7II7FHP2TAFBB57' : 'MBTF5GG44S3ARJHIZH3DEAB4DGUCHCF6', 'get_price', ['x', 9, 4]);
+	rates['GBYTE_USD'] = await executeGetter(db,  process.env.testnet ? 'CFJTSWILG4FJGJJAN7II7FHP2TAFBB57' : 'WQA2UDP5R5FTHBNA5QMKW63QKSEMJM3G', 'get_price', ['x', 9, 4]);
 	if (rates['BTC_USD'])
 		rates['GBYTE_BTC'] = rates['GBYTE_USD'] / rates['BTC_USD'];
 	state.updated = true;
